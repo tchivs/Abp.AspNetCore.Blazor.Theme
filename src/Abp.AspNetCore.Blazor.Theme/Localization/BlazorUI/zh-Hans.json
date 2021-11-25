@@ -1,0 +1,12 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Login": "登录",
+    "Add": "添加",
+    "Close": "关闭",
+    "ConfirmDeleteContent": "确认要删除选中的所有行吗？",
+    "LockoutEnabled": "登录尝试失败后锁定帐户",
+    "CloseButtonText": "关闭",
+    "SaveButtonText": "保存"
+  }
+}

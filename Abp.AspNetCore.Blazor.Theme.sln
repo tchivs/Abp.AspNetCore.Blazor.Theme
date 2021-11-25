@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme", "src\Abp.AspNetCore.Blazor.Theme\Abp.AspNetCore.Blazor.Theme.csproj", "{A5E4D845-4E1A-4E14-8794-4DC6631476DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33FC9D97-CD7B-4050-90E4-321FE72480C2}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Server", "src\Abp.AspNetCore.Blazor.Theme.Server\Abp.AspNetCore.Blazor.Theme.Server.csproj", "{76C166BC-93BC-4289-A125-FE2C7AEA32D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.WebAssembly", "src\Abp.AspNetCore.Blazor.Theme.WebAssembly\Abp.AspNetCore.Blazor.Theme.WebAssembly.csproj", "{927357AD-C857-4A10-8235-663DD135D54D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "themes", "themes", "{90A30DCF-3E06-43BA-85BA-8FBE092379E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bootstrap", "bootstrap", "{2F6751B1-3647-42DC-BB2C-5E029C44318F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap\Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj", "{6F1513C3-3163-413F-BA06-B5DB355B6923}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap.Server", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj", "{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj", "{415F05AA-6A50-476A-951E-401635EAA974}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5E4D845-4E1A-4E14-8794-4DC6631476DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E4D845-4E1A-4E14-8794-4DC6631476DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E4D845-4E1A-4E14-8794-4DC6631476DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E4D845-4E1A-4E14-8794-4DC6631476DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C166BC-93BC-4289-A125-FE2C7AEA32D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C166BC-93BC-4289-A125-FE2C7AEA32D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C166BC-93BC-4289-A125-FE2C7AEA32D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C166BC-93BC-4289-A125-FE2C7AEA32D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927357AD-C857-4A10-8235-663DD135D54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927357AD-C857-4A10-8235-663DD135D54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927357AD-C857-4A10-8235-663DD135D54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927357AD-C857-4A10-8235-663DD135D54D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F1513C3-3163-413F-BA06-B5DB355B6923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F1513C3-3163-413F-BA06-B5DB355B6923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F1513C3-3163-413F-BA06-B5DB355B6923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F1513C3-3163-413F-BA06-B5DB355B6923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{415F05AA-6A50-476A-951E-401635EAA974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{415F05AA-6A50-476A-951E-401635EAA974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{415F05AA-6A50-476A-951E-401635EAA974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{415F05AA-6A50-476A-951E-401635EAA974}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F6751B1-3647-42DC-BB2C-5E029C44318F} = {90A30DCF-3E06-43BA-85BA-8FBE092379E2}
+		{6F1513C3-3163-413F-BA06-B5DB355B6923} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
+		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
+		{415F05AA-6A50-476A-951E-401635EAA974} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51A29705-1D11-4C71-8BC4-194F02759346}
+	EndGlobalSection
+EndGlobal
