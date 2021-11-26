@@ -1,4 +1,6 @@
 ﻿@using Abp.AspNetCore.Blazor.Theme.Components
+@using Abp.AspNetCore.Blazor.Theme.Localization
+@using Microsoft.Extensions.Localization
 @using Microsoft.Extensions.Options
 @using Volo.Abp.UI.Navigation
 @using Volo.Abp.Ui.Branding
@@ -9,6 +11,7 @@
 @inject ICurrentUser _user
 @inject IMenuManager _menuManager
 @inject NavigationManager _navigation
+@inject IStringLocalizer<BlazorUIResource> Localizer
 <BootstrapBlazorRoot>
     <CascadingValue Value="this" IsFixed="true">
         <Layout SideWidth="0"
@@ -24,9 +27,7 @@
                 TabItemTextDictionary="@TabItemTextDictionary"
                 AdditionalAssemblies="@_routerOptions.Value.AdditionalAssemblies"
                 class="@Theme">
-            <NotAuthorized>
-                    <RedirectToLogin />
-                </NotAuthorized>
+          
             <Header>
                 <HeaderComponent DrawerSwitch="@(e => IsOpen = !IsOpen)"></HeaderComponent>
             </Header>
@@ -61,7 +62,7 @@
         </Layout>
         <Drawer Placement="Placement.Right" @bind-IsOpen="@IsOpen" IsBackdrop="true">
             <div class="layout-drawer-body">
-                <div class="btn btn-info w-100" @onclick="@(e => IsOpen = false)">点击关闭</div>
+                <div class="btn btn-info w-100" @onclick="@(e => IsOpen = false)">@Localizer["Close"]</div>
                 <div class="page-layout-demo-option">
                     <p>布局调整</p>
                     <div class="row">

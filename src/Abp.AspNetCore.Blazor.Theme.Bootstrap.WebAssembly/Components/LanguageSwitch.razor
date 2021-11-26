@@ -4,9 +4,9 @@
 @using System.Collections.Immutable
 @inject ILanguageProvider LanguageProvider
 @inject IJSRuntime JsRuntime
-@if (languages!=null&&_currentLanguage!=null)
+@if (languages != null && _currentLanguage != null)
 {
-   <li class="nav-item dropdown" >
+    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             @_currentLanguage.DisplayName
         </a>
@@ -14,24 +14,24 @@
             @foreach (var lan in this.languages)
             {
                 <li>
-                    @if (lan == this._currentLanguage)
-                    {
-                        <a id="@lan.UiCultureName" class="dropdown-item active" @onclick="() => this.ChangeLanguageAsync(lan)" href="#">@lan.DisplayName</a>
-                    }
-                    else
-                    {
-                        <a id="@lan.UiCultureName" class="dropdown-item" @onclick="() => this.ChangeLanguageAsync(lan)" href="#">@lan.DisplayName</a>
-                    }
+                    <a id="@lan.UiCultureName" class="@GetDropdownItemClass(lan)" @onclick="() => this.ChangeLanguageAsync(lan)" href="javascript:void()">@lan.DisplayName</a>
                 </li>
             }
 
         </ul>
     </li>
 }
-@code{
-    private IReadOnlyList<LanguageInfo>? languages ;
+@code {
+    private IReadOnlyList<LanguageInfo>? languages;
     private LanguageInfo? _currentLanguage;
-
+    string GetDropdownItemClass(LanguageInfo languageInfo)
+    {
+        if (languageInfo == _currentLanguage)
+        {
+            return "dropdown-item active";
+        }
+        return "dropdown-item";
+    }
     protected override async Task OnInitializedAsync()
     {
         var selectedLanguageName = await JsRuntime.InvokeAsync<string>(
@@ -43,14 +43,14 @@
 
 
     }
-  
-    private async Task ChangeLanguageAsync(LanguageInfo language)
-        {
-            await JsRuntime.InvokeVoidAsync(
-                "localStorage.setItem",
-                "Abp.SelectedLanguage", language.UiCultureName
-                );
 
-            await JsRuntime.InvokeVoidAsync("location.reload");
-        }
+    private async Task ChangeLanguageAsync(LanguageInfo language)
+    {
+        await JsRuntime.InvokeVoidAsync(
+            "localStorage.setItem",
+            "Abp.SelectedLanguage", language.UiCultureName
+            );
+
+        await JsRuntime.InvokeVoidAsync("location.reload");
+    }
 }
