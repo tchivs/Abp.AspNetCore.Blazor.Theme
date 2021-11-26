@@ -1,16 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using DemoApp.Blazor.Menus;
-using Volo.Abp.AspNetCore.Components.Web.Theming;
-using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
+using Abp.AspNetCore.Blazor.Theme.Bootstrap;
+using Abp.AspNetCore.Blazor.Theme;
 
 namespace DemoApp.Blazor
 {
     [DependsOn(
         typeof(DemoAppApplicationContractsModule),
-        typeof(AbpAspNetCoreComponentsWebThemingModule),
+        typeof(AbpAspNetCoreBlazorThemeBootstrapModule),
         typeof(AbpAutoMapperModule)
         )]
     public class DemoAppBlazorModule : AbpModule

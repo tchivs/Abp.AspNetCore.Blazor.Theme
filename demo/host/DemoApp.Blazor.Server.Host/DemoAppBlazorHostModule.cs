@@ -75,8 +75,8 @@ namespace DemoApp.Blazor.Server.Host
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpSettingManagementBlazorServerModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(DemoAppBlazorServerModule)
+        typeof(AbpSettingManagementEntityFrameworkCoreModule)
+        ,typeof(DemoAppBlazorServerModule)
     )]
     public class DemoAppBlazorHostModule: AbpModule
     {

@@ -13,6 +13,10 @@
 	  <ProjectReference Include="..\Abp.AspNetCore.Blazor.Theme.Server\Abp.AspNetCore.Blazor.Theme.Server.csproj" />
 
 	</ItemGroup>
+ 
+	<ItemGroup>
+	  <Folder Include="Components\" />
+	</ItemGroup>
 
 
  

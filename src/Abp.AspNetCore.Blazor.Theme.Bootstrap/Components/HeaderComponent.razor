@@ -1,0 +1,68 @@
+﻿@using Volo.Abp.Ui.Branding
+@inject IBrandingProvider _brandingProvider
+@inject IToolbarManager _toolbarManager
+@inherits BlazorComponentBase
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">@_brandingProvider.AppName</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-nav-left">
+                    @foreach (var render in LeftToolbarItemRenders)
+                    {
+                        @render
+                    }
+                </ul>
+                <ul class="navbar-nav" style="align-items: center;margin-right: 65px;">
+                    @foreach (var render in RightToolbarItemRenders)
+                    {
+                        @render
+                    }
+                    <li class="nav-item">
+                        <div class="layout-drawer" @onclick="DrawerSwitch">
+                            <i class="fa fa-gears"></i>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback DrawerSwitch { get; set; }
+
+    private List<RenderFragment> RightToolbarItemRenders { get; set; } = new List<RenderFragment>();
+    private List<RenderFragment> LeftToolbarItemRenders { get; set; } = new List<RenderFragment>();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await CreateToobar(LeftToolbarItemRenders, StandardToolbars.Left);
+        await CreateToobar(RightToolbarItemRenders, StandardToolbars.Right);
+
+    }
+    async Task CreateToobar(List<RenderFragment> renders, string name)
+    {
+        var toolbar = await this._toolbarManager.GetAsync(name);
+        renders.Clear();
+        var sequence = 0;
+        foreach (var item in toolbar.Items)
+        {
+            renders.Add(builder =>
+           {
+               builder.OpenComponent(sequence++, item.ComponentType);
+               builder.CloseComponent();
+           });
+        }
+    }
+
+}

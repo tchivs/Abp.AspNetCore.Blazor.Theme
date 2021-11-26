@@ -24,4 +24,5 @@ namespace Abp.AspNetCore.Blazor.Theme.Bootstrap
             context.Services.AddBootstrapBlazor();
         }
     }
+   
 }

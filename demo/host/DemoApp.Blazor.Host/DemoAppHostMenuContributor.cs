@@ -21,8 +21,18 @@ namespace DemoApp.Blazor.Host
             {
                 await ConfigureUserMenuAsync(context);
             }
+            else if (context.Menu.Name == StandardMenus.Main)
+            {
+                await ConfigureMainMenuAsync(context);
+            }
         }
 
+        private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+        {
+            //Add main menu items.
+            context.Menu.Items.Insert(0, new ApplicationMenuItem("Index", displayName: "Index", "/", icon: "fa fa-home"));
+            return Task.CompletedTask;
+        }
         private Task ConfigureUserMenuAsync(MenuConfigurationContext context)
         {
             var accountStringLocalizer = context.GetLocalizer<AccountResource>();

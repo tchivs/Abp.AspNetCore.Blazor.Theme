@@ -20,6 +20,11 @@ namespace Abp.AspNetCore.Blazor.Theme.Bootstrap
     )]
     public class AbpAspNetCoreBlazorThemeBootstrapServerModule : AbpAspNetCoreBlazorThemeServerModuleBase<BlazorGlobalStyleContributor, BlazorGlobalScriptContributor>
     {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+          
+            base.ConfigureServices(context);
+        }
         protected override IToolbarContributor? GetToolbarContributor()
         {
             return null;
@@ -29,6 +34,7 @@ namespace Abp.AspNetCore.Blazor.Theme.Bootstrap
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
+            
             context.Files.AddIfNotContains("/_framework/blazor.server.js");
             context.Files.AddIfNotContains("/_content/BootstrapBlazor/js/bootstrap.blazor.bundle.min.js");
             context.Files.AddIfNotContains("/_content/Volo.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js");

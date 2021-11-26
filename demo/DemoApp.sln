@@ -67,6 +67,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.WebAssembly", "..\src\Abp.AspNetCore.Blazor.Theme.WebAssembly\Abp.AspNetCore.Blazor.Theme.WebAssembly.csproj", "{22AC9612-E919-4F53-A595-26D0BF61F5EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D6DEADA-D86D-4CF3-B232-52BFCA3A6CF0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

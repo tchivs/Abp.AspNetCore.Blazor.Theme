@@ -10,6 +10,8 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+		
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Abp.AspNetCore.Blazor.Theme\Abp.AspNetCore.Blazor.Theme.csproj" />

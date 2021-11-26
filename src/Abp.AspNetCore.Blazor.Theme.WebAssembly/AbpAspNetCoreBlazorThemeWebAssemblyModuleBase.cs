@@ -7,6 +7,7 @@ using Volo.Abp.Modularity;
 namespace Abp.AspNetCore.Blazor.Theme.WebAssembly
 {
     [DependsOn(
+        typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
          typeof(AbpAspNetCoreBlazorThemeModule),
      typeof(AbpHttpClientIdentityModelWebAssemblyModule),
          typeof(AbpAspNetCoreComponentsWebAssemblyModule)
@@ -29,6 +30,7 @@ namespace Abp.AspNetCore.Blazor.Theme.WebAssembly
             {
                 options.AdditionalAssemblies.Add(typeof(Pages.Authentication).Assembly);
             });
+            
         }
 
         protected abstract IToolbarContributor? GetToolbarContributor();

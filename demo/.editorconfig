@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0162: 检测到无法访问的代码
+dotnet_diagnostic.CS0162.severity = none

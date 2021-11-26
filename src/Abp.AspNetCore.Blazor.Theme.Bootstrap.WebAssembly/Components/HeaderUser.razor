@@ -1,0 +1,44 @@
+﻿@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Components
+@using Volo.Abp.Users
+@using Volo.Abp.MultiTenancy
+@using global::Localization.Resources.AbpUi
+@inject ICurrentTenant CurrentTenant
+@inject IStringLocalizer<AbpUiResource> UiLocalizer
+@inherits BlazorComponentBase
+<AuthorizeView>
+    <Authorized>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @CurrentUser.UserName
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                    <a class="dropdown-item" href="#">@L["PersonalInfo"]</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">@L["Help"]</a>
+                </li>
+                @if (Menu != null)
+                {
+                    @foreach (var menuItem in Menu.Items)
+                    {
+                        <li>
+                            <a class="dropdown-item" href="@menuItem.Url?.TrimStart('~')" target="@menuItem.Target">@menuItem.DisplayName</a>
+                        </li>
+                    }
+                }
+                <li>
+                    <div class="dropdown-menu-arrow"></div>
+                </li>
+                <li>
+                    <a class="dropdown-item" @onclick="BeginSignOut">@UiLocalizer["Logout"]</a>
+                </li>
+
+            </ul>
+        </li>
+    </Authorized>
+    <NotAuthorized>
+        <a class="nav-link" href="authentication/login">@UiLocalizer["Login"]</a>
+    </NotAuthorized>
+</AuthorizeView>

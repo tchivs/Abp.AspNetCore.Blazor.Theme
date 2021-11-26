@@ -1,4 +1,4 @@
-﻿using Volo.Abp.AspNetCore.Components.WebAssembly.Theming;
+﻿using Abp.AspNetCore.Blazor.Theme.Bootstrap;
 using Volo.Abp.Modularity;
 
 namespace DemoApp.Blazor.WebAssembly
@@ -6,7 +6,7 @@ namespace DemoApp.Blazor.WebAssembly
     [DependsOn(
         typeof(DemoAppBlazorModule),
         typeof(DemoAppHttpApiClientModule),
-        typeof(AbpAspNetCoreComponentsWebAssemblyThemingModule)
+        typeof(AbpAspNetCoreBlazorThemeBootstrapWebAssemblyModule)
         )]
     public class DemoAppBlazorWebAssemblyModule : AbpModule
     {

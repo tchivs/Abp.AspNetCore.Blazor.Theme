@@ -1,10 +1,10 @@
-﻿using Volo.Abp.AspNetCore.Components.Server.Theming;
+﻿using Abp.AspNetCore.Blazor.Theme.Bootstrap;
 using Volo.Abp.Modularity;
 
 namespace DemoApp.Blazor.Server
 {
     [DependsOn(
-        typeof(AbpAspNetCoreComponentsServerThemingModule),
+        typeof(AbpAspNetCoreBlazorThemeBootstrapServerModule),
         typeof(DemoAppBlazorModule)
         )]
     public class DemoAppBlazorServerModule : AbpModule

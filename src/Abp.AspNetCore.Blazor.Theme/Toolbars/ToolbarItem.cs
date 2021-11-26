@@ -6,12 +6,11 @@ namespace Abp.AspNetCore.Blazor.Theme
 {
     public class ToolbarItem
     {
-        public Type? ComponentType
+        public Type ComponentType
         {
-            get => _componentType;
-            set => _componentType = Check.NotNull(value, nameof(value));
+            get;
         }
-        private Type? _componentType;
+      
 
         public int Order { get; set; }
 

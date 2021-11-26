@@ -1,32 +1,24 @@
 ﻿using System;
 using System.Net.Http;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
+using Abp.AspNetCore.Blazor.Theme;
+using Abp.AspNetCore.Blazor.Theme.Bootstrap;
+using DemoApp.Blazor.WebAssembly;
+using IdentityModel;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
-using DemoApp.Blazor.WebAssembly;
-using Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;
-using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
-using Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme;
 using Volo.Abp.Autofac.WebAssembly;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.Identity.Blazor.WebAssembly;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
-using Volo.Abp.SettingManagement.Blazor.WebAssembly;
-using Volo.Abp.TenantManagement.Blazor.WebAssembly;
 using Volo.Abp.UI.Navigation;
-
 namespace DemoApp.Blazor.Host
 {
     [DependsOn(
         typeof(AbpAutofacWebAssemblyModule),
-        typeof(AbpAspNetCoreComponentsWebAssemblyBasicThemeModule),
         typeof(AbpAccountApplicationContractsModule),
-        typeof(AbpIdentityBlazorWebAssemblyModule),
-        typeof(AbpTenantManagementBlazorWebAssemblyModule),
-        typeof(AbpSettingManagementBlazorWebAssemblyModule),
+         typeof(AbpIdentityApplicationContractsModule),
         typeof(DemoAppBlazorWebAssemblyModule)
     )]
     public class DemoAppBlazorHostModule : AbpModule
@@ -35,10 +27,8 @@ namespace DemoApp.Blazor.Host
         {
             var environment = context.Services.GetSingletonInstance<IWebAssemblyHostEnvironment>();
             var builder = context.Services.GetSingletonInstance<WebAssemblyHostBuilder>();
-
             ConfigureAuthentication(builder);
             ConfigureHttpClient(context, environment);
-            ConfigureBlazorise(context);
             ConfigureRouter(context);
             ConfigureUI(builder);
             ConfigureMenu(context);
@@ -46,10 +36,10 @@ namespace DemoApp.Blazor.Host
         }
 
         private void ConfigureRouter(ServiceConfigurationContext context)
-        {
+        { 
             Configure<AbpRouterOptions>(options =>
             {
-                options.AppAssembly = typeof(DemoAppBlazorHostModule).Assembly;
+                options.AdditionalAssemblies.Add(this.GetType().Assembly);
             });
         }
 
@@ -61,18 +51,13 @@ namespace DemoApp.Blazor.Host
             });
         }
 
-        private void ConfigureBlazorise(ServiceConfigurationContext context)
-        {
-            context.Services
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
-        }
-
+        
         private static void ConfigureAuthentication(WebAssemblyHostBuilder builder)
         {
             builder.Services.AddOidcAuthentication(options =>
             {
                 builder.Configuration.Bind("AuthServer", options.ProviderOptions);
+     
                 options.ProviderOptions.DefaultScopes.Add("DemoApp");
             });
         }

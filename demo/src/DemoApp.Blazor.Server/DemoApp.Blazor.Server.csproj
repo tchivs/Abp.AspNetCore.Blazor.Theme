@@ -6,11 +6,9 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+   
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Components.Server.Theming" Version="4.4.4" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <ProjectReference Include="..\..\..\src\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj" />
         <ProjectReference Include="..\DemoApp.Blazor\DemoApp.Blazor.csproj" />
     </ItemGroup>
 
