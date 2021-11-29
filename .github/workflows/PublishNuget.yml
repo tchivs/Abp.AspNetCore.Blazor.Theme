@@ -17,18 +17,20 @@ jobs:
       with:
         dotnet-version: '6.0.x'
         include-prerelease: true
+        source-url: https://api.nuget.org/v3/index.json
+      env:
+          NUGET_AUTH_TOKEN: ${{secrets.NugetKey}}
     - name: Build with dotnet
       run: |
         dotnet build --configuration Release
-    - name: Install Nuget
-      run: |
-        $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
-        $targetNugetExe = "nuget.exe"
-        Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+    - name: Setup latest NuGet preview version
+        uses: NuGet/setup-nuget@v1.0.5
+        with:
+          nuget-version: 'preview'
     - name: Add And Push generated package to GitHub registry
       run: |
-        .\nuget sources add -name github -Source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -Username ORGANIZATION_NAME -Password ${{ secrets.GITHUB_TOKEN }}
-        .\nuget push .\bin\release\*.nupkg -Source github -SkipDuplicate
+        dotnet nuget sources add -name github -Source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -Username ORGANIZATION_NAME -Password ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push .\bin\release\*.nupkg -Source github -SkipDuplicate
     - name: Push package to Nuget registry
       run: |
-        .\nuget push .\bin\release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NugetKey }} -NoSymbols 
+        dotnet nuget push .\bin\release\*.nupkg -SkipDuplicate -ApiKey ${{ secrets.NugetKey }} -NoSymbols 
