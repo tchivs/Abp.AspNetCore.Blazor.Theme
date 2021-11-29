@@ -1,49 +1,36 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
+using Abp.AspNetCore.Blazor.Theme;
+using Abp.AspNetCore.Blazor.Theme.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using DemoApp.Blazor.Server.Host.Menus;
-using DemoApp.EntityFrameworkCore;
 using DemoApp.Localization;
 using DemoApp.MultiTenancy;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Volo.Abp;
-using Volo.Abp.Account;
-using Volo.Abp.Account.Web;
-using Volo.Abp.AspNetCore.Authentication.JwtBearer;
-using Volo.Abp.AspNetCore.Components.Server.BasicTheme;
-using Volo.Abp.AspNetCore.Components.Server.BasicTheme.Bundling;
-using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
+using Volo.Abp.AspNetCore.Authentication.OAuth;
+using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
+using Volo.Abp.AspNetCore.Mvc.Client;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.Http.Client.IdentityModel.Web;
 using Volo.Abp.Identity;
-using Volo.Abp.Identity.Blazor.Server;
-using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.SettingManagement.Blazor.Server;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.Blazor.Server;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
@@ -51,34 +38,24 @@ using Volo.Abp.VirtualFileSystem;
 namespace DemoApp.Blazor.Server.Host
 {
     [DependsOn(
-        typeof(DemoAppEntityFrameworkCoreModule),
-        typeof(DemoAppApplicationModule),
-        typeof(DemoAppHttpApiModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
-        typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpAccountWebIdentityServerModule),
-        typeof(AbpAccountApplicationModule),
-        typeof(AbpAspNetCoreComponentsServerBasicThemeModule),
-        typeof(AbpIdentityApplicationModule),
-        typeof(AbpIdentityEntityFrameworkCoreModule),
-        typeof(AbpAuditLoggingEntityFrameworkCoreModule),
-        typeof(AbpIdentityBlazorServerModule),
-        typeof(AbpFeatureManagementApplicationModule),
-        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(AbpTenantManagementBlazorServerModule),
-        typeof(AbpTenantManagementApplicationModule),
-        typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-        typeof(AbpPermissionManagementApplicationModule),
-        typeof(AbpSettingManagementBlazorServerModule),
-        typeof(AbpSettingManagementApplicationModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule)
-        ,typeof(DemoAppBlazorServerModule)
+        typeof(DemoAppBlazorServerModule),
+        //typeof(AbpCachingStackExchangeRedisModule),
+        typeof(AbpAspNetCoreMvcClientModule),
+        typeof(AbpAspNetCoreAuthenticationOAuthModule),
+        typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
+        typeof(AbpHttpClientIdentityModelWebModule),
+        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        typeof(AbpAspNetCoreSerilogModule),
+        typeof(AbpIdentityHttpApiClientModule),
+        typeof(AbpFeatureManagementHttpApiClientModule),
+        typeof(AbpTenantManagementHttpApiClientModule),
+        typeof(AbpPermissionManagementHttpApiClientModule)
     )]
-    public class DemoAppBlazorHostModule: AbpModule
+    public class DemoAppBlazorHostModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
@@ -99,26 +76,17 @@ namespace DemoApp.Blazor.Server.Host
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-
-            Configure<AbpDbContextOptions>(options =>
-            {
-                options.UseSqlServer();
-            });
-
             Configure<AbpBundlingOptions>(options =>
             {
                 // MVC UI
                 options.StyleBundles.Configure(
                     BasicThemeBundles.Styles.Global,
-                    bundle =>
-                    {
-                        bundle.AddFiles("/global-styles.css");
-                    }
+                    bundle => { bundle.AddFiles("/global-styles.css"); }
                 );
 
                 //BLAZOR UI
                 options.StyleBundles.Configure(
-                    BlazorBasicThemeBundles.Styles.Global,
+                    BlazorBootstrapThemeBundles.Styles.Global,
                     bundle =>
                     {
                         bundle.AddFiles("/blazor-global-styles.css");
@@ -127,31 +95,53 @@ namespace DemoApp.Blazor.Server.Host
                     }
                 );
             });
-
-            context.Services.AddAuthentication()
-                .AddJwtBearer(options =>
+         
+            context.Services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = "Cookies";
+                    options.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies", options => { options.ExpireTimeSpan = TimeSpan.FromDays(365); })
+                .AddAbpOpenIdConnect("oidc", options =>
                 {
                     options.Authority = configuration["AuthServer:Authority"];
+                    options.ClientId = configuration["AuthServer:ClientId"];
+                    options.ClientSecret = configuration["AuthServer:ClientSecret"];
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.Audience = "DemoApp";
+                    options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+                    options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                    options.Scope.Add("role");
+                    options.Scope.Add("email");
+                    options.Scope.Add("phone");
+                    options.Scope.Add("DemoApp");
                 });
-
-            if(hostingEnvironment.IsDevelopment())
+            if (hostingEnvironment.IsDevelopment())
             {
                 Configure<AbpVirtualFileSystemOptions>(options =>
                 {
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}DemoApp.Domain.Shared", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}DemoApp.Domain", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}DemoApp.Application.Contracts", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}DemoApp.Application", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppBlazorHostModule>(hostingEnvironment.ContentRootPath);
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppDomainSharedModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            string.Format("..{0}..{0}src{0}DemoApp.Domain.Shared", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppDomainModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            string.Format("..{0}..{0}src{0}DemoApp.Domain", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppApplicationContractsModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            string.Format("..{0}..{0}src{0}DemoApp.Application.Contracts",
+                                Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppApplicationModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            string.Format("..{0}..{0}src{0}DemoApp.Application", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoAppBlazorHostModule>(hostingEnvironment
+                        .ContentRootPath);
                 });
             }
 
             context.Services.AddAbpSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApp API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "DemoApp API", Version = "v1"});
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 });
@@ -174,29 +164,18 @@ namespace DemoApp.Blazor.Server.Host
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             });
 
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
-            });
+            Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });
 
             context.Services.AddTransient(sp => new HttpClient
             {
                 BaseAddress = new Uri("/")
             });
 
-            context.Services
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
 
-            Configure<AbpNavigationOptions>(options =>
-            {
-                options.MenuContributors.Add(new DemoAppMenuContributor());
-            });
+            Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new DemoAppMenuContributor()); });
 
-            Configure<AbpRouterOptions>(options =>
-            {
-                options.AppAssembly = typeof(DemoAppBlazorHostModule).Assembly;
-            });
+            // Configure<AbpRouterOptions>(options => { options.AppAssembly = typeof(DemoAppBlazorHostModule).Assembly; });
+            Configure<AbpRouterOptions>(options => { options.AdditionalAssemblies .Add(typeof(DemoAppBlazorHostModule).Assembly); });//要改成这个
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -221,21 +200,18 @@ namespace DemoApp.Blazor.Server.Host
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
-            app.UseJwtTokenMiddleware();
+            //app.UseJwtTokenMiddleware();
 
             if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();
             }
 
-            app.UseUnitOfWork();
-            app.UseIdentityServer();
+            // app.UseUnitOfWork();
+            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseAbpSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoApp API");
-            });
+            app.UseAbpSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoApp API"); });
             app.UseConfiguredEndpoints();
 
             using (var scope = context.ServiceProvider.CreateScope())

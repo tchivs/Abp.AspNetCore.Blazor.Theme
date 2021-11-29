@@ -1,6 +1,6 @@
 ﻿namespace Abp.AspNetCore.Blazor.Theme.Server
 {
-    public class BlazorBootstrapThemeBundles
+    public static class BlazorBootstrapThemeBundles
     {
         public static class Styles
         {

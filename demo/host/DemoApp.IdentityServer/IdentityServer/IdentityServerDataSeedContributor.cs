@@ -154,12 +154,12 @@ namespace DemoApp.IdentityServer
                 await CreateClientAsync(
                     name: webClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] { "hybrid" },
+                    grantTypes: new[] {"hybrid"},
                     secret: (configurationSection["DemoApp_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     redirectUri: $"{webClientRootUrl}signin-oidc",
                     postLogoutRedirectUri: $"{webClientRootUrl}signout-callback-oidc",
                     frontChannelLogoutUri: $"{webClientRootUrl}Account/FrontChannelLogout",
-                    corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
+                    corsOrigins: new[] {webClientRootUrl.RemovePostFix("/")}
                 );
             }
 
@@ -172,12 +172,12 @@ namespace DemoApp.IdentityServer
                 await CreateClientAsync(
                     name: consoleAndAngularClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] { "password", "client_credentials", "authorization_code" },
+                    grantTypes: new[] {"password", "client_credentials", "authorization_code"},
                     secret: (configurationSection["DemoApp_App:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: webClientRootUrl,
                     postLogoutRedirectUri: webClientRootUrl,
-                    corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
+                    corsOrigins: new[] {webClientRootUrl.RemovePostFix("/")}
                 );
             }
 
@@ -190,12 +190,33 @@ namespace DemoApp.IdentityServer
                 await CreateClientAsync(
                     name: blazorClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] { "authorization_code" },
+                    grantTypes: new[] {"authorization_code"},
                     secret: configurationSection["DemoApp_Blazor:ClientSecret"]?.Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{blazorRootUrl}/authentication/login-callback",
                     postLogoutRedirectUri: $"{blazorRootUrl}/authentication/logout-callback",
-                    corsOrigins: new[] { blazorRootUrl.RemovePostFix("/") }
+                    corsOrigins: new[] {blazorRootUrl.RemovePostFix("/")}
+                );
+            }
+ 
+            //Blazor Server Tiered Client
+            var blazorServerTieredClientId = configurationSection["DemoApp_Blazor_Server:ClientId"];
+            if (!blazorServerTieredClientId.IsNullOrWhiteSpace())
+            {
+                var blazorServerTieredClientRootUrl = configurationSection["DemoApp_Blazor_Server:RootUrl"].EnsureEndsWith('/');
+
+                /* Admin_BlazorServerTiered client is only needed if you created a tiered blazor server
+                 * solution. Otherwise, you can delete this client. */
+
+                await CreateClientAsync(
+                    name: blazorServerTieredClientId,
+                    scopes: commonScopes,
+                    grantTypes: new[] { "hybrid" },
+                    secret: (configurationSection["DemoApp_Blazor_Server:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    redirectUri: $"{blazorServerTieredClientRootUrl}signin-oidc",
+                    postLogoutRedirectUri: $"{blazorServerTieredClientRootUrl}signout-callback-oidc",
+                    frontChannelLogoutUri: $"{blazorServerTieredClientRootUrl}Account/FrontChannelLogout",
+                    corsOrigins: new[] { blazorServerTieredClientRootUrl.RemovePostFix("/") }
                 );
             }
 
@@ -208,11 +229,11 @@ namespace DemoApp.IdentityServer
                 await CreateClientAsync(
                     name: swaggerClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] { "authorization_code" },
+                    grantTypes: new[] {"authorization_code"},
                     secret: configurationSection["DemoApp_Swagger:ClientSecret"]?.Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{swaggerRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { swaggerRootUrl.RemovePostFix("/") }
+                    corsOrigins: new[] {swaggerRootUrl.RemovePostFix("/")}
                 );
             }
         }

@@ -1,0 +1,56 @@
+﻿@using Microsoft.JSInterop
+@using Volo.Abp.Localization
+@using System.Globalization
+@using System.Collections.Immutable
+@inject ILanguageProvider LanguageProvider
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
+@if (languages != null && _currentLanguage != null)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @_currentLanguage.DisplayName
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach (var lan in this.languages)
+            {
+                <li>
+                    <a id="@lan.UiCultureName" class="@GetDropdownItemClass(lan)" @onclick="() => this.ChangeLanguageAsync(lan)" href="javascript:void()">@lan.DisplayName</a>
+                </li>
+            }
+
+        </ul>
+    </li>
+}
+@code {
+    private IReadOnlyList<LanguageInfo>? languages;
+    private LanguageInfo? _currentLanguage;
+    string GetDropdownItemClass(LanguageInfo languageInfo)
+    {
+        if (languageInfo == _currentLanguage)
+        {
+            return "dropdown-item active";
+        }
+        return "dropdown-item";
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        
+        languages = await LanguageProvider.GetLanguagesAsync();
+        _currentLanguage =  _currentLanguage = languages.FindByCulture(
+            CultureInfo.CurrentCulture.Name,
+            CultureInfo.CurrentUICulture.Name
+            );
+
+    }
+
+    private async Task ChangeLanguageAsync(LanguageInfo language)
+    {
+        var relativeUrl = NavigationManager.Uri.RemovePreFix(NavigationManager.BaseUri).EnsureStartsWith('/');
+        NavigationManager.NavigateTo(
+            $"/Abp/Languages/Switch?culture={language.CultureName}&uiCulture={language.UiCultureName}&returnUrl={relativeUrl}",
+            forceLoad: true
+            );
+        
+    }
+}

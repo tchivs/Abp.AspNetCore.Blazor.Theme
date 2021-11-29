@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Modularity;
 using Volo.Abp.AspNetCore;
@@ -27,9 +26,10 @@ namespace Abp.AspNetCore.Blazor.Theme.Bootstrap
         }
         protected override IToolbarContributor? GetToolbarContributor()
         {
-            return null;
+            return new ToolbarContributor();
         }
     }
+
     public class BlazorGlobalScriptContributor : BundleContributor
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
@@ -51,7 +51,8 @@ namespace Abp.AspNetCore.Blazor.Theme.Bootstrap
         {
             context.Files.AddIfNotContains("/_content/BootstrapBlazor/css/bootstrap.blazor.bundle.min.css");
             context.Files.AddIfNotContains("/_content/BootstrapBlazor/css/motronic.min.css");
-            context.Files.AddIfNotContains($"/_content/{typeof(AbpAspNetCoreBlazorThemeModule).Namespace}/css/site.css");
+            context.Files.AddIfNotContains($"/_content/{typeof(AbpAspNetCoreBlazorThemeBootstrapModule).Namespace}/css/site.css");
+
         }
     }
 }

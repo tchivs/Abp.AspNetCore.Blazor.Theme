@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.Account.Localization;
+
 namespace DemoApp.Blazor.Host
 {
     public class DemoAppHostMenuContributor : IMenuContributor
@@ -27,12 +28,24 @@ namespace DemoApp.Blazor.Host
             }
         }
 
+        /// <summary>
+        /// 侧边栏菜单（主菜单）
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
             //Add main menu items.
-            context.Menu.Items.Insert(0, new ApplicationMenuItem("Index", displayName: "Index", "/", icon: "fa fa-home"));
+            context.Menu.Items.Insert(0,
+                new ApplicationMenuItem("Index", displayName: "Index", "/", icon: "fa fa-home"));
             return Task.CompletedTask;
         }
+
+        /// <summary>
+        /// 管理账号下的菜单（右上角用户名的下拉菜单）
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         private Task ConfigureUserMenuAsync(MenuConfigurationContext context)
         {
             var accountStringLocalizer = context.GetLocalizer<AccountResource>();
@@ -41,7 +54,7 @@ namespace DemoApp.Blazor.Host
 
             context.Menu.AddItem(new ApplicationMenuItem(
                 "Account.Manage",
-                accountStringLocalizer["ManageYourProfile"],
+                accountStringLocalizer["MyAccount"],
                 $"{identityServerUrl.EnsureEndsWith('/')}Account/Manage?returnUrl={_configuration["App:SelfUrl"]}",
                 icon: "fa fa-cog",
                 order: 1000,

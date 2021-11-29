@@ -29,12 +29,12 @@
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <a class="dropdown-item" @onclick="BeginSignOut">@UiLocalizer["Logout"]</a>
+                    <a class="dropdown-item" href="/Account/Logout">@UiLocalizer["Logout"]</a>
                 </li>
             </ul>
         </li>
     </Authorized>
     <NotAuthorized>
-        <a class="nav-link" href="authentication/login">@UiLocalizer["Login"]</a>
+        <a class="nav-link" href="/Account/Login">@UiLocalizer["Login"]</a>
     </NotAuthorized>
 </AuthorizeView>
