@@ -33,4 +33,4 @@ jobs:
         dotnet nuget push .\bin\release\*.nupkg -s github --skip-duplicate
     - name: Push package to Nuget registry
       run: |
-        dotnet nuget push .\bin\release\*.nupkg --skip-duplicate -ApiKey ${{ secrets.NugetKey }} -n 
+        dotnet nuget push .\bin\release\*.nupkg --skip-duplicate -k ${{ secrets.NugetKey }} -n 
