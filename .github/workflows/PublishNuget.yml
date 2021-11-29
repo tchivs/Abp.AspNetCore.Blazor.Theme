@@ -16,6 +16,9 @@ jobs:
     - name: Build with dotnet
       run: |
         dotnet build --configuration Release
+      with:        
+        dotnet-version: '6.0.x'
+        include-prerelease: true
     - name: Install Nuget
       run: |
         $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
