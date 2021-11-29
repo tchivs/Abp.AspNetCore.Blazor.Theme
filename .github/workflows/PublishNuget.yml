@@ -29,8 +29,8 @@ jobs:
         dotnet build --configuration Release
     - name: Add And Push generated package to GitHub registry
       run: |
-        dotnet nuget sources add -name github -Source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -Username ORGANIZATION_NAME -Password ${{ secrets.GITHUB_TOKEN }}
-        dotnet nuget push .\bin\release\*.nupkg -Source github -SkipDuplicate
+        dotnet nuget add source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -n github -u ORGANIZATION_NAME -p ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push .\bin\release\*.nupkg -s github --skip-duplicate
     - name: Push package to Nuget registry
       run: |
-        dotnet nuget push .\bin\release\*.nupkg -SkipDuplicate -ApiKey ${{ secrets.NugetKey }} -NoSymbols 
+        dotnet nuget push .\bin\release\*.nupkg --skip-duplicate -ApiKey ${{ secrets.NugetKey }} -n 
