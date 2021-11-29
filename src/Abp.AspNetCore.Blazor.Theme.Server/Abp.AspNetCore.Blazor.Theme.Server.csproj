@@ -8,6 +8,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AspNetCore.Components.Server" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Bundling" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Packages" Version="$(AbpVersion)" />
 	</ItemGroup>

@@ -14,7 +14,7 @@ namespace Abp.AspNetCore.Blazor.Theme.Server
 {
 
     [DependsOn(
-       typeof(AbpAspNetCoreBlazorThemeModule),
+       typeof(AbpAspNetCoreBlazorThemeModule), typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
    typeof(AbpAspNetCoreComponentsServerModule),
    typeof(AbpAspNetCoreMvcUiPackagesModule),
    typeof(AbpAspNetCoreMvcUiBundlingModule)
