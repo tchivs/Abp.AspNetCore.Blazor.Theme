@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
     <Authors>tchivs</Authors>
-    <Company>yinghuakeji</Company>
+    <Company>tchivs</Company>
     <LangVersion>latest</LangVersion>
 	<AbpVersion>4.4.4</AbpVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
