@@ -20,13 +20,13 @@ jobs:
         source-url: https://api.nuget.org/v3/index.json
       env:
           NUGET_AUTH_TOKEN: ${{secrets.NugetKey}}
-    - name: Build with dotnet
-      run: |
-        dotnet build --configuration Release
     - name: Setup latest NuGet preview version
         uses: NuGet/setup-nuget@v1.0.5
         with:
           nuget-version: 'preview'
+    - name: Build with dotnet
+      run: |
+        dotnet build --configuration Release
     - name: Add And Push generated package to GitHub registry
       run: |
         dotnet nuget sources add -name github -Source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -Username ORGANIZATION_NAME -Password ${{ secrets.GITHUB_TOKEN }}
