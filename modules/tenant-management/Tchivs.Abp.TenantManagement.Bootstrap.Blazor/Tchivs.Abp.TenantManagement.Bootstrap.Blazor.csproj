@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Import Project="..\..\..\common.props" />
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>	 
+
+
+  <ItemGroup>
+	  <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj" />
+  </ItemGroup>
+
+</Project>

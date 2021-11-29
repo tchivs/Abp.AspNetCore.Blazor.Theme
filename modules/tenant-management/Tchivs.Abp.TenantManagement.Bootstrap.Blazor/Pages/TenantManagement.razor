@@ -1,0 +1,81 @@
+﻿@page "/tenant-management/tenants"
+@attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
+@using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Volo.Abp.TenantManagement
+@using Volo.Abp.TenantManagement.Localization
+@using Volo.Abp.AspNetCore.Components.Web
+@inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
+@inherits BootstrapBlazorComponentBase
+<TableEx
+    TItem=TenantDto
+    TAppService=ITenantAppService
+    TKey=Guid TGetListInput=GetTenantsInput
+    TCreateInput=TenantCreateDto
+    TUpdateInput=TenantUpdateDto
+    AutoGenerateColumns="false"
+    CreatePolicyName="@TenantManagementPermissions.Tenants.Create"
+    UpdatePolicyName="@TenantManagementPermissions.Tenants.Update"
+    DeletePolicyName="@TenantManagementPermissions.Tenants.Delete">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.Name" TItem=TenantDto TType=string Text="@L["TenantName"]"/>
+    </TableColumns>
+     <RowButtonTemplate>
+        @if (this.HasManageFeaturesPermission)
+        {
+            <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickManageFeaturesCallback(context)" Icon="fa fa-shield" Text="@L["Permissions"]"/>
+        }
+    </RowButtonTemplate>
+    <AddTemplate>
+        <div class="row g-3 form-inline">
+            <div class="col-12">
+                <BootstrapInput @bind-Value="@context.Name"
+                                DisplayText=@L["TenantName"] maxlength="50"/>
+            </div>
+
+            <div class="col-12">
+                <BootstrapInput @bind-Value="@context.AdminEmailAddress"
+                                type="mail"
+                                DisplayText="@L["AdminEmailAddress"]"/>
+            </div>
+
+            <div class="col-12">
+                <BootstrapInput @bind-Value="@context.AdminPassword"
+                                type="password"
+                                DisplayText="@L["AdminPassword"]"/>
+            </div>
+        </div>
+    </AddTemplate>
+    <EditTemplate>
+        <div class="row g-3 form-inline">
+            <div class="col-12">
+                <BootstrapInput @bind-Value="@context.Name" placeholder="租户名称"
+                                DisplayText=@L["TenantName"] maxlength="50"/>
+            </div>
+        </div>
+    </EditTemplate>
+</TableEx>
+@code {
+    protected const string FeatureProviderName = "T";
+
+    protected bool HasManageFeaturesPermission;
+    protected string ManageFeaturesPolicyName;
+    public TenantManagement(){
+        ObjectMapperContext = typeof(TchivsAbpTenantManagementBootstrapBlazorModule);
+        LocalizationResource = typeof(AbpTenantManagementResource);
+        ManageFeaturesPolicyName = TenantManagementPermissions.Tenants.ManageFeatures;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+
+        HasManageFeaturesPermission = await AuthorizationService.IsGrantedAsync(ManageFeaturesPolicyName);
+
+    }
+    private   Task ManageFeatures(TenantDto context)
+    {
+        return Task.CompletedTask;
+    }
+    EventCallback<MouseEventArgs> ClickManageFeaturesCallback(TenantDto item) =>
+        EventCallback.Factory.Create<MouseEventArgs>(this, () => ManageFeatures(item));
+}
