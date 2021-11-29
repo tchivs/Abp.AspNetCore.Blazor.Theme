@@ -1,7 +1,6 @@
 <Project>
   <PropertyGroup>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-	<AssemblyName>Tchivs.$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
 
   <Target Name="NoWarnOnRazorViewImportedTypeConflicts" BeforeTargets="RazorCoreCompile">

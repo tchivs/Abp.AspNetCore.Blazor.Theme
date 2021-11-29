@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
-using Abp.AspNetCore.Blazor.Theme;
-using Abp.AspNetCore.Blazor.Theme.Server;
+using Tchivs.Abp.AspNetCore.Blazor.Theme;
+using Tchivs.Abp.AspNetCore.Blazor.Theme.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -86,7 +86,7 @@ namespace DemoApp.Blazor.Server.Host
 
                 //BLAZOR UI
                 options.StyleBundles.Configure(
-                    BlazorBootstrapThemeBundles.Styles.Global,
+                    BlazorThemeBundles.Styles.Global,
                     bundle =>
                     {
                         bundle.AddFiles("/blazor-global-styles.css");

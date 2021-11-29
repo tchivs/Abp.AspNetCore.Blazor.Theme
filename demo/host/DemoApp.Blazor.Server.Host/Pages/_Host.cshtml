@@ -1,8 +1,9 @@
 ﻿@page "/"
 @namespace DemoApp.Blazor.Server.Host.Pages
 @using System.Globalization
-@using Abp.AspNetCore.Blazor.Theme.Bootstrap
-@using Abp.AspNetCore.Blazor.Theme.Server
+@using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap
+@using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
+@using Tchivs.Abp.AspNetCore.Blazor.Theme.Server
 @using Volo.Abp.Localization
 @{
     Layout = null;
@@ -17,7 +18,7 @@
     <title>DemoApp.Blazor.Server</title>
     <base href="~/" />
 
-    <abp-style-bundle name="@BlazorBootstrapThemeBundles.Styles.Global" />
+    <abp-style-bundle name="@BlazorThemeBundles.Styles.Global" />
 </head>
 <body class="abp-application-layout bg-light @rtl">
     <component type="typeof(App)" render-mode="Server" />
@@ -33,6 +34,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <abp-script-bundle name="@BlazorBootstrapThemeBundles.Scripts.Global" />
+    <abp-script-bundle name="@BlazorThemeBundles.Scripts.Global" />
 </body>
 </html>

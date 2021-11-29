@@ -1,4 +1,4 @@
-﻿using Abp.AspNetCore.Blazor.Theme.Bootstrap;
+﻿using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap;
 using Volo.Abp.Modularity;
 
 namespace DemoApp.Blazor.WebAssembly

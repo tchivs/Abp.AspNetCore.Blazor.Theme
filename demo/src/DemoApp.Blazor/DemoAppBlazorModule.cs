@@ -3,8 +3,8 @@ using DemoApp.Blazor.Menus;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
-using Abp.AspNetCore.Blazor.Theme.Bootstrap;
-using Abp.AspNetCore.Blazor.Theme;
+using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap;
+using Tchivs.Abp.AspNetCore.Blazor.Theme;
 
 namespace DemoApp.Blazor
 {

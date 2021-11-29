@@ -3,27 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme", "src\Abp.AspNetCore.Blazor.Theme\Abp.AspNetCore.Blazor.Theme.csproj", "{A5E4D845-4E1A-4E14-8794-4DC6631476DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme", "src\Tchivs.Abp.AspNetCore.Blazor.Theme\Tchivs.Abp.AspNetCore.Blazor.Theme.csproj", "{A5E4D845-4E1A-4E14-8794-4DC6631476DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33FC9D97-CD7B-4050-90E4-321FE72480C2}"
 	ProjectSection(SolutionItems) = preProject
 		common.props = common.props
-		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Server", "src\Abp.AspNetCore.Blazor.Theme.Server\Abp.AspNetCore.Blazor.Theme.Server.csproj", "{76C166BC-93BC-4289-A125-FE2C7AEA32D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Server", "src\Tchivs.Abp.AspNetCore.Blazor.Theme.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Server.csproj", "{76C166BC-93BC-4289-A125-FE2C7AEA32D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.WebAssembly", "src\Abp.AspNetCore.Blazor.Theme.WebAssembly\Abp.AspNetCore.Blazor.Theme.WebAssembly.csproj", "{927357AD-C857-4A10-8235-663DD135D54D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly", "src\Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly\Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly.csproj", "{927357AD-C857-4A10-8235-663DD135D54D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "themes", "themes", "{90A30DCF-3E06-43BA-85BA-8FBE092379E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bootstrap", "bootstrap", "{2F6751B1-3647-42DC-BB2C-5E029C44318F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap\Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj", "{6F1513C3-3163-413F-BA06-B5DB355B6923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap", "src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj", "{6F1513C3-3163-413F-BA06-B5DB355B6923}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap.Server", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj", "{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server", "src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj", "{B29AF5E1-9542-47F1-924B-F13E71A4ED9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly", "src\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj", "{415F05AA-6A50-476A-951E-401635EAA974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly", "src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj", "{415F05AA-6A50-476A-951E-401635EAA974}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{FF489D81-BD70-483D-A5B7-C153A73B2136}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TenantManagement", "TenantManagement", "{96540FBD-8663-4D65-9646-7F17664E76F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor", "modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.csproj", "{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor", "modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj", "{5370DDE3-6750-4E0E-A35D-064C3B291B4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +62,14 @@ Global
 		{415F05AA-6A50-476A-951E-401635EAA974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{415F05AA-6A50-476A-951E-401635EAA974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{415F05AA-6A50-476A-951E-401635EAA974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5370DDE3-6750-4E0E-A35D-064C3B291B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5370DDE3-6750-4E0E-A35D-064C3B291B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5370DDE3-6750-4E0E-A35D-064C3B291B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5370DDE3-6750-4E0E-A35D-064C3B291B4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +79,10 @@ Global
 		{6F1513C3-3163-413F-BA06-B5DB355B6923} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
 		{B29AF5E1-9542-47F1-924B-F13E71A4ED9A} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
 		{415F05AA-6A50-476A-951E-401635EAA974} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
+		{FF489D81-BD70-483D-A5B7-C153A73B2136} = {2F6751B1-3647-42DC-BB2C-5E029C44318F}
+		{96540FBD-8663-4D65-9646-7F17664E76F0} = {FF489D81-BD70-483D-A5B7-C153A73B2136}
+		{36B22683-9F6C-40A6-AC9E-1B4E0CCF76E0} = {96540FBD-8663-4D65-9646-7F17664E76F0}
+		{5370DDE3-6750-4E0E-A35D-064C3B291B4F} = {FF489D81-BD70-483D-A5B7-C153A73B2136}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51A29705-1D11-4C71-8BC4-194F02759346}

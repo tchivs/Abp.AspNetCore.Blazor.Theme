@@ -9,7 +9,7 @@
      
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj" />
+        <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj" />
         <ProjectReference Include="..\DemoApp.Blazor\DemoApp.Blazor.csproj" />
         <ProjectReference Include="..\DemoApp.HttpApi.Client\DemoApp.HttpApi.Client.csproj" />
     </ItemGroup>

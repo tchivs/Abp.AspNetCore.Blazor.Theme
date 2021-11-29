@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Abp.AspNetCore.Blazor.Theme.Bootstrap\Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj" />
+        <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj" />
         <ProjectReference Include="..\DemoApp.Application.Contracts\DemoApp.Application.Contracts.csproj" />
     </ItemGroup>
 </Project>

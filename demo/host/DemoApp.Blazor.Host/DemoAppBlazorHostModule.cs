@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
-using Abp.AspNetCore.Blazor.Theme;
-using Abp.AspNetCore.Blazor.Theme.Bootstrap;
+using Tchivs.Abp.AspNetCore.Blazor.Theme;
+using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap;
 using DemoApp.Blazor.WebAssembly;
 using IdentityModel;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -13,6 +13,8 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
+using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components;
+
 namespace DemoApp.Blazor.Host
 {
     [DependsOn(

@@ -8,7 +8,7 @@
 
    
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj" />
+        <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj" />
         <ProjectReference Include="..\DemoApp.Blazor\DemoApp.Blazor.csproj" />
     </ItemGroup>
 
