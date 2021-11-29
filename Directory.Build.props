@@ -1,0 +1,17 @@
+<Project>
+  <Import Project="build\Version.props" />
+  <PropertyGroup>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
+    <Authors>tchivs</Authors>
+    <Company>yinghuakeji</Company>
+    <LangVersion>latest</LangVersion>
+	<AbpVersion>4.4.4</AbpVersion>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright (c) 2020 tchivs</Copyright>
+    <PackageProjectUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>dotnet;nuget;msbuild</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+</Project>
