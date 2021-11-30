@@ -1,37 +1,37 @@
-﻿using Volo.Abp.Modularity;
+﻿
+using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
-using DemoApp.Localization;
+using Tchivs.Abp.Shared.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
-using Tchivs.Abp.Shared;
 
-namespace DemoApp
+namespace Tchivs.Abp.Shared
 {
     [DependsOn(
-        typeof(AbpValidationModule),typeof(TchivsAbpSharedModule)
+        typeof(AbpValidationModule)
     )]
-    public class DemoAppDomainSharedModule : AbpModule
+    public class TchivsAbpSharedModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<DemoAppDomainSharedModule>();
+                options.FileSets.AddEmbedded<TchivsAbpSharedModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<DemoAppResource>("en")
+                    .Add<BlazorUIResource>("zh-Hans")
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/DemoApp");
+                    .AddVirtualJson("/Localization/BlazorUI");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("DemoApp", typeof(DemoAppResource));
+                options.MapCodeNamespace("BlazorUI", typeof(BlazorUIResource));
             });
         }
     }

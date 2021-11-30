@@ -146,27 +146,15 @@ namespace DemoApp.Blazor.Server.Host
             context.Services.AddAbpSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "DemoApp API", Version = "v1"});
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApp API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 });
 
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
-                options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
-                options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-                options.Languages.Add(new LanguageInfo("it", "it", "Italian", "it"));
-                options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
-                options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português (Brasil)"));
-                options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
-                options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             });
 
             Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });
@@ -180,7 +168,7 @@ namespace DemoApp.Blazor.Server.Host
             Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new DemoAppMenuContributor()); });
 
             // Configure<AbpRouterOptions>(options => { options.AppAssembly = typeof(DemoAppBlazorHostModule).Assembly; });
-            Configure<AbpRouterOptions>(options => { options.AdditionalAssemblies .Add(typeof(DemoAppBlazorHostModule).Assembly); });//要改成这个
+            Configure<AbpRouterOptions>(options => { options.AdditionalAssemblies.Add(typeof(DemoAppBlazorHostModule).Assembly); });//要改成这个
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -197,7 +185,7 @@ namespace DemoApp.Blazor.Server.Host
             else
             {
                 app.UseExceptionHandler("/Error");
-               app.UseHsts();
+                app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseCorrelationId();

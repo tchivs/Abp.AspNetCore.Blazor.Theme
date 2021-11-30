@@ -1,9 +1,9 @@
-﻿using Tchivs.Abp.AspNetCore.Blazor.Theme.Localization;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Components;
+using Tchivs.Abp.Shared.Localization;
 
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme
 {

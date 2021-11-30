@@ -8,42 +8,41 @@
 @using Volo.Abp.AspNetCore.Components.Web
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
 @inherits BootstrapBlazorComponentBase
-<TableEx
-    TItem=TenantDto
-    TAppService=ITenantAppService
-    TKey=Guid TGetListInput=GetTenantsInput
-    TCreateInput=TenantCreateDto
-    TUpdateInput=TenantUpdateDto
-    AutoGenerateColumns="false"
-    CreatePolicyName="@TenantManagementPermissions.Tenants.Create"
-    UpdatePolicyName="@TenantManagementPermissions.Tenants.Update"
-    DeletePolicyName="@TenantManagementPermissions.Tenants.Delete">
+<TableEx TItem=TenantDto
+         TAppService=ITenantAppService
+         TKey=Guid TGetListInput=GetTenantsInput
+         TCreateInput=TenantCreateDto
+         TUpdateInput=TenantUpdateDto
+         AutoGenerateColumns="false"
+         CreatePolicyName="@TenantManagementPermissions.Tenants.Create"
+         UpdatePolicyName="@TenantManagementPermissions.Tenants.Update"
+         DeletePolicyName="@TenantManagementPermissions.Tenants.Delete">
     <TableColumns>
-        <TableColumn @bind-Field="@context.Name" TItem=TenantDto TType=string Text="@L["TenantName"]"/>
+        <TableColumn @bind-Field="@context.Name" TItem=TenantDto TType=string Text="@L["DisplayName:TenantName"]" />
     </TableColumns>
-     <RowButtonTemplate>
+    <RowButtonTemplate>
         @if (this.HasManageFeaturesPermission)
         {
-            <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickManageFeaturesCallback(context)" Icon="fa fa-shield" Text="@L["Permissions"]"/>
+            <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickManageFeaturesCallback(context)" Icon="fa fa-shield" Text="@L["Permission:ManageFeatures"]" />
         }
     </RowButtonTemplate>
     <AddTemplate>
         <div class="row g-3 form-inline">
             <div class="col-12">
                 <BootstrapInput @bind-Value="@context.Name"
-                                DisplayText=@L["TenantName"] maxlength="50"/>
+                                DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
             </div>
 
             <div class="col-12">
                 <BootstrapInput @bind-Value="@context.AdminEmailAddress"
                                 type="mail"
-                                DisplayText="@L["AdminEmailAddress"]"/>
+                                DisplayText="@L["DisplayName:AdminEmailAddress"]" />
             </div>
 
             <div class="col-12">
                 <BootstrapInput @bind-Value="@context.AdminPassword"
                                 type="password"
-                                DisplayText="@L["AdminPassword"]"/>
+                                DisplayText="@L["DisplayName:AdminPassword"]" />
             </div>
         </div>
     </AddTemplate>
@@ -51,7 +50,7 @@
         <div class="row g-3 form-inline">
             <div class="col-12">
                 <BootstrapInput @bind-Value="@context.Name" placeholder="租户名称"
-                                DisplayText=@L["TenantName"] maxlength="50"/>
+                                DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
             </div>
         </div>
     </EditTemplate>
@@ -61,9 +60,10 @@
 
     protected bool HasManageFeaturesPermission;
     protected string ManageFeaturesPolicyName;
-    public TenantManagement(){
+    public TenantManagement()
+    {
         ObjectMapperContext = typeof(TchivsAbpTenantManagementBootstrapBlazorModule);
-        LocalizationResource = typeof(AbpTenantManagementResource);
+        LocalizationResource = typeof(AbpTenantManagementResource);//使用abp自带的本地化资源
         ManageFeaturesPolicyName = TenantManagementPermissions.Tenants.ManageFeatures;
     }
     protected override async Task OnInitializedAsync()
@@ -72,7 +72,7 @@
         HasManageFeaturesPermission = await AuthorizationService.IsGrantedAsync(ManageFeaturesPolicyName);
 
     }
-    private   Task ManageFeatures(TenantDto context)
+    private Task ManageFeatures(TenantDto context)
     {
         return Task.CompletedTask;
     }

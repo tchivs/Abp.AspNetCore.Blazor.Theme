@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Tchivs.Abp.AspNetCore.Blazor.Theme.Localization;
 using System.Reflection;
 using Volo.Abp.AspNetCore.Components;
 

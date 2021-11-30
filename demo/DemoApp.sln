@@ -82,13 +82,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "feature-management", "featu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj", "{515E9222-4B74-4513-B51B-ACC47A6295A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly", "..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly.csproj", "{BA62C337-7431-4034-A706-AFB6F5B0D078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly", "..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly.csproj", "{BA62C337-7431-4034-A706-AFB6F5B0D078}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server.csproj", "{C8EEEA58-0D9A-4DDC-86AD-64597027385E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly.csproj", "{25C5586F-04C2-4D70-99AB-B7B13764F7C6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server", "..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server.csproj", "{679D206E-32CA-4A2B-AC0E-361F7F0534E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.Shared", "..\src\Tchivs.Abp.Shared\Tchivs.Abp.Shared.csproj", "{4C314066-F1C0-477D-9126-2A38CCE17E70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -232,6 +234,10 @@ Global
 		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C314066-F1C0-477D-9126-2A38CCE17E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C314066-F1C0-477D-9126-2A38CCE17E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C314066-F1C0-477D-9126-2A38CCE17E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C314066-F1C0-477D-9126-2A38CCE17E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -273,6 +279,7 @@ Global
 		{C8EEEA58-0D9A-4DDC-86AD-64597027385E} = {06B8CFD2-5AA9-46A2-AE07-A31430FCF524}
 		{25C5586F-04C2-4D70-99AB-B7B13764F7C6} = {06B8CFD2-5AA9-46A2-AE07-A31430FCF524}
 		{679D206E-32CA-4A2B-AC0E-361F7F0534E0} = {B0831DEE-53F6-4F7F-AD86-B264D0AEDC01}
+		{4C314066-F1C0-477D-9126-2A38CCE17E70} = {62B27725-83A4-4E8B-AA0C-3FB17C151D93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}

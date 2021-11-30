@@ -21,4 +21,8 @@
     <Content Remove="Localization\DemoApp\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tchivs.Abp.Shared\Tchivs.Abp.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

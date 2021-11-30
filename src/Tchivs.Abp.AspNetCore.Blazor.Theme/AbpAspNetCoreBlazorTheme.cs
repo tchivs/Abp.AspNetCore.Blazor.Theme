@@ -1,7 +1,7 @@
-using Tchivs.Abp.AspNetCore.Blazor.Theme.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using Tchivs.Abp.Shared;
 using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Components.Messages;
 using Volo.Abp.AspNetCore.Components.Web;
@@ -16,16 +16,17 @@ using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
+
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme
 {
 
 
     [DependsOn(
-        typeof(AbpExceptionHandlingModule), typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
+        typeof(AbpExceptionHandlingModule),
+        typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
         typeof(AbpAspNetCoreComponentsWebModule),
         typeof(AbpDddApplicationContractsModule),
-        typeof(AbpAuthorizationModule),
-        typeof(AbpValidationModule),
+        typeof(AbpAuthorizationModule),typeof(TchivsAbpSharedModule),
         typeof(AbpUiNavigationModule)
     )]
     public class AbpAspNetCoreBlazorThemeModule : AbpModule
@@ -34,29 +35,10 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme
         {
             context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
 
-            ConfigureLocalization(context);
+           
             ConfigureRouter(context);
         }
-        private void ConfigureLocalization(ServiceConfigurationContext context)
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.AddEmbedded<AbpAspNetCoreBlazorThemeModule>();
-            });
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Resources
-                    .Add<BlazorUIResource>("zh-Hans")
-                    .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/BlazorUI");
-            });
-
-            Configure<AbpExceptionLocalizationOptions>(options =>
-            {
-                options.MapCodeNamespace("BlazorUI", typeof(BlazorUIResource));
-            });
-        }
+      
         private void ConfigureRouter(ServiceConfigurationContext context)
         {
             Configure<AbpRouterOptions>(options => { options.AppAssembly = typeof(AbpAspNetCoreBlazorThemeModule).Assembly; });
