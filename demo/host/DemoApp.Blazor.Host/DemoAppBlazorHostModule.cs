@@ -14,6 +14,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components;
+using Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly;
 
 namespace DemoApp.Blazor.Host
 {
@@ -21,7 +22,8 @@ namespace DemoApp.Blazor.Host
         typeof(AbpAutofacWebAssemblyModule),
         typeof(AbpAccountApplicationContractsModule),
          typeof(AbpIdentityApplicationContractsModule),
-        typeof(DemoAppBlazorWebAssemblyModule)
+        typeof(DemoAppBlazorWebAssemblyModule),
+        typeof(TchivsAbpTenantManagementBootstrapBlazorWebAssemblyModule)
     )]
     public class DemoAppBlazorHostModule : AbpModule
     {

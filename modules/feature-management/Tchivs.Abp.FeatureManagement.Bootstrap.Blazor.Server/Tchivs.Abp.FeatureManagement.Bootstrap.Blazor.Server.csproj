@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\..\common.props" />
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj" />
+    <ProjectReference Include="..\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -29,6 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly.csproj" />
 		<ProjectReference Include="..\DemoApp.Host.Shared\DemoApp.Host.Shared.csproj" />
 		<ProjectReference Include="..\..\src\DemoApp.Blazor.WebAssembly\DemoApp.Blazor.WebAssembly.csproj" />
 	</ItemGroup>

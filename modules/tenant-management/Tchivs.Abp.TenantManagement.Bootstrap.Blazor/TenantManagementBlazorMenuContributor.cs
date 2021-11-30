@@ -30,7 +30,7 @@ namespace Tchivs.Abp.TenantManagement.Bootstrap.Blazor
                 TenantManagementMenuNames.Tenants,
                 l["Tenants"],
                 url: "/tenant-management/tenants"
-            ).RequirePermissions(TenantManagementPermissions.Tenants.Default));
+            ).RequirePermissions(TenantManagementPermissions.Tenants.Default)) ;
 
             return Task.CompletedTask;
         }

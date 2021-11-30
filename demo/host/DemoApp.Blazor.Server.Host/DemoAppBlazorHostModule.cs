@@ -34,6 +34,8 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server;
+using Volo.Abp.UI.Navigation.Urls;
 
 namespace DemoApp.Blazor.Server.Host
 {
@@ -45,7 +47,6 @@ namespace DemoApp.Blazor.Server.Host
         typeof(DemoAppBlazorServerModule),
         //typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpAspNetCoreMvcClientModule),
-        typeof(AbpAspNetCoreAuthenticationOAuthModule),
         typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
         typeof(AbpHttpClientIdentityModelWebModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
@@ -53,7 +54,8 @@ namespace DemoApp.Blazor.Server.Host
         typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpTenantManagementHttpApiClientModule),
-        typeof(AbpPermissionManagementHttpApiClientModule)
+        typeof(AbpPermissionManagementHttpApiClientModule),
+        typeof(TchivsAbpTenantManagementBootstrapBlazorServerModule)
     )]
     public class DemoAppBlazorHostModule : AbpModule
     {
@@ -95,7 +97,10 @@ namespace DemoApp.Blazor.Server.Host
                     }
                 );
             });
-         
+            Configure<AppUrlOptions>(options =>
+            {
+                options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
+            });
             context.Services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = "Cookies";
@@ -192,37 +197,21 @@ namespace DemoApp.Blazor.Server.Host
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
+               app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseCorrelationId();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
-            //app.UseJwtTokenMiddleware();
-
             if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();
             }
-
-            // app.UseUnitOfWork();
-            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseAbpSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoApp API"); });
             app.UseConfiguredEndpoints();
-
-            using (var scope = context.ServiceProvider.CreateScope())
-            {
-                AsyncHelper.RunSync(async () =>
-                {
-                    await scope.ServiceProvider
-                        .GetRequiredService<IDataSeeder>()
-                        .SeedAsync();
-                });
-            }
         }
     }
 }

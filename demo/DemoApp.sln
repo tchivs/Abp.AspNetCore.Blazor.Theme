@@ -56,15 +56,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "theme", "theme", "{62B27725-83A4-4E8B-AA0C-3FB17C151D93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme\Tchivs.Abp.AspNetCore.Blazor.Theme.csproj", "{CDBE263F-A4BB-45C4-93D1-909ACE103EB5}"
-EndProjectTchivs.
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj", "{A29CA20D-6742-4C6C-A690-A32D9ACA1477}"
-EndProjectTchivs.
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Server.csproj", "{B417C59F-3240-41CF-9E84-33F60EF763B7}"
-EndProjectTchivs.
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.csproj", "{39BE2909-CA4C-472C-A4D8-9866D883B038}"
-EndProjectTchivs.
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.Server", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Server\Tchivs.Abp.AspNetCore.Blazor.Theme.Server.csproj", "{B64FDCF1-DE0A-4A1A-9E52-E92B1F144D15}"
-EndProjectTchivs.
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly", "..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly\Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly.csproj", "{22AC9612-E919-4F53-A595-26D0BF61F5EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D6DEADA-D86D-4CF3-B232-52BFCA3A6CF0}"
@@ -81,6 +81,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "feature-management", "feature-management", "{06B8CFD2-5AA9-46A2-AE07-A31430FCF524}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj", "{515E9222-4B74-4513-B51B-ACC47A6295A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly", "..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.WebAssembly.csproj", "{BA62C337-7431-4034-A706-AFB6F5B0D078}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Server.csproj", "{C8EEEA58-0D9A-4DDC-86AD-64597027385E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly", "..\modules\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.WebAssembly.csproj", "{25C5586F-04C2-4D70-99AB-B7B13764F7C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server", "..\modules\tenant-management\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server\Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server.csproj", "{679D206E-32CA-4A2B-AC0E-361F7F0534E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,6 +216,22 @@ Global
 		{515E9222-4B74-4513-B51B-ACC47A6295A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{515E9222-4B74-4513-B51B-ACC47A6295A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{515E9222-4B74-4513-B51B-ACC47A6295A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA62C337-7431-4034-A706-AFB6F5B0D078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA62C337-7431-4034-A706-AFB6F5B0D078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA62C337-7431-4034-A706-AFB6F5B0D078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA62C337-7431-4034-A706-AFB6F5B0D078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8EEEA58-0D9A-4DDC-86AD-64597027385E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8EEEA58-0D9A-4DDC-86AD-64597027385E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8EEEA58-0D9A-4DDC-86AD-64597027385E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8EEEA58-0D9A-4DDC-86AD-64597027385E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C5586F-04C2-4D70-99AB-B7B13764F7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C5586F-04C2-4D70-99AB-B7B13764F7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C5586F-04C2-4D70-99AB-B7B13764F7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C5586F-04C2-4D70-99AB-B7B13764F7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{679D206E-32CA-4A2B-AC0E-361F7F0534E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -245,6 +269,10 @@ Global
 		{4D022A6D-7AFD-45AE-BFDB-8069725711C8} = {B0831DEE-53F6-4F7F-AD86-B264D0AEDC01}
 		{06B8CFD2-5AA9-46A2-AE07-A31430FCF524} = {2978F3F2-42FA-4CE5-B217-B0DDCD3A165A}
 		{515E9222-4B74-4513-B51B-ACC47A6295A2} = {06B8CFD2-5AA9-46A2-AE07-A31430FCF524}
+		{BA62C337-7431-4034-A706-AFB6F5B0D078} = {B0831DEE-53F6-4F7F-AD86-B264D0AEDC01}
+		{C8EEEA58-0D9A-4DDC-86AD-64597027385E} = {06B8CFD2-5AA9-46A2-AE07-A31430FCF524}
+		{25C5586F-04C2-4D70-99AB-B7B13764F7C6} = {06B8CFD2-5AA9-46A2-AE07-A31430FCF524}
+		{679D206E-32CA-4A2B-AC0E-361F7F0534E0} = {B0831DEE-53F6-4F7F-AD86-B264D0AEDC01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}
