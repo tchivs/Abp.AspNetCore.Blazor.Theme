@@ -1,11 +1,7 @@
 ﻿@page "/tenant-management/tenants"
 @attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
-@using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Forms
 @using Volo.Abp.TenantManagement
 @using Volo.Abp.TenantManagement.Localization
-@using Volo.Abp.AspNetCore.Components.Web
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
 @inherits BootstrapBlazorComponentBase
 <TableEx TItem=TenantDto
@@ -18,7 +14,7 @@
          UpdatePolicyName="@TenantManagementPermissions.Tenants.Update"
          DeletePolicyName="@TenantManagementPermissions.Tenants.Delete">
     <TableColumns>
-        <TableColumn @bind-Field="@context.Name" TItem=TenantDto TType=string Text="@L["DisplayName:TenantName"]" />
+        <TableColumn @bind-Field="@context.Name" Text="@L["DisplayName:TenantName"]" />
     </TableColumns>
     <RowButtonTemplate>
         @if (this.HasManageFeaturesPermission)
@@ -27,7 +23,7 @@
         }
     </RowButtonTemplate>
     <AddTemplate>
-        <div class="row g-3 form-inline">
+        <div class="row g-3 form-inline tm">
             <div class="col-12">
                 <BootstrapInput @bind-Value="@context.Name"
                                 DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
@@ -55,6 +51,13 @@
         </div>
     </EditTemplate>
 </TableEx>
+<style>
+    
+.tm {
+    --bs-row-label-width: 150px;
+}
+
+</style>
 @code {
     protected const string FeatureProviderName = "T";
 

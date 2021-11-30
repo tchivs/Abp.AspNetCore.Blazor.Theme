@@ -9,13 +9,12 @@
 
 
   <ItemGroup>
-	  <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="$(AbpVersion)" />
-	  <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="$(AbpVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap\Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.csproj" />
-    <ProjectReference Include="..\..\feature-management\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor\Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.csproj" />
   </ItemGroup>
 
 </Project>

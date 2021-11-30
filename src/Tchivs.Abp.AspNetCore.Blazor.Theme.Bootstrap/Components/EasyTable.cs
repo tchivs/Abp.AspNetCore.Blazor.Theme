@@ -10,10 +10,7 @@ using Volo.Abp.Application.Services;
 
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 {
-    public interface ITable<TKey>
-    {
-        TKey Id { get; set; }
-    }
+   
     public class EasyTable<TAppService, TItem, TKey, TGetListInput, TCreateInput,
         TUpdateInput> :ReadOnlyTable<TAppService,TItem,TKey,TGetListInput>
         where TAppService : ICrudAppService<TItem, TKey, TGetListInput, TCreateInput,

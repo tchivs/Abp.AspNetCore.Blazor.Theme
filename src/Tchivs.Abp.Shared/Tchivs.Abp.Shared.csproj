@@ -8,6 +8,7 @@
 		<Nullable>enable</Nullable>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Description>commom resource module</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />

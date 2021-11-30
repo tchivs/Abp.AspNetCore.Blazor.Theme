@@ -36,6 +36,7 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Tchivs.Abp.TenantManagement.Bootstrap.Blazor.Server;
 using Volo.Abp.UI.Navigation.Urls;
+using Tchivs.Abp.Identity.Bootstrap.Blazor.Server;
 
 namespace DemoApp.Blazor.Server.Host
 {
@@ -55,7 +56,8 @@ namespace DemoApp.Blazor.Server.Host
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpTenantManagementHttpApiClientModule),
         typeof(AbpPermissionManagementHttpApiClientModule),
-        typeof(TchivsAbpTenantManagementBootstrapBlazorServerModule)
+        typeof(TchivsAbpTenantManagementBootstrapBlazorServerModule),
+        typeof(TchivsAbpIdentityBootstrapBlazorServerModule)
     )]
     public class DemoAppBlazorHostModule : AbpModule
     {

@@ -15,10 +15,12 @@ using Console = System.Console;
 
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 {
- 
+#if NET6_0_OR_GREATER
+    [CascadingTypeParameter(nameof(TItem))]
+#endif
     public partial class TableEx<TAppService, TItem, TKey, TGetListInput, TCreateInput,
         TUpdateInput> : EasyTable<TAppService, TItem, TKey, TGetListInput, TCreateInput,
-        TUpdateInput>, ITable<TKey> where TAppService : ICrudAppService<TItem, TKey, TGetListInput, TCreateInput,
+        TUpdateInput> where TAppService : ICrudAppService<TItem, TKey, TGetListInput, TCreateInput,
             TUpdateInput>
         where TItem : class, IEntityDto<TKey>, new()
         where TCreateInput : class, new()
@@ -92,7 +94,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         private async Task EditAsync(TItem item)
         {
             TUpdateInput editInput = ObjectMapper.Map<TItem, TUpdateInput>(item);
-            this.Id = item.Id;
+             var Id = item.Id;
 
             await this.DialogService.ShowEditDialog(new EditDialogOption<TUpdateInput>()
             {
