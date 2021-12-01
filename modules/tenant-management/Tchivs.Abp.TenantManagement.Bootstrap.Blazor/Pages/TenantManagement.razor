@@ -22,40 +22,45 @@
             <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickManageFeaturesCallback(context)" Icon="fa fa-shield" Text="@L["Permission:ManageFeatures"]" />
         }
     </RowButtonTemplate>
-    <AddTemplate>
-        <div class="row g-3 form-inline tm">
-            <div class="col-12">
-                <BootstrapInput @bind-Value="@context.Name"
+    <EditTemplate Context="ctx">
+        <AbpEditModal   
+        TItem=TenantDto
+         TKey=Guid 
+         TCreateInput=TenantCreateDto
+         TUpdateInput=TenantUpdateDto Model=ctx>
+          <CreateTemplate>
+              <div class="col-12">
+                    <BootstrapInput @bind-Value="@context.Name"
                                 DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
-            </div>
+                </div>
 
-            <div class="col-12">
-                <BootstrapInput @bind-Value="@context.AdminEmailAddress"
+                <div class="col-12">
+                    <BootstrapInput @bind-Value="@context.AdminEmailAddress"
                                 type="mail"
                                 DisplayText="@L["DisplayName:AdminEmailAddress"]" />
-            </div>
+                </div>
 
-            <div class="col-12">
-                <BootstrapInput @bind-Value="@context.AdminPassword"
+                <div class="col-12">
+                    <BootstrapInput @bind-Value="@context.AdminPassword"
                                 type="password"
                                 DisplayText="@L["DisplayName:AdminPassword"]" />
-            </div>
-        </div>
-    </AddTemplate>
-    <EditTemplate>
-        <div class="row g-3 form-inline">
-            <div class="col-12">
-                <BootstrapInput @bind-Value="@context.Name" placeholder="租户名称"
+                </div>
+          </CreateTemplate>
+          <UpdateTemplate>
+               <div class="col-12">
+                    <BootstrapInput @bind-Value="@context.Name" placeholder="租户名称"
                                 DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
-            </div>
-        </div>
+                </div>
+          </UpdateTemplate>
+        </AbpEditModal>
+ 
     </EditTemplate>
 </TableEx>
 <style>
-    
-.tm {
-    --bs-row-label-width: 150px;
-}
+
+    .tm {
+        --bs-row-label-width: 150px;
+    }
 
 </style>
 @code {

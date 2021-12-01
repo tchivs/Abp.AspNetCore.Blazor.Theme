@@ -7,7 +7,6 @@ using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
-using AutoMapper;
 using Volo.Abp.ObjectExtending.Modularity;
 using Volo.Abp.ObjectExtending;
 
@@ -66,18 +65,4 @@ namespace Tchivs.Abp.Identity.Bootstrap.Blazor
             });
         }
     }
-    public class AbpIdentityBlazorAutoMapperProfile : Profile
-    {
-        public AbpIdentityBlazorAutoMapperProfile()
-        {
-            CreateMap<IdentityUserDto, IdentityUserUpdateDto>()
-                .MapExtraProperties()
-                .Ignore(x => x.Password)
-                .Ignore(x => x.RoleNames);
-
-            CreateMap<IdentityRoleDto, IdentityRoleUpdateDto>()
-                .MapExtraProperties();
-        }
-    }
-
 }

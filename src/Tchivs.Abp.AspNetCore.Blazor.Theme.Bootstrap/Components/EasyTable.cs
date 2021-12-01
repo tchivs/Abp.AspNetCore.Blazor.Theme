@@ -77,7 +77,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             return result;
         }
 
-        protected virtual async Task<bool> OnDeleteAsync(IEnumerable<TItem> items)
+        protected virtual async Task<bool> OnDeleteAsync(params TItem[] items)
         {
             bool success = false;
             try

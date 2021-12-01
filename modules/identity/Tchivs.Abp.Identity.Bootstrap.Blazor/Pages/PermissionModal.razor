@@ -1,0 +1,20 @@
+﻿@using Volo.Abp.Identity.Localization
+@inherits BootstrapBlazorComponentBase
+<DrawerEx IsScroll="true" IsOpen="@IsOpen" Submit="@Save">
+    <HeaderTemplate>
+        <h3>@L["Permission:RoleManagement"]</h3>
+    </HeaderTemplate>
+    <BodyTemplate>
+        <Tree ShowCheckbox="true" Items="Items">
+        </Tree>
+    </BodyTemplate>
+</DrawerEx>
+
+@code{
+
+    public PermissionModal()
+    {
+        LocalizationResource = typeof(IdentityResource);
+    }
+
+}
