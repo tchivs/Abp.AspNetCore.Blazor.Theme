@@ -39,7 +39,8 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         /// </summary>
         [Parameter]
         public RenderFragment? TableToolbarTemplate { get; set; }
-
+        [Parameter]
+        public RenderFragment<TItem>? EditTemplate { get; set; }
         [Parameter] public bool AutoGenerateColumns { get; set; }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         /// 获得/设置 新建按钮回调方法
         /// </summary>
         [Parameter]
-        public Func<Task<TCreateInput>>? OnAddAsync { get; set; }
+        public Func<Task<TItem>>? OnAddAsync { get; set; }
 
         /// <summary>
         /// 获得/设置 TableHeader 实例
@@ -61,8 +62,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         public RenderFragment<TItem>? TableColumns { get; set; }
 
         [Parameter] public RenderFragment<TItem>? RowButtonTemplate { get; set; }
-        [Parameter] public RenderFragment<TCreateInput>? AddTemplate { get; set; }
-        [Parameter] public RenderFragment<TUpdateInput>? EditTemplate { get; set; }
+   
         [Parameter] public Size AddSize { get; set; } = Size.Medium;
         [Parameter] public Size EditSize { get; set; } = Size.Medium;
         private readonly TGetListInput _getListInput = new TGetListInput();
@@ -71,15 +71,14 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         #endregion
 
         #region methods
-
         /// <summary>
         /// 行尾列编辑按钮点击回调此方法
         /// </summary>
         /// <param name="item"></param>
         EventCallback<MouseEventArgs> ClickEditButtonCallback(TItem item) =>
             EventCallback.Factory.Create<MouseEventArgs>(this, () => EditAsync(item));
-
-        protected override Task<bool> OnDeleteAsync(IEnumerable<TItem> items)
+        
+        protected override Task<bool> OnDeleteAsync(params TItem[] items)
         {
             if (this.OnDeleteCallBackAsync != null)
             {
@@ -93,16 +92,15 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 
         private async Task EditAsync(TItem item)
         {
-            TUpdateInput editInput = ObjectMapper.Map<TItem, TUpdateInput>(item);
-             var Id = item.Id;
-
-            await this.DialogService.ShowEditDialog(new EditDialogOption<TUpdateInput>()
+           
+            var Id = item.Id;
+            await this.DialogService.ShowEditDialog(new EditDialogOption<TItem>()
             {
                 IsScrolling = table.ScrollingDialogContent,
                 ShowLoading = true,
                 Title = table.AddModalTitle,
                 DialogBodyTemplate = this.EditTemplate,
-                Model = editInput,
+                Model = item,
                 Size = this.EditSize,
                 RowType = table.EditDialogRowType,
                 ItemsPerRow = table.EditDialogItemsPerRow,
@@ -114,7 +112,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                     var valid = false;
                     try
                     {
-                        await this.AppService.UpdateAsync(Id, (TUpdateInput) context.Model);
+                        await this.AppService.UpdateAsync(Id,(TUpdateInput)context.Model);
                         valid = true;
                     }
                     catch (Exception e)
@@ -140,22 +138,22 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 
         public async Task AddAsync()
         {
-            TCreateInput createInput;
+            TItem createInput;
             if (OnAddAsync == null)
             {
-                createInput = new TCreateInput();
+                createInput = new TItem();
             }
             else
             {
                 createInput = await OnAddAsync();
             }
 
-            await this.DialogService.ShowEditDialog(new EditDialogOption<TCreateInput>()
+            await this.DialogService.ShowEditDialog(new EditDialogOption<TItem>()
             {
                 IsScrolling = table.ScrollingDialogContent,
                 ShowLoading = true,
                 Title = AddModalTitle ?? table.AddModalTitle,
-                DialogBodyTemplate = this.AddTemplate,
+                DialogBodyTemplate = this.EditTemplate,
                 Model = createInput,
                 Size = this.AddSize,
                 RowType = table.EditDialogRowType,
@@ -165,10 +163,12 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 OnSaveAsync = async context =>
                 {
                     await table.ToggleLoading(true);
+
                     var valid = false;
                     try
                     {
-                        await this.AppService.CreateAsync((TCreateInput) context.Model);
+                       var ctx= this.ObjectMapper.Map<TItem, TCreateInput>((TItem)context.Model);
+                        await this.AppService.CreateAsync(ctx);
                         valid = true;
                     }
                     catch (Exception e)
@@ -192,6 +192,8 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             });
         }
 
+     
+
         public async Task EditAsync()
         {
             TUpdateInput editInput;
@@ -211,7 +213,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             var item = table.SelectedRows[0];
             await EditAsync(item);
         }
-
         protected async Task<bool> ConfirmDelete()
         {
             var ret = false;
@@ -243,7 +244,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             }
 
             await table.ToggleLoading(true);
-            ret = await OnDeleteAsync(rows);
+            ret = await OnDeleteAsync(rows.ToArray());
             var option = new ToastOption
             {
                 Title = this.table.DeleteButtonToastTitle,
@@ -264,42 +265,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 
             await table.ToggleLoading(false);
         }
-
-        protected async Task DeleteAsync(TItem item)
-        {
-            var ret = false;
-            await table.ToggleLoading(true);
-            if (OnDeleteCallBackAsync != null)
-            {
-                ret = await OnDeleteCallBackAsync(new[] {item});
-            }
-            else
-            {
-                await this.AppService.DeleteAsync(item.Id);
-                ret = true;
-            }
-
-            var option = new ToastOption()
-            {
-                Title = table.DeleteButtonToastTitle
-            };
-            option.Category = ret ? ToastCategory.Success : ToastCategory.Error;
-            option.Content = string.Format(table.DeleteButtonToastResultContent,
-                ret ? table.SuccessText : table.FailText, Math.Ceiling(option.Delay / 1000.0));
-
-            if (ret)
-            {
-                await InvokeAsync(table.QueryAsync);
-            }
-
-            if (table.ShowToastAfterSaveOrDeleteModel || ret)
-            {
-                await Toast.Show(option);
-            }
-
-            await table.ToggleLoading(false);
-        }
-
         #endregion
     }
 }

@@ -1,0 +1,24 @@
+﻿@using System.Diagnostics.CodeAnalysis
+@using Volo.Abp.Application.Dtos;
+@typeparam TKey
+@typeparam TItem
+@typeparam TCreateInput
+@typeparam TUpdateInput
+@inherits BootstrapBlazorComponentBase
+<div class="@rootCss">
+    @if (IsUpdate())
+    {
+        @UpdateTemplate?.Invoke(Mapper2UpdateDto())
+    }
+    else
+    {
+        @CreateTemplate?.Invoke(Mapper2Dto())
+    }
+</div>
+
+<style>
+    .tm {
+        --bs-row-label-width: @this.Width px;
+    }
+
+</style>

@@ -1,0 +1,86 @@
+﻿@inherits BootstrapBlazorComponentBase
+
+<Drawer Placement="Placement.Right" IsBackdrop="true" @bind-IsOpen="@IsOpen">
+    <div class="drawer-component">
+        <div class="drawer-component-header">
+            @HeaderTemplate
+        </div>
+        <div class="@getBodyClass()">
+            @BodyTemplate
+        </div>
+        <div class="drawer-component-footer">
+            @if (FooterTemplate == null)
+            {
+                <button type="button" class="btn btn-secondary" @onclick="Close">
+                    <i class="fa fa-times"></i>
+                    <span>@L["Close"]</span>
+                </button>
+                @if (!IsReadOnly)
+                {
+                    <Button IsAsync="true" Color="Color.Primary" ButtonType="ButtonType.Submit"  @onclick="OnSubmit" Icon="fa fa-save" Text="@L["SaveButtonText"]"></Button>
+                }
+            }
+            else
+            {
+                @FooterTemplate
+            }
+        </div>
+    </div>
+</Drawer>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? BodyTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? FooterTemplate { get; set; }
+
+    [Parameter]
+    public Action? OnClose { get; set; }
+
+    [Parameter]
+    public EventCallback Submit { get; set; }
+
+    [Parameter]
+    public bool IsOpen { get; set; }
+
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
+    [Parameter]
+    public bool IsScroll { get; set; }
+
+    private string[] bodyClass = new[] {"drawer-component-body"};
+
+    string getBodyClass()
+    {
+        List<string> css = new List<string>(bodyClass);
+        if (this.IsScroll)
+        {
+            css.Add("drawer-component-body-scroll");
+        }
+        return string.Join(" ", css);
+    }
+
+    public void Open()
+    {
+        this.IsOpen = true;
+    }
+
+    public void Close()
+    {
+        OnClose?.Invoke();
+        this.IsOpen = false;
+    }
+
+    private async Task OnSubmit()
+    {
+        await this.Submit.InvokeAsync();
+        Close();
+    }
+
+}

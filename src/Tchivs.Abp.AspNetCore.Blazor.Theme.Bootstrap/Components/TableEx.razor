@@ -18,34 +18,30 @@
        ShowLoading="true"
        ShowSearch="true"
        ShowDefaultButtons="false"
+       OnDeleteAsync=@(x=>this.OnDeleteAsync(x.First()))
+       OnSaveAsync=this.OnSaveAsync
        OnQueryAsync="@OnQueryAsync">
     <TableColumns>
-        @TableColumns?.Invoke(new TItem())
+        @TableColumns?.Invoke(context)
     </TableColumns>
-    <RowButtonTemplate>
-        @if (HasUpdatePermission)
+    <EditTemplate>
+        @if (EditTemplate != null)
+        {
+            @EditTemplate?.Invoke(context);
+        }
+    </EditTemplate>
+    <BeforeRowButtonTemplate>
+          @if (HasUpdatePermission)
         {
             <Button Size="Size.ExtraSmall" OnClick="@ClickEditButtonCallback(context)" Icon="fa fa-edit" Text="@Localizer["Edit"]" />
         }
-        @if (HasDeletePermission)
-        {
-            <PopConfirmButton Placement="Placement.Left" Size="Size.ExtraSmall"
-                          Color="Color.Danger" Icon="fa fa-remove"
-                          Text="@this.Localizer["Delete"]"
-                          CloseButtonText="@this.Localizer["Cancel"]"
-                          Content="@L["ConfirmDeleteContent"]"
-                          ConfirmButtonColor="Color.Danger"
-                          ConfirmButtonText="@this.Localizer["Delete"]"
-                          OnConfirm="@(() => DeleteAsync(context))" />
-        }
-
         @if (RowButtonTemplate != null)
         {
             @RowButtonTemplate.Invoke(context)
         }
-    </RowButtonTemplate>
+    </BeforeRowButtonTemplate>
     <TableToolbarTemplate>
-        @if (HasCreatePermission)
+          @if (HasCreatePermission)
         {
             <TableToolbarButton TItem="TItem" Color="Color.Success" OnClick="@AddAsync" Icon="fa fa-plus" Text="@this.L["Add"]" />
         }
@@ -53,7 +49,7 @@
         {
             <TableToolbarButton TItem="TItem" Color="Color.Primary" OnClick="@EditAsync" Icon="fa fa-pencil" Text="@Localizer["Edit"]" />
         }
-        @if (HasDeletePermission)
+           @if (HasDeletePermission)
         {
             <TableToolbarPopconfirmButton TItem="TItem" Color="Color.Danger"
                                       Icon="fa fa-remove" Text="@Localizer["Delete"]"

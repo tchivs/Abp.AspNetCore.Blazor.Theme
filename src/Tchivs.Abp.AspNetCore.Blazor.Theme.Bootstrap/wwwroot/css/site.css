@@ -1,5 +1,4 @@
 ﻿
-
 .menu .nav-link {
     /* color: #3f4254; */
     color: inherit;
@@ -27,9 +26,9 @@
     color: #ebeef5;
 }
 
-    .page-layout-demo-footer-link:hover {
-        color: #fff;
-    }
+.page-layout-demo-footer-link:hover {
+    color: #fff;
+}
 
 .page-layout-demo-option {
     margin-top: 1.5rem;
@@ -39,22 +38,22 @@
     position: relative;
 }
 
-    .page-layout-demo-option > p {
-        position: absolute;
-        top: -10px;
-        padding: 0 0.5rem;
-        background: #fff;
-    }
+.page-layout-demo-option > p {
+    position: absolute;
+    top: -10px;
+    padding: 0 0.5rem;
+    background: #fff;
+}
 
-    .page-layout-demo-option .page-layout-demo-option-height {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.page-layout-demo-option .page-layout-demo-option-height {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    .page-layout-demo-option .tabs-body-content {
-        margin: 0 -1rem -2rem -1rem;
-    }
+.page-layout-demo-option .tabs-body-content {
+    margin: 0 -1rem -2rem -1rem;
+}
 
 .layout-drawer {
     padding: 8px;
@@ -62,9 +61,9 @@
     cursor: pointer;
 }
 
-    .layout-drawer:hover {
-        background-color: #1893a7;
-    }
+.layout-drawer:hover {
+    background-color: #1893a7;
+}
 
 .layout-drawer-body {
     padding: 1rem;
@@ -80,42 +79,42 @@
     transition: border .3s linear;
 }
 
-    .layout-item:hover,
-    .layout-item.active {
-        border: 2px solid #28a745;
-    }
+.layout-item:hover,
+.layout-item.active {
+    border: 2px solid #28a745;
+}
 
-    .layout-item .layout-left {
-        width: 30%;
-    }
+.layout-item .layout-left {
+    width: 30%;
+}
 
-        .layout-item .layout-left .layout-left-header {
-            height: 16px;
-            background-color: #367fa9;
-        }
+.layout-item .layout-left .layout-left-header {
+    height: 16px;
+    background-color: #367fa9;
+}
 
-        .layout-item .layout-left .layout-left-body,
-        .layout-item .layout-body .layout-left {
-            background-color: #2f4050;
-        }
+.layout-item .layout-left .layout-left-body,
+.layout-item .layout-body .layout-left {
+    background-color: #2f4050;
+}
 
-    .layout-item .layout-right .layout-right-header,
-    .layout-item .layout-top {
-        background-color: #17a2b8;
-        height: 16px;
-    }
+.layout-item .layout-right .layout-right-header,
+.layout-item .layout-top {
+    background-color: #17a2b8;
+    height: 16px;
+}
 
-    .layout-item .layout-right .layout-right-footer,
-    .layout-item .layout-footer {
-        background-color: #5b6e84;
-        height: 12px;
-    }
+.layout-item .layout-right .layout-right-footer,
+.layout-item .layout-footer {
+    background-color: #5b6e84;
+    height: 12px;
+}
 
-    .layout-item .layout-top,
-    .layout-item .layout-body,
-    .layout-item .layout-footer {
-        width: 100%;
-    }
+.layout-item .layout-top,
+.layout-item .layout-body,
+.layout-item .layout-footer {
+    width: 100%;
+}
 
 .layout.is-page .layout-right,
 .layout.is-page .layout-main {
@@ -132,9 +131,9 @@
     transition: border .3s linear;
 }
 
-    .color:hover {
-        border: 2px solid #28a745;
-    }
+.color:hover {
+    border: 2px solid #28a745;
+}
 
 .color1,
 .layout.is-page.color1 .layout-header {
@@ -315,4 +314,26 @@
 
 .widget .dropdown-item:not(:nth-of-type(odd)):active {
     background-color: inherit;
+}
+
+
+
+/*drawer-component*/
+.drawer-component {
+    margin: 1rem;
+    height: 96%;
+}
+
+.drawer-component-body {
+    height: 90%;
+}
+
+.drawer-component-body-scroll {
+    overflow-y: scroll;
+}
+
+.drawer-component-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+    text-align: right;
 }
