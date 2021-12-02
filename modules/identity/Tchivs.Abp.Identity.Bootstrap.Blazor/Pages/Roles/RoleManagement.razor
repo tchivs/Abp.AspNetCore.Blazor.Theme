@@ -51,7 +51,7 @@
 
 @code {
     protected bool HasManagePermissionsPermission { get; set; }
-    PermissionModal _permissionModal;
+    PermissionModal? _permissionModal;
 
     public RoleManagement()
     {
@@ -69,9 +69,12 @@
 
     private async Task ShowPermission(IdentityRoleDto context)
     {
-        _permissionModal.ProviderKey = context.Name.ToString();
-        _permissionModal.ProviderName = "R";
-        await _permissionModal.ShowAsync();
+        if (_permissionModal != null)
+        {
+            _permissionModal.ProviderKey = context.Name.ToString();
+            _permissionModal.ProviderName = "R";
+            await _permissionModal.ShowAsync();
+        }
     }
 
 }
