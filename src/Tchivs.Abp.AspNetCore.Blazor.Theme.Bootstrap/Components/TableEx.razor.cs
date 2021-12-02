@@ -39,8 +39,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         /// </summary>
         [Parameter]
         public RenderFragment? TableToolbarTemplate { get; set; }
-        [Parameter]
-        public RenderFragment<TItem>? EditTemplate { get; set; }
+        [Parameter] public RenderFragment<AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>>? EditTemplate { get; set; }
         [Parameter] public bool AutoGenerateColumns { get; set; }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         /// 获得/设置 新建按钮回调方法
         /// </summary>
         [Parameter]
-        public Func<Task<TItem>>? OnAddAsync { get; set; }
+        public Func<Task<TCreateInput>>? OnAddAsync { get; set; }
 
         /// <summary>
         /// 获得/设置 TableHeader 实例
@@ -62,9 +61,12 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         public RenderFragment<TItem>? TableColumns { get; set; }
 
         [Parameter] public RenderFragment<TItem>? RowButtonTemplate { get; set; }
-   
+        /// <summary>
+        /// 是否直接绑定AddOrUpdateContext的Source，这样在更新或者删除时就可以直接共用一个模板。保存时会mapper到相应的dto
+        /// </summary>
+        [Parameter] public bool BindSourceContext { get; set; } = false;
         [Parameter] public Size AddSize { get; set; } = Size.Medium;
-        [Parameter] public Size EditSize { get; set; } = Size.Medium;
+        [Parameter] public Size UpdateSize { get; set; } = Size.Medium;
         private readonly TGetListInput _getListInput = new TGetListInput();
         private Table<TItem> table;
 
@@ -76,8 +78,8 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
         /// </summary>
         /// <param name="item"></param>
         EventCallback<MouseEventArgs> ClickEditButtonCallback(TItem item) =>
-            EventCallback.Factory.Create<MouseEventArgs>(this, () => EditAsync(item));
-        
+            EventCallback.Factory.Create<MouseEventArgs>(this, () => UpdateAsync(item));
+
         protected override Task<bool> OnDeleteAsync(params TItem[] items)
         {
             if (this.OnDeleteCallBackAsync != null)
@@ -90,72 +92,68 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             }
         }
 
-        private async Task EditAsync(TItem item)
+        private Task UpdateAsync(TItem item)
         {
-           
-            var Id = item.Id;
-            await this.DialogService.ShowEditDialog(new EditDialogOption<TItem>()
-            {
-                IsScrolling = table.ScrollingDialogContent,
-                ShowLoading = true,
-                Title = table.AddModalTitle,
-                DialogBodyTemplate = this.EditTemplate,
-                Model = item,
-                Size = this.EditSize,
-                RowType = table.EditDialogRowType,
-                ItemsPerRow = table.EditDialogItemsPerRow,
-                LabelAlign = table.EditDialogLabelAlign,
-                OnCloseAsync = async () => { },
-                OnSaveAsync = async context =>
-                {
-                    await table.ToggleLoading(true);
-                    var valid = false;
-                    try
-                    {
-                        await this.AppService.UpdateAsync(Id,(TUpdateInput)context.Model);
-                        valid = true;
-                    }
-                    catch (Exception e)
-                    {
-                        valid = false;
-                        await this.HandleErrorAsync(e);
-                    }
-                    finally
-                    {
-                        await table.ToggleLoading(false);
-                        //  table.SelectedRows?.Clear();
-                    }
-
-                    if (valid)
-                    {
-                        await InvokeAsync(table.QueryAsync);
-                    }
-
-                    return valid;
-                }
-            });
+            //item传入编辑时，如果绑定的是Context的Source，则需要拷贝一份item否则编辑的时候表格内容也会变化。
+            return EditAsync(ItemChangedType.Update, this.BindSourceContext ? TransReflection<TItem, TItem>(item) : item);
         }
-
-        public async Task AddAsync()
+        private TOut TransReflection<TIn, TOut>(TIn tIn)
         {
-            TItem createInput;
-            if (OnAddAsync == null)
+            TOut tOut = Activator.CreateInstance<TOut>();
+            var tInType = tIn.GetType();
+            foreach (var itemOut in tOut.GetType().GetProperties())
             {
-                createInput = new TItem();
+                var itemIn = tInType.GetProperty(itemOut.Name); ;
+                if (itemIn != null)
+                {
+                    itemOut.SetValue(tOut, itemIn.GetValue(tIn));
+                }
+            }
+            return tOut;
+        }
+        public Task AddAsync()
+        {
+            return EditAsync();
+        }
+        public virtual async Task EditAsync(ItemChangedType itemChangedType = ItemChangedType.Add, TItem? item = null)
+        {
+
+            Size size = Size.Medium;
+            TCreateInput? createInput = default;
+            TUpdateInput? updateInput = default;
+            string title = string.Empty;
+            if (itemChangedType == ItemChangedType.Add)
+            {
+                size = AddSize;
+                title = table.AddModalTitle;
+                if (OnAddAsync == null)
+                {
+                    createInput = new TCreateInput();
+                }
+                else
+                {
+                    createInput = await OnAddAsync();
+                }
             }
             else
             {
-                createInput = await OnAddAsync();
+                title = table.EditModalTitle;
+                if (item == null)
+                {
+                    throw new NullReferenceException(nameof(item));
+                }
+                size = UpdateSize;
+                updateInput = this.ObjectMapper.Map<TItem, TUpdateInput>(item);
             }
-
-            await this.DialogService.ShowEditDialog(new EditDialogOption<TItem>()
+            var context = new AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>(item, itemChangedType, createInput, updateInput, this.BindSourceContext);
+            await this.DialogService.ShowEditDialog(new EditDialogOption<AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>>()
             {
                 IsScrolling = table.ScrollingDialogContent,
                 ShowLoading = true,
-                Title = AddModalTitle ?? table.AddModalTitle,
+                Title = title,
                 DialogBodyTemplate = this.EditTemplate,
-                Model = createInput,
-                Size = this.AddSize,
+                Model = context,
+                Size = size,
                 RowType = table.EditDialogRowType,
                 ItemsPerRow = table.EditDialogItemsPerRow,
                 LabelAlign = table.EditDialogLabelAlign,
@@ -163,13 +161,39 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 OnSaveAsync = async context =>
                 {
                     await table.ToggleLoading(true);
-
                     var valid = false;
                     try
                     {
-                       var ctx= this.ObjectMapper.Map<TItem, TCreateInput>((TItem)context.Model);
-                        await this.AppService.CreateAsync(ctx);
-                        valid = true;
+                        if (context.Model is AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput> ctx)
+                        {
+                            if (ctx.ItemChangedType == ItemChangedType.Add)
+                            {
+                                TCreateInput create;
+                                if (ctx.BindSource)
+                                {
+                                    create = this.ObjectMapper.Map<TItem, TCreateInput>(ctx.Source);
+                                }
+                                else
+                                {
+                                    create = ctx.GetCreateInput();
+                                }
+                                await this.AppService.CreateAsync(create);
+                            }
+                            else
+                            {
+                                TUpdateInput update;
+                                if (ctx.BindSource)
+                                {
+                                    update = this.ObjectMapper.Map<TItem, TUpdateInput>(ctx.Source);
+                                }
+                                else
+                                {
+                                    update = ctx.GetUpdateInput();
+                                }
+                                var r = await this.AppService.UpdateAsync(ctx.GetId(), update);
+                            }
+                            valid = true;
+                        }
                     }
                     catch (Exception e)
                     {
@@ -191,12 +215,8 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 }
             });
         }
-
-     
-
-        public async Task EditAsync()
+        public async Task UpdateAsync()
         {
-            TUpdateInput editInput;
             if (table.SelectedRows == null || table.SelectedRows.Count == 0)
             {
                 var option = new ToastOption
@@ -209,9 +229,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 await Toast.Show(option);
                 return;
             }
-
-            var item = table.SelectedRows[0];
-            await EditAsync(item);
+            await UpdateAsync(table.SelectedRows[0]);
         }
         protected async Task<bool> ConfirmDelete()
         {
@@ -262,7 +280,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
             {
                 await Toast.Show(option);
             }
-
             await table.ToggleLoading(false);
         }
         #endregion

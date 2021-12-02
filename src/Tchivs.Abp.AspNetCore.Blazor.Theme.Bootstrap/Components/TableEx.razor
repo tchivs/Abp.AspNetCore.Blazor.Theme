@@ -27,7 +27,7 @@
     <EditTemplate>
         @if (EditTemplate != null)
         {
-            @EditTemplate?.Invoke(context);
+            @EditTemplate?.Invoke(new AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>(context));
         }
     </EditTemplate>
     <BeforeRowButtonTemplate>
@@ -47,7 +47,7 @@
         }
         @if (HasUpdatePermission)
         {
-            <TableToolbarButton TItem="TItem" Color="Color.Primary" OnClick="@EditAsync" Icon="fa fa-pencil" Text="@Localizer["Edit"]" />
+            <TableToolbarButton TItem="TItem" Color="Color.Primary" OnClick="@UpdateAsync" Icon="fa fa-pencil" Text="@Localizer["Edit"]" />
         }
            @if (HasDeletePermission)
         {

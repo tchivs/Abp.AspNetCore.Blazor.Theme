@@ -6,13 +6,13 @@
 @typeparam TUpdateInput
 @inherits BootstrapBlazorComponentBase
 <div class="@rootCss">
-    @if (IsUpdate())
+    @if (Model.ItemChangedType== ItemChangedType.Update)
     {
-        @UpdateTemplate?.Invoke(Mapper2UpdateDto())
+     @UpdateTemplate?.Invoke(Model.GetUpdateInput())
     }
     else
     {
-        @CreateTemplate?.Invoke(Mapper2Dto())
+     @CreateTemplate?.Invoke(Model.GetCreateInput())
     }
 </div>
 

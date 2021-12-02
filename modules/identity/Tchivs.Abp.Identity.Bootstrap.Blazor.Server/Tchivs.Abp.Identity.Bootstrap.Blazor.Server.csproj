@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-
 	<Import Project="..\..\..\common.props" />
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>

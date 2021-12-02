@@ -10,39 +10,40 @@
          TCreateInput=IdentityRoleCreateDto
          TUpdateInput=IdentityRoleUpdateDto
          AutoGenerateColumns="false"
+         BindSourceContext=true
          CreatePolicyName="@IdentityPermissions.Roles.Create"
          UpdatePolicyName="@IdentityPermissions.Roles.Update"
          DeletePolicyName="@IdentityPermissions.Roles.Delete">
     <TableColumns>
-        <TableColumn @bind-Field="@context.Name" Text="@L["RoleName"]"/>
-        <TableColumn @bind-Field="@context.IsDefault" Text="@L["DisplayName:IsDefault"]"/>
-        <TableColumn @bind-Field="@context.IsPublic" Text="@L["DisplayName:IsPublic"]"/>
+        <TableColumn @bind-Field="@context.Name" Text="@L["RoleName"]" />
+        <TableColumn @bind-Field="@context.IsDefault" Text="@L["DisplayName:IsDefault"]" />
+        <TableColumn @bind-Field="@context.IsPublic" Text="@L["DisplayName:IsPublic"]" />
     </TableColumns>
-
     <EditTemplate>
+        @*如果绑定的是Source,即两种视图使用同一个模板，则TableEx需要设置属性BindSourceContext为True*@
         <div class="row g-3 form-inline">
             <div class="col-12">
-                <BootstrapInput @bind-Value="@context.Name" placeholder="角色名称"
-                                DisplayText=@L["RoleName"] maxlength="50"/>
+                <BootstrapInput @bind-Value="@context.Source.Name" placeholder="角色名称"
+                                DisplayText=@L["RoleName"] maxlength="50" />
             </div>
             <div class="col-12">
-                <Checkbox @bind-Value="@context.IsDefault"
+                <Checkbox @bind-Value="@context.Source.IsDefault"
                           ShowAfterLabel="true"
                           ShowLabel="false"
-                          DisplayText="@L["DisplayName:IsDefault"]"/>
+                          DisplayText="@L["DisplayName:IsDefault"]" />
             </div>
             <div class="col-12">
-                <Checkbox @bind-Value="@context.IsPublic"
+                <Checkbox @bind-Value="@context.Source.IsPublic"
                           ShowAfterLabel="true"
                           ShowLabel="false"
-                          DisplayText="@L["DisplayName:IsPublic"]"/>
+                          DisplayText="@L["DisplayName:IsPublic"]" />
             </div>
         </div>
     </EditTemplate>
     <RowButtonTemplate>
         @if (this.HasManagePermissionsPermission)
         {
-            <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickPermissionCallback(context)" Icon="fa fa-shield" Text="@L["Permissions"]"/>
+            <Button Size="Size.ExtraSmall" Color="Color.Secondary" OnClick="@ClickPermissionCallback(context)" Icon="fa fa-shield" Text="@L["Permissions"]" />
         }
     </RowButtonTemplate>
 </TableEx>

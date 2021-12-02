@@ -63,7 +63,7 @@
 @code {
 
     [Parameter, NotNull]
-    public IdentityUserDto? Model { get; set; }
+    public AddOrUpdateContext<Guid,IdentityUserDto,IdentityUserCreateDto,IdentityUserUpdateDto> Model { get; set; }
 
     [Inject, NotNull]
     private IIdentityUserAppService? AppService { get; set; }
@@ -83,9 +83,9 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        if (Model.Id != Guid.Empty)
+        if (Model.ItemChangedType== ItemChangedType.Update)
         {
-            var roles = await AppService.GetRolesAsync(this.Model.Id);
+            var roles = await AppService.GetRolesAsync(this.Model.GetId());
             Roles = roles.Items.Select(x => new SelectedItem(x.Name, x.Name)).ToList();
         }
     }

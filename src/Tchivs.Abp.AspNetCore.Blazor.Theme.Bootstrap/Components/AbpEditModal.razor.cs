@@ -27,31 +27,14 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                   .AddClass("tm", Width != null)
                   .AddClass("form-inline", this.IsInline)
                   .Build();
-        protected bool IsUpdate()
-        {
-            if (Model.Id is Guid guid)
-            {
-                return guid != Guid.Empty;
-            }
-            else
-            {
-                return Model.Id != null;
-            }
-        }
-        [Parameter, NotNull] public TItem? Model { get; set; }
-        [Parameter] public   RenderFragment<TCreateInput>? CreateTemplate { get; set; }
-        [Parameter] public   RenderFragment<TUpdateInput>? UpdateTemplate { get; set; }
+         
+        [Parameter, NotNull] public AddOrUpdateContext<TKey,TItem,TCreateInput,TUpdateInput>? Model { get; set; }
+        [Parameter] public RenderFragment<TCreateInput>? CreateTemplate { get; set; }
+        [Parameter] public RenderFragment<TUpdateInput>? UpdateTemplate { get; set; }
         [Parameter] public bool IsInline { get; set; }
         [Parameter] public double? Width { get; set; }
          
-        private TCreateInput Mapper2Dto()
-        {
-            return new TCreateInput();
-        }
-        private TUpdateInput Mapper2UpdateDto()
-        {
-            return this.ObjectMapper.Map<TItem, TUpdateInput>(this.Model);
-        }
-    
-}
+      
+
+    }
 }
