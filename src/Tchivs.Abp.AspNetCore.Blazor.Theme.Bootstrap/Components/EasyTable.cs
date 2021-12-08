@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using BootstrapBlazor.Components;
 using Microsoft.AspNetCore.Authorization;
@@ -76,7 +77,10 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
 
             return result;
         }
-
+        protected virtual   Task<bool> OnDeleteAsync(  IEnumerable<TItem> items)
+        {
+            return OnDeleteAsync(items.ToArray());
+        }
         protected virtual async Task<bool> OnDeleteAsync(params TItem[] items)
         {
             bool success = false;

@@ -18,9 +18,9 @@
        ShowLoading="true"
        ShowSearch="true"
        ShowDefaultButtons="false"
-       OnDeleteAsync=@(x=>this.OnDeleteAsync(x.First()))
-       OnSaveAsync=this.OnSaveAsync
-       OnQueryAsync="@OnQueryAsync">
+       OnDeleteAsync=OnDeleteAsync
+       OnSaveAsync=OnSaveAsync
+       OnQueryAsync=OnQueryAsync>
     <TableColumns>
         @TableColumns?.Invoke(context)
     </TableColumns>

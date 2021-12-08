@@ -1,5 +1,6 @@
 ﻿@page "/tenant-management/tenants"
 @attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
+@using Tchivs.Abp.FeatureManagement.Bootstrap.Blazor.Components
 @using Volo.Abp.TenantManagement
 @using Volo.Abp.TenantManagement.Localization
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
@@ -23,37 +24,36 @@
         }
     </RowButtonTemplate>
     <EditTemplate Context="ctx">
-        <AbpEditModal   
-        TItem=TenantDto
-         TKey=Guid 
-         TCreateInput=TenantCreateDto
-         TUpdateInput=TenantUpdateDto Model=ctx>
-          <CreateTemplate>
-              <div class="col-12">
+        <AbpEditModal TItem=TenantDto
+                      TKey=Guid
+                      TCreateInput=TenantCreateDto
+                      TUpdateInput=TenantUpdateDto Model=ctx>
+            <CreateTemplate>
+                <div class="col-12">
                     <BootstrapInput @bind-Value="@context.Name"
-                                DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
+                                    DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
                 </div>
 
                 <div class="col-12">
                     <BootstrapInput @bind-Value="@context.AdminEmailAddress"
-                                type="mail"
-                                DisplayText="@L["DisplayName:AdminEmailAddress"]" />
+                                    type="mail"
+                                    DisplayText="@L["DisplayName:AdminEmailAddress"]" />
                 </div>
 
                 <div class="col-12">
                     <BootstrapInput @bind-Value="@context.AdminPassword"
-                                type="password"
-                                DisplayText="@L["DisplayName:AdminPassword"]" />
+                                    type="password"
+                                    DisplayText="@L["DisplayName:AdminPassword"]" />
                 </div>
-          </CreateTemplate>
-          <UpdateTemplate>
-               <div class="col-12">
+            </CreateTemplate>
+            <UpdateTemplate>
+                <div class="col-12">
                     <BootstrapInput @bind-Value="@context.Name" placeholder="租户名称"
-                                DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
+                                    DisplayText=@L["DisplayName:TenantName"] maxlength="50" />
                 </div>
-          </UpdateTemplate>
+            </UpdateTemplate>
         </AbpEditModal>
- 
+
     </EditTemplate>
 </TableEx>
 <style>
@@ -82,7 +82,13 @@
     }
     private Task ManageFeatures(TenantDto context)
     {
-        return Task.CompletedTask;
+        var modal = BootstrapDynamicComponent.CreateComponent<FeatureManagementModal>(new Dictionary<string, object>() { { "ProviderName", "T" }, { "ProviderKey", context.Id.ToString() } });
+        //await FeatureManagementModal.OpenAsync(FeatureProviderName, tenant.Id.ToString());
+      return  this.DialogService.Show(new DialogOption()
+            {
+                Component = modal,
+            });
+         
     }
     EventCallback<MouseEventArgs> ClickManageFeaturesCallback(TenantDto item) =>
         EventCallback.Factory.Create<MouseEventArgs>(this, () => ManageFeatures(item));
