@@ -1,10 +1,12 @@
 # Abp VNext Blazor Themes 
 [![](https://img.shields.io/nuget/dt/Tchivs.Abp.AspNetCore.Blazor.Theme?color=004880&label=downloads&logo=NuGet)](https://www.nuget.org/packages/Tchivs.Abp.AspNetCore.Blazor.Theme/)[![](https://img.shields.io/nuget/vpre/Tchivs.Abp.AspNetCore.Blazor.Theme?color=%23004880&label=NuGet&logo=nuget)](https://www.nuget.org/packages/Tchivs.Abp.AspNetCore.Blazor.Theme/)[![GitHub](https://img.shields.io/github/license/tchivs/Abp.AspNetCore.Blazor.Theme?color=%231281c0)](LICENSE)
+
 Abp VNext Blazor第三方主题的实现
 
 ## 项目介绍
 
 由于Abp NVext所使用的BlazorUI为[Blazorise](https://github.com/Megabit/Blazorise)，所以想适配其他的UI组件,同时支持Server与WebAssembly模式。
+
 [具体实现过程](https://www.cnblogs.com/tchivs/p/15603214.html)
 
 
@@ -83,7 +85,7 @@ abp new DemoModule -t module
 
 ### 启动过程
 
-1. 切换到DemoApp.IdentityServer目录执行```dotnet ef database update```初始化数据库，启动DemoApp.IdentityServer
+1. 切换到DemoApp.IdentityServer目录执行```dotnet ef database update```初始化数据库，启动DemoApp.IdentityServer(需要启动redis)
 2. 启动DemoApp.HttpApi.Host（如果在DemoApp中新建了数据库则也需要dotnet ef database update，但默认是没有的所以可以直接打开）
 3. 启动DemoApp.Blazor.Host(wasm)和DemoApp.Blazor.Server.Host(ssr)
 
