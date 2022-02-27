@@ -158,7 +158,7 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 ItemsPerRow = table.EditDialogItemsPerRow,
                 LabelAlign = table.EditDialogLabelAlign,
                 OnCloseAsync = async () => { },
-                OnSaveAsync = async context =>
+                OnEditAsync = async context =>
                 {
                     await table.ToggleLoading(true);
                     var valid = false;

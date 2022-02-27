@@ -36,7 +36,7 @@ namespace Tchivs.Abp.Identity.Bootstrap.Blazor.Pages
             TreeItem item = new TreeItem()
             {
                 Text = permission.DisplayName,
-                Key = permission.Name, IsExpanded = true,
+                Key = permission.Name, IsCollapsed = true,
                 Checked = permission.IsGranted
             };
             groups.Add(item);
@@ -56,7 +56,7 @@ namespace Tchivs.Abp.Identity.Bootstrap.Blazor.Pages
                 {
                     Text = group.DisplayName,
                     Key = group.Name,
-                    IsExpanded = true,
+                    IsCollapsed = true,
                 };
 
                 item.Items = new List<TreeItem>();

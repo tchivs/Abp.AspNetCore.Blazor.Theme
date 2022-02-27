@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<Import Project="..\..\common.props" />
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+		
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
 		<Nullable>enable</Nullable>
@@ -12,7 +12,7 @@
 		<PackageReference Include="Volo.Abp.AspNetCore.Components.Web" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.UI.Navigation" Version="$(AbpVersion)" />
-		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="5.1.3" />
 		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />
 	</ItemGroup>
