@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 
-namespace DemoApp.Blazor.Host
+namespace DemoApp.Blazor.Host;
+
+public class DemoAppBlazorHostAutoMapperProfile : Profile
 {
-    public class DemoAppBlazorHostAutoMapperProfile : Profile
+    public DemoAppBlazorHostAutoMapperProfile()
     {
-        public DemoAppBlazorHostAutoMapperProfile()
-        {
-            //Define your AutoMapper configuration here for the Blazor project.
-        }
+        //Define your AutoMapper configuration here for the Blazor project.
     }
 }

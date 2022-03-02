@@ -11,22 +11,18 @@ using Tchivs.Abp.AspNetCore.Blazor.Theme;
 using Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly;
 using Volo.Abp.Bundling;
 using Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.WebAssembly.Components;
+using Volo.Abp.Http.Client.IdentityModel.WebAssembly;
+using Volo.Abp.AspNetCore.Components.WebAssembly;
 
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap
 {
     [DependsOn(
         typeof(AbpAspNetCoreBlazorThemeBootstrapModule)
+
     )]
+
     public class AbpAspNetCoreBlazorThemeBootstrapWebAssemblyModule : AbpAspNetCoreBlazorThemeWebAssemblyModuleBase<BlazorGlobalContributor>
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
-        {
-            base.ConfigureServices(context);
-             Configure<AbpRouterOptions>(options =>
-        {
-            options.AdditionalAssemblies.Add(typeof(AbpAspNetCoreBlazorThemeBootstrapWebAssemblyModule).Assembly);
-        });
-        }
         protected override IToolbarContributor? GetToolbarContributor()
         {
             return new ToolbarContributor();

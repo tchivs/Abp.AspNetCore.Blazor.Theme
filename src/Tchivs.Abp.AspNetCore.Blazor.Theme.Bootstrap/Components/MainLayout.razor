@@ -182,8 +182,8 @@
     /// </summary>
     protected override async Task OnInitializedAsync()
     {
-        //var mainMenu = await _menuManager.GetMainMenuAsync();
-        //Menus = GetIconSideMenuItems(mainMenu.Items);
+         var mainMenu = await _menuManager.GetMainMenuAsync();
+        Menus = GetIconSideMenuItems(mainMenu.Items);
     }
     private static List<MenuItem> GetIconSideMenuItems(ApplicationMenuItemList items)
     {
