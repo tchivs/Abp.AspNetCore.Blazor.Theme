@@ -12,7 +12,7 @@
 @inject IMenuManager _menuManager
 @inject NavigationManager _navigation
 @inject IStringLocalizer<BlazorUIResource> Localizer
-<BootstrapBlazorRoot>
+
     <CascadingValue Value="this" IsFixed="true">
         <Layout SideWidth="0"
                 IsPage="true"
@@ -159,7 +159,7 @@
             </div>
         </Drawer>
     </CascadingValue>
-</BootstrapBlazorRoot>
+
 @code {
     private bool UseTabSet { get; set; } = true;
 
@@ -182,8 +182,8 @@
     /// </summary>
     protected override async Task OnInitializedAsync()
     {
-        var mainMenu = await _menuManager.GetMainMenuAsync();
-        Menus = GetIconSideMenuItems(mainMenu.Items);
+        //var mainMenu = await _menuManager.GetMainMenuAsync();
+        //Menus = GetIconSideMenuItems(mainMenu.Items);
     }
     private static List<MenuItem> GetIconSideMenuItems(ApplicationMenuItemList items)
     {

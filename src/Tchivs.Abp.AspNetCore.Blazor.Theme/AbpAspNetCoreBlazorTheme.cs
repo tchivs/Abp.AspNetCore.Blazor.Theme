@@ -6,6 +6,7 @@ using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Components.Messages;
 using Volo.Abp.AspNetCore.Components.Web;
 using Volo.Abp.Authorization;
+using Volo.Abp.AutoMapper;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.ExceptionHandling.Localization;
 using Volo.Abp.Localization;
@@ -23,11 +24,13 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme
 
     [DependsOn(
         typeof(AbpExceptionHandlingModule),
-        typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
+        typeof(AbpAutoMapperModule),
         typeof(AbpAspNetCoreComponentsWebModule),
         typeof(AbpDddApplicationContractsModule),
-        typeof(AbpAuthorizationModule),typeof(TchivsAbpSharedModule),
+        typeof(AbpAuthorizationModule),
+        typeof(TchivsAbpSharedModule),
         typeof(AbpUiNavigationModule)
+
     )]
     public class AbpAspNetCoreBlazorThemeModule : AbpModule
     {

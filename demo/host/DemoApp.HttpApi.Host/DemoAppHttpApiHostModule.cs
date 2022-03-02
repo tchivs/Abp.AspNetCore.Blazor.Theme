@@ -32,6 +32,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.UI.Navigation.Urls;
 
 namespace DemoApp
 {
@@ -77,7 +78,7 @@ namespace DemoApp
                     options.FileSets.ReplaceEmbeddedByPhysical<DemoAppApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}DemoApp.Application", Path.DirectorySeparatorChar)));
                 });
             }
-
+   
             context.Services.AddAbpSwaggerGenWithOAuth(
                 configuration["AuthServer:Authority"],
                 new Dictionary<string, string>

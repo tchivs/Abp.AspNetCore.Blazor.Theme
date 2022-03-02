@@ -160,7 +160,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                 OnCloseAsync = async () => { },
                 OnEditAsync = async context =>
                 {
-                    await table.ToggleLoading(true);
                     var valid = false;
                     try
                     {
@@ -197,12 +196,12 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap.Components
                     }
                     catch (Exception e)
                     {
-                        valid = false;
-                        await this.HandleErrorAsync(e);
+                        valid = false; 
+                        await this.Message.Warn(e.Message);
                     }
                     finally
                     {
-                        await table.ToggleLoading(false);
+                       
                         table.SelectedRows?.Clear();
                     }
 

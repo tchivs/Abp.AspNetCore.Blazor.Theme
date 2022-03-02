@@ -6,7 +6,7 @@
     <Authors>tchivs</Authors>
     <Company>tchivs</Company>
     <LangVersion>latest</LangVersion>
-	<AbpVersion>5.1.3</AbpVersion>
+	<AbpVersion>5.1.4</AbpVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright (c) 2020 tchivs</Copyright>
     <PackageProjectUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</PackageProjectUrl>

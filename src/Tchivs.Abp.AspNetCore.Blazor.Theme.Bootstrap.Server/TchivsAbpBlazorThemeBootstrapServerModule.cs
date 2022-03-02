@@ -41,9 +41,9 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap
         }
     }
 
-    [DependsOn(
-        typeof(FontAwesomeStyleContributor)
-    )]
+    //[DependsOn(
+    //    typeof(FontAwesomeStyleContributor)
+    //)]
     public class BlazorGlobalStyleContributor : BundleContributor
     {
 

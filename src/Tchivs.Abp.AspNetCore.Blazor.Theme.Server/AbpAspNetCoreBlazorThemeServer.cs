@@ -15,7 +15,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Server
 
     [DependsOn(
        typeof(AbpAspNetCoreBlazorThemeModule),
-       
    typeof(AbpAspNetCoreComponentsServerModule),
    typeof(AbpAspNetCoreMvcUiPackagesModule),
    typeof(AbpAspNetCoreMvcUiBundlingModule)

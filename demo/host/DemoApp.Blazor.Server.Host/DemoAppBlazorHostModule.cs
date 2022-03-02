@@ -50,8 +50,6 @@ namespace DemoApp.Blazor.Server.Host
         typeof(AbpAspNetCoreMvcClientModule),
         typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
         typeof(AbpHttpClientIdentityModelWebModule),
-        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpTenantManagementHttpApiClientModule),
@@ -67,9 +65,7 @@ namespace DemoApp.Blazor.Server.Host
             {
                 options.AddAssemblyResource(
                     typeof(DemoAppResource),
-                    typeof(DemoAppDomainModule).Assembly,
                     typeof(DemoAppDomainSharedModule).Assembly,
-                    typeof(DemoAppApplicationModule).Assembly,
                     typeof(DemoAppApplicationContractsModule).Assembly,
                     typeof(DemoAppBlazorHostModule).Assembly
                 );
@@ -84,7 +80,7 @@ namespace DemoApp.Blazor.Server.Host
             {
                 // MVC UI
                 options.StyleBundles.Configure(
-                    BasicThemeBundles.Styles.Global,
+                    BlazorThemeBundles.Styles.Global,
                     bundle => { bundle.AddFiles("/global-styles.css"); }
                 );
 
@@ -155,6 +151,7 @@ namespace DemoApp.Blazor.Server.Host
 
             Configure<AbpLocalizationOptions>(options =>
             {
+                options.GlobalContributors.Remove<RemoteLocalizationContributor>();
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
@@ -201,6 +198,7 @@ namespace DemoApp.Blazor.Server.Host
             app.UseAuthorization();
             app.UseSwagger();
             app.UseAbpSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoApp API"); });
+            app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
         }
     }

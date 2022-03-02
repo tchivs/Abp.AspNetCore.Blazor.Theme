@@ -1,5 +1,6 @@
 using Microsoft.JSInterop;
 using Volo.Abp.AspNetCore.Components.WebAssembly;
+using Volo.Abp.AutoMapper;
 using Volo.Abp.Bundling;
 using Volo.Abp.Http.Client.IdentityModel.WebAssembly;
 using Volo.Abp.Modularity;
@@ -7,7 +8,6 @@ using Volo.Abp.Modularity;
 namespace Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly
 {
     [DependsOn(
-        typeof(Volo.Abp.AutoMapper.AbpAutoMapperModule),
          typeof(AbpAspNetCoreBlazorThemeModule),
      typeof(AbpHttpClientIdentityModelWebAssemblyModule),
          typeof(AbpAspNetCoreComponentsWebAssemblyModule)
@@ -22,7 +22,6 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.WebAssembly
                 var t = GetToolbarContributor();
                 if (t != null)
                 {
-
                     options.Contributors.Add(t);
                 }
             });

@@ -13,7 +13,7 @@
        IsBordered="true"
        IsMultipleSelect="true"
        ShowToolbar="true"
-       ShowExtendButtons="true"
+       ShowExtendButtons="true" ShowEditButton=false
        ShowSkeleton="true"
        ShowLoading="true"
        ShowSearch="true"
@@ -26,39 +26,40 @@
     </TableColumns>
     <EditTemplate>
         @if (EditTemplate != null)
-        {
-            @EditTemplate?.Invoke(new AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>(context));
-        }
+                {
+        @EditTemplate?.Invoke(new AddOrUpdateContext<TKey, TItem, TCreateInput, TUpdateInput>(context))
+        ;
+                }
     </EditTemplate>
     <BeforeRowButtonTemplate>
-          @if (HasUpdatePermission)
-        {
-            <Button Size="Size.ExtraSmall" OnClick="@ClickEditButtonCallback(context)" Icon="fa fa-edit" Text="@Localizer["Edit"]" />
-        }
+        @if (HasUpdatePermission)
+                {
+        <Button Size="Size.ExtraSmall" OnClick="@ClickEditButtonCallback(context)" Icon="fa fa-edit" Text="@Localizer["Edit"]" />
+                }
         @if (RowButtonTemplate != null)
-        {
-            @RowButtonTemplate.Invoke(context)
-        }
+                {
+        @RowButtonTemplate.Invoke(context)
+                }
     </BeforeRowButtonTemplate>
     <TableToolbarTemplate>
-          @if (HasCreatePermission)
-        {
-            <TableToolbarButton TItem="TItem" Color="Color.Success" OnClick="@AddAsync" Icon="fa fa-plus" Text="@this.L["Add"]" />
-        }
+        @if (HasCreatePermission)
+                {
+        <TableToolbarButton TItem="TItem" Color="Color.Success" OnClick="@AddAsync" Icon="fa fa-plus" Text="@this.L["Add"]" />
+                }
         @if (HasUpdatePermission)
-        {
-            <TableToolbarButton TItem="TItem" Color="Color.Primary" OnClick="@UpdateAsync" Icon="fa fa-pencil" Text="@Localizer["Edit"]" />
-        }
-           @if (HasDeletePermission)
-        {
-            <TableToolbarPopconfirmButton TItem="TItem" Color="Color.Danger"
+                {
+        <TableToolbarButton TItem="TItem" Color="Color.Primary" OnClick="@UpdateAsync" Icon="fa fa-pencil" Text="@Localizer["Edit"]" />
+                }
+        @if (HasDeletePermission)
+                {
+        <TableToolbarPopconfirmButton TItem="TItem" Color="Color.Danger"
                                       Icon="fa fa-remove" Text="@Localizer["Delete"]"
                                       OnBeforeClick="@ConfirmDelete" OnConfirm="@DeleteAsync"
                                       CloseButtonText="@Localizer["Cancel"]"
                                       Content="@L["ConfirmDeleteContent"]"
                                       ConfirmButtonText="@Localizer["Delete"]"
                                       ConfirmButtonColor="Color.Danger" />
-        }
+                }
         @TableToolbarTemplate
     </TableToolbarTemplate>
 </Table>

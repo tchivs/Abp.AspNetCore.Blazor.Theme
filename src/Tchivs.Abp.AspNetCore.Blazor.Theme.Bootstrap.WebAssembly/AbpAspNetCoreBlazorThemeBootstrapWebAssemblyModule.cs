@@ -22,7 +22,10 @@ namespace Tchivs.Abp.AspNetCore.Blazor.Theme.Bootstrap
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             base.ConfigureServices(context);
-             
+             Configure<AbpRouterOptions>(options =>
+        {
+            options.AdditionalAssemblies.Add(typeof(AbpAspNetCoreBlazorThemeBootstrapWebAssemblyModule).Assembly);
+        });
         }
         protected override IToolbarContributor? GetToolbarContributor()
         {
