@@ -40,7 +40,7 @@
             <BootstrapInput @bind-Value="@ctx.UserName" placeholder="请输入用户名" DisplayText=@LH["UserName"] maxlength="50"> </BootstrapInput>
         </div>
         <div class="col-12">
-            <BootstrapInput type="email" @bind-Value="@ctx.Email"  maxlength="50" DisplayText=@LH["EmailAddress"]> </BootstrapInput>
+            <BootstrapInput type="email" @bind-Value="@ctx.Email" maxlength="50" DisplayText=@LH["EmailAddress"]> </BootstrapInput>
         </div>
         <div class="col-12">
             <BootstrapInput type="number" @bind-Value="@ctx.PhoneNumber" maxlength="11" DisplayText=@LH["PhoneNumber"]> </BootstrapInput>
@@ -63,7 +63,7 @@
 @code {
 
     [Parameter, NotNull]
-    public AddOrUpdateContext<Guid,IdentityUserDto,IdentityUserCreateDto,IdentityUserUpdateDto> Model { get; set; }
+    public AddOrUpdateContext<Guid, IdentityUserDto, IdentityUserCreateDto, IdentityUserUpdateDto> Model { get; set; }
 
     [Inject, NotNull]
     private IIdentityUserAppService? AppService { get; set; }
@@ -72,22 +72,19 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Roles = new List<SelectedItem>();
         var result = await this.AppService.GetAssignableRolesAsync();
-        foreach (var item in result.Items)
-        {
-            Roles.Add(new SelectedItem(item.Name, item.Name));
-        }
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        if (Model.ItemChangedType== ItemChangedType.Update)
+        Roles = result.Items.Select(x => new SelectedItem(x.Name, x.Name)).ToList();
+        if (Model.ItemChangedType == ItemChangedType.Update)
         {
             var roles = await AppService.GetRolesAsync(this.Model.GetId());
-            Roles = roles.Items.Select(x => new SelectedItem(x.Name, x.Name)).ToList();
+            if (Model.UpdateInput != null)
+            {
+                Model.UpdateInput.RoleNames = roles.Items.Select(x => x.Name).ToArray();
+            }
         }
+
     }
+
+
 
 }
