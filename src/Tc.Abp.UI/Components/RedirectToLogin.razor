@@ -1,0 +1,31 @@
+﻿@using Microsoft.JSInterop
+@inject NavigationManager _navigation
+@inject IJSRuntime _jsRuntime
+
+@code {
+
+    protected override void OnInitialized()
+    {
+
+    }    
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        bool isWebAssembly = _jsRuntime is IJSInProcessRuntime;
+        var url =Uri.EscapeDataString(_navigation.Uri); 
+        //if(_navigation.Uri==_navigation.BaseUri){
+        //    url = $"{url}index";
+        //}
+        if (isWebAssembly)
+        {
+            _navigation.NavigateTo($"authentication/login?returnUrl={ url}");
+        }
+        else
+        {
+              _navigation.NavigateTo($"account/login?returnUrl={url}",true);
+              //_navigation.NavigateTo($"account/login?returnUrl={url.Replace(_navigation.BaseUri,"")}",true);
+            // _navigation.NavigateTo($"Account/Login",true);
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+}

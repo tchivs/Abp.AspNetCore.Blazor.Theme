@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<Import Project="..\..\common.props" />
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AspNetCore.Components.Server" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Bundling" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Packages" Version="$(AbpVersion)" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
+	</ItemGroup>
+</Project>

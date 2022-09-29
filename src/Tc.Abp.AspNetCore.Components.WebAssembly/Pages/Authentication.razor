@@ -1,0 +1,13 @@
+﻿@using System.Net.Http
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@page "/authentication/{action}"
+<RemoteAuthenticatorView Action="@Action" />
+
+@code{
+    [Parameter] public string? Action { get; set; }
+}

@@ -1,20 +1,23 @@
 <Project>
-  <Import Project="build\Version.props" />
-  <PropertyGroup>
-	<TargetFramework>net6.0</TargetFramework>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
-    <Authors>tchivs</Authors>
-    <Company>tchivs</Company>
-    <LangVersion>latest</LangVersion>
-	<AbpVersion>5.1.4</AbpVersion>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright (c) 2020 tchivs</Copyright>
-    <PackageProjectUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>dotnet;nuget;msbuild</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+	<Import Project="build\Version.props" />
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
+		<Authors>tchivs</Authors>
+		<Company>tchivs</Company>
+		<LangVersion>latest</LangVersion>
+		<!-- All Microsoft packages -->
+		<MicrosoftPackageVersion>6.0.*</MicrosoftPackageVersion>
+		<!-- All Abp packages -->
+		<AbpVersion>5.3.*</AbpVersion>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright (c) 2022 tchivs</Copyright>
+		<PackageProjectUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>dotnet;nuget;msbuild</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
