@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<RootNamespace>MyCompanyName.MyProjectName</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+			<PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="Localization\MyProjectName\*.json" />
+		<EmbeddedResource Include="Localization\MyProjectName\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore.Components.Server\Tc.Abp.AspNetCore.Components.Server.csproj" />
+		<ProjectReference Include="..\MyCompanyName.MyProjectName.Blazor.Shared\MyCompanyName.MyProjectName.Blazor.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
