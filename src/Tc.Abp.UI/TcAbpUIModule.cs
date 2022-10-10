@@ -3,7 +3,6 @@ using System;
 using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Components.Web;
 using Volo.Abp.Authorization;
-using Volo.Abp.AutoMapper;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Localization;
@@ -13,8 +12,6 @@ using Volo.Abp.Validation;
 using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.UI.Localization;
 using Localization.Resources.AbpUi;
-using Tc.Abp.UI.Components;
-
 namespace Tc.Abp.UI;
 [DependsOn(
 typeof(AbpValidationModule),
@@ -22,8 +19,7 @@ typeof(AbpAspNetCoreComponentsWebModule),
 typeof(AbpDddApplicationContractsModule),
 typeof(AbpAuthorizationModule),
 typeof(AbpUiNavigationModule),
-typeof(AbpExceptionHandlingModule),
-typeof(AbpAutoMapperModule)
+typeof(AbpExceptionHandlingModule)
 )]
 public class TcAbpUIModule : AbpModule
 {

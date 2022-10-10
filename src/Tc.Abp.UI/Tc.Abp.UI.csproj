@@ -8,7 +8,6 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Components.Web" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
@@ -19,5 +18,6 @@
 		<EmbeddedResource Include="Localization\**\*.json" />
 		<Content Remove="Localization\**\*.json" />
 	</ItemGroup>
+ 
  
 </Project>

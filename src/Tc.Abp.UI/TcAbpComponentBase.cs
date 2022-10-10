@@ -4,7 +4,6 @@ using Volo.Abp.AspNetCore.Components;
 using JetBrains.Annotations;
 
 namespace Tc.Abp.UI;
-
 public abstract class TcAbpComponentBase : AbpComponentBase
 {
     protected TcAbpComponentBase()

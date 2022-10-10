@@ -6,6 +6,7 @@ public class AbpRouterOptions
 {
     public Assembly AppAssembly { get; set; }
     public Type DefaultLayout { get; set; }
+    public Type NotFoundLayout { get; set; }
     public List<Assembly> AdditionalAssemblies { get; }
 
     public AbpRouterOptions()

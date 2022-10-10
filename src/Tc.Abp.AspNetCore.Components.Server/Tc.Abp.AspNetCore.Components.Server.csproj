@@ -12,4 +12,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
 	</ItemGroup>
+ 
 </Project>

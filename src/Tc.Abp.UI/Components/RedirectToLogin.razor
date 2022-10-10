@@ -1,31 +1,17 @@
-﻿@using Microsoft.JSInterop
-@inject NavigationManager _navigation
-@inject IJSRuntime _jsRuntime
+﻿@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
 
 @code {
-
     protected override void OnInitialized()
     {
-
-    }    
-    protected override Task OnAfterRenderAsync(bool firstRender)
-    {
-        bool isWebAssembly = _jsRuntime is IJSInProcessRuntime;
-        var url =Uri.EscapeDataString(_navigation.Uri); 
-        //if(_navigation.Uri==_navigation.BaseUri){
-        //    url = $"{url}index";
-        //}
+        bool isWebAssembly = JSRuntime is IJSInProcessRuntime;
         if (isWebAssembly)
         {
-            _navigation.NavigateTo($"authentication/login?returnUrl={ url}");
+            Navigation.NavigateTo($"authentication/login?returnUrl={Uri.EscapeDataString(Navigation.Uri)}");
         }
         else
         {
-              _navigation.NavigateTo($"account/login?returnUrl={url}",true);
-              //_navigation.NavigateTo($"account/login?returnUrl={url.Replace(_navigation.BaseUri,"")}",true);
-            // _navigation.NavigateTo($"Account/Login",true);
+            Navigation.NavigateTo($"account/login?returnUrl={Uri.EscapeDataString(Navigation.Uri)}", true);
         }
-        return base.OnAfterRenderAsync(firstRender);
     }
-
 }

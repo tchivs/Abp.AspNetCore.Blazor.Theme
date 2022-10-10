@@ -9,7 +9,7 @@
 		<!-- All Microsoft packages -->
 		<MicrosoftPackageVersion>6.0.*</MicrosoftPackageVersion>
 		<!-- All Abp packages -->
-		<AbpVersion>5.3.*</AbpVersion>
+		<AbpVersion>6.0.*</AbpVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright (c) 2022 tchivs</Copyright>
 		<PackageProjectUrl>https://github.com/tchivs/Abp.AspNetCore.Blazor.Theme</PackageProjectUrl>
