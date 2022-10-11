@@ -10,10 +10,6 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
-
-using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 
@@ -26,19 +22,23 @@ using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.AspNetCore.Components.Server;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Tc.Abp.UI;
+using Volo.Abp.AspNetCore.Mvc.UI;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using Tc.Abp.UI.Radzen.Server;
 
 namespace MyCompanyName.MyProjectName;
 
 [DependsOn(
     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
+    typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAutofacModule),
     typeof(AbpAutoMapperModule),
-    typeof(AbpEntityFrameworkCoreSqlServerModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule),
-    typeof(TcAbpUIModule)
-  
+    typeof(TcAbpAspNetCoreComponentsServerModule),
+    typeof(TcAbpUIRadzenServerModule)
 )]
 public class MyProjectNameModule : AbpModule
 {
@@ -59,8 +59,7 @@ public class MyProjectNameModule : AbpModule
     {
         var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
-
-
+       
         ConfigureAuthentication(context, configuration);
         ConfigureUrls(configuration);
         ConfigureBundles();
@@ -168,6 +167,7 @@ public class MyProjectNameModule : AbpModule
         Configure<AbpRouterOptions>(options =>
         {
             options.AppAssembly = typeof(MyProjectNameModule).Assembly;
+            options.AdditionalAssemblies.Add(typeof(MyCompanyNameMyProjectNameBlazorSharedModule).Assembly);
         });
     }
 
@@ -219,13 +219,7 @@ public class MyProjectNameModule : AbpModule
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthentication();
-
-        if (IsMultiTenant)
-        {
-            app.UseMultiTenancy();
-        }
-
-        app.UseUnitOfWork();
+ 
         app.UseAuthorization();
 
         app.UseSwagger();
@@ -234,7 +228,6 @@ public class MyProjectNameModule : AbpModule
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "MyProjectName API");
         });
 
-        app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
     }

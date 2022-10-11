@@ -11,7 +11,7 @@ namespace Tc.Abp.UI.Radzen.Server
 {
     [DependsOn(typeof(TcAbpUIRadzenModule),
       typeof(TcAbpAspNetCoreComponentsServerModule))]
-    public class TcAbpUIRadzenServerModule:AbpModule
+    public class TcAbpUIRadzenServerModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -19,18 +19,24 @@ namespace Tc.Abp.UI.Radzen.Server
             {
                 options
                     .StyleBundles
-                    .Add(BlazorStandardBundles.Styles.Global, bundle =>
+
+                    .Add(BlazorRadzenThemeBundles.Styles.Global, bundle =>
                     {
-                        bundle.AddContributors(typeof(RadzenStyleContributor));
+                        bundle
+                            .AddBaseBundles(BlazorStandardBundles.Styles.Global)
+                            .AddContributors(typeof(RadzenStyleContributor));
                     });
 
                 options
                     .ScriptBundles
-                    .Add(BlazorStandardBundles.Scripts.Global, bundle =>
-                    {
-                        bundle.AddContributors(typeof(RadzenScriptContributor));
-                    });
+                      .Add(BlazorRadzenThemeBundles.Scripts.Global, bundle =>
+                      {
+                          bundle
+                              .AddBaseBundles(BlazorStandardBundles.Scripts.Global)
+                              .AddContributors(typeof(RadzenScriptContributor));
+                      });
             });
+
         }
     }
 }

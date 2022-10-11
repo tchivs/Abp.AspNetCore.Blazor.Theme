@@ -4,6 +4,7 @@
 
 @using Tc.Abp.AspNetCore.Components.Server
 @using Tc.Abp.UI.Components
+@using Tc.Abp.UI.Radzen.Server
 @using Volo.Abp.Localization
 @{
     Layout = null;
@@ -18,7 +19,7 @@
     <title>MyCompanyName.MyProjectName.Blazor.Server</title>
     <base href="~/" />
 
-    <abp-style-bundle name="@BlazorStandardBundles.Styles.Global" />
+    <abp-style-bundle name="@BlazorRadzenThemeBundles.Styles.Global" />
 </head>
 <body class="abp-application-layout bg-light @rtl">
 
@@ -35,6 +36,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <abp-script-bundle name="@BlazorStandardBundles.Scripts.Global" />
+    <abp-script-bundle name="@BlazorRadzenThemeBundles.Scripts.Global" />
 </body>
 </html>

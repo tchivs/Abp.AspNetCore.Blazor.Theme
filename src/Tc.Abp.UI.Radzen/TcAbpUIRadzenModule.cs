@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tc.Abp.UI.Components;
 using Volo.Abp.Modularity;
 
 namespace Tc.Abp.UI;
@@ -20,6 +21,7 @@ namespace Tc.Abp.UI;
         Configure<AbpRouterOptions>(options =>
         {
             options.AppAssembly = typeof(TcAbpUIRadzenModule).Assembly;
+            options.DefaultLayout = typeof(MainLayout);
         });
     }
 }

@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.0" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="6.0.0" />
 		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
 	</ItemGroup>
 
@@ -26,7 +27,6 @@
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.0" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="6.0.0" />
 	</ItemGroup>
 
 
@@ -55,6 +55,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore.Components.Server\Tc.Abp.AspNetCore.Components.Server.csproj" />
+		<ProjectReference Include="..\..\..\..\src\Tc.Abp.UI.Radzen.Server\Tc.Abp.UI.Radzen.Server.csproj" />
 		<ProjectReference Include="..\MyCompanyName.MyProjectName.Blazor.Shared\MyCompanyName.MyProjectName.Blazor.Shared.csproj" />
 	</ItemGroup>
 

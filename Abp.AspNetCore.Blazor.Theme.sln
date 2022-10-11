@@ -55,9 +55,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D591FBD3-A69
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{C37D0D30-9521-4556-A94F-92B42067E10C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompanyName.MyProjectName.Blazor.Shared", "templates\app-nolayers\aspnet-core\MyCompanyName.MyProjectName.Blazor.Shared\MyCompanyName.MyProjectName.Blazor.Shared.csproj", "{5F76E0A8-5FB9-4094-91B8-8E3A35B68CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.MyProjectName.Blazor.Shared", "templates\app-nolayers\aspnet-core\MyCompanyName.MyProjectName.Blazor.Shared\MyCompanyName.MyProjectName.Blazor.Shared.csproj", "{5F76E0A8-5FB9-4094-91B8-8E3A35B68CE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompanyName.MyProjectName.Blazor.Server.Host", "templates\app-nolayers\aspnet-core\MyCompanyName.MyProjectName.Blazor.Server.Host\MyCompanyName.MyProjectName.Blazor.Server.Host.csproj", "{F16E860B-AF48-410B-BEAA-334EAF5E744B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.MyProjectName.Blazor.Server.Host", "templates\app-nolayers\aspnet-core\MyCompanyName.MyProjectName.Blazor.Server.Host\MyCompanyName.MyProjectName.Blazor.Server.Host.csproj", "{F16E860B-AF48-410B-BEAA-334EAF5E744B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.MyProjectName.Host", "templates\app-nolayers\aspnet-core\MyCompanyName.MyProjectName.Host\MyCompanyName.MyProjectName.Host.csproj", "{63C82BAB-0DE6-4E63-B50A-9111C48D7FD7}"
 EndProject

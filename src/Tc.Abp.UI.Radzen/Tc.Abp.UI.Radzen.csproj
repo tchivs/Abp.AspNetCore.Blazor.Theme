@@ -2,7 +2,6 @@
 
 	<Import Project="..\..\common.props" />
 	<PropertyGroup>
-		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Tc.Abp.UI</RootNamespace>
 	</PropertyGroup>
@@ -12,9 +11,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\" />
 	</ItemGroup>
 
  
