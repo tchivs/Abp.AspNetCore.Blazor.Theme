@@ -46,11 +46,16 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Data;
+using Volo.Abp.TenantManagement.Web;
+using Volo.Abp.SettingManagement.Web;
+using Volo.Abp.PermissionManagement.Web;
+using Volo.Abp.Identity.Web;
 
 namespace MyCompanyName.MyProjectName;
 
 [DependsOn(
-    // ABP Framework packages
+     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
     typeof(AbpAutofacModule),
@@ -65,13 +70,14 @@ namespace MyCompanyName.MyProjectName;
      typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpAccountApplicationModule),
     typeof(AbpAccountHttpApiModule),
-    typeof(AbpAccountWebOpenIddictModule),
+    typeof(AbpAccountWebModule),
 
     // Identity module packages
     typeof(AbpPermissionManagementDomainIdentityModule),
     typeof(AbpPermissionManagementDomainOpenIddictModule),
     typeof(AbpIdentityApplicationModule),
     typeof(AbpIdentityHttpApiModule),
+    typeof(AbpIdentityWebModule),
     typeof(AbpIdentityEntityFrameworkCoreModule),
     typeof(AbpOpenIddictEntityFrameworkCoreModule),
 
@@ -81,22 +87,25 @@ namespace MyCompanyName.MyProjectName;
     // Permission Management module packages
     typeof(AbpPermissionManagementApplicationModule),
     typeof(AbpPermissionManagementHttpApiModule),
+    typeof(AbpPermissionManagementWebModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
 
     // Tenant Management module packages
     typeof(AbpTenantManagementApplicationModule),
     typeof(AbpTenantManagementHttpApiModule),
     typeof(AbpTenantManagementEntityFrameworkCoreModule),
-
+    typeof(AbpTenantManagementWebModule),
     // Feature Management module packages
     typeof(AbpFeatureManagementApplicationModule),
     typeof(AbpFeatureManagementEntityFrameworkCoreModule),
     typeof(AbpFeatureManagementHttpApiModule),
+    typeof(AbpFeatureManagementWebModule),
 
     // Setting Management module packages
     typeof(AbpSettingManagementApplicationModule),
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
-    typeof(AbpSettingManagementHttpApiModule)
+    typeof(AbpSettingManagementHttpApiModule),
+    typeof(AbpSettingManagementWebModule)
 )]
 public class MyProjectNameModule : AbpModule
 {
@@ -326,7 +335,7 @@ public class MyProjectNameModule : AbpModule
         //</TEMPLATE-REMOVE>
     }
 
-    public override void OnApplicationInitialization(ApplicationInitializationContext context)
+    public async override Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
@@ -372,5 +381,15 @@ public class MyProjectNameModule : AbpModule
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
+        await SeedData(context);
+    }
+    private async Task SeedData(ApplicationInitializationContext context)
+    {
+        using (var scope = context.ServiceProvider.CreateScope())
+        {
+            await scope.ServiceProvider
+                .GetRequiredService<IDataSeeder>()
+                .SeedAsync();
+        }
     }
 }
