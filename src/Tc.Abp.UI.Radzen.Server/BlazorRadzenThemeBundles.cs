@@ -1,4 +1,4 @@
-﻿namespace Tc.Abp.UI.Radzen.Server
+﻿namespace Tc.Abp.UI
 {
     public class BlazorRadzenThemeBundles
     {

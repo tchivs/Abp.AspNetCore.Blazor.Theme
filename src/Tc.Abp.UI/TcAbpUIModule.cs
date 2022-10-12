@@ -12,6 +12,8 @@ using Volo.Abp.Validation;
 using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.UI.Localization;
 using Localization.Resources.AbpUi;
+using Tc.Abp.UI.Components;
+
 namespace Tc.Abp.UI;
 [DependsOn(
 typeof(AbpValidationModule),
@@ -40,7 +42,9 @@ public class TcAbpUIModule : AbpModule
         });
         Configure<AbpRouterOptions>(options =>
         {
-            options.AdditionalAssemblies.Add(this.GetType().Assembly);
+            options.AppType = typeof(App);
+            options.AppAssembly = options.AppType.Assembly;
+
         });
         Configure<AbpExceptionLocalizationOptions>(options =>
         {

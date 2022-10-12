@@ -20,7 +20,7 @@ namespace Tc.Abp.UI;
         context.Services.AddScoped<ContextMenuService>();
         Configure<AbpRouterOptions>(options =>
         {
-            options.AppAssembly = typeof(TcAbpUIRadzenModule).Assembly;
+           // options.AppAssembly = typeof(TcAbpUIRadzenModule).Assembly;
             options.DefaultLayout = typeof(MainLayout);
         });
     }

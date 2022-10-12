@@ -6,13 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>MyCompanyName.MyProjectName</RootNamespace>
 	</PropertyGroup>
-
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-	</ItemGroup>
-
-
+  
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\src\Tc.Abp.UI\Tc.Abp.UI.csproj" />
 	</ItemGroup>

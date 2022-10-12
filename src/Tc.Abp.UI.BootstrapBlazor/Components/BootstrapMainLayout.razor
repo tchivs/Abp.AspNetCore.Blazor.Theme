@@ -1,0 +1,24 @@
+﻿@using Volo.Abp.Users
+@inherits LayoutComponentBase
+@inject ICurrentUser User
+@inject IOptions<AbpRouterOptions> RouterOptions
+<h1>@User.UserName</h1>
+
+@if(User.IsAuthenticated){
+    <Layout ShowFooter="true" SideWidth="160px"  AdditionalAssemblies="@RouterOptions.Value.AdditionalAssemblies" >
+        <Header>
+            <div class="text-center header">Header</div>
+        </Header>
+        <Side>
+            <div class="text-center side">Side</div>
+        </Side>
+        <Main>
+            <div class="text-center main">@Body</div>
+        </Main>
+        <Footer>
+            <div class="text-center footer">Footer</div>
+        </Footer>
+    </Layout>
+}else{
+    <RedirectToLogin/>
+}

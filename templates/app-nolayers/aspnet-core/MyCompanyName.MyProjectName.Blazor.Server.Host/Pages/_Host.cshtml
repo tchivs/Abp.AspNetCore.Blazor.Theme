@@ -1,14 +1,18 @@
 ﻿@page "/"
 @namespace MyCompanyName.MyProjectName.Blazor.Server.Pages
 @using System.Globalization
-
+@using Microsoft.Extensions.Options
 @using Tc.Abp.AspNetCore.Components.Server
+@using Tc.Abp.UI
 @using Tc.Abp.UI.Components
 @using Tc.Abp.UI.Radzen.Server
 @using Volo.Abp.Localization
+@using Microsoft.Extensions.DependencyInjection
 @{
     Layout = null;
     var rtl = CultureHelper.IsRtl ? "rtl" : string.Empty;
+    var options = this.HttpContext.RequestServices.GetRequiredService<IOptions<AbpRouterOptions>>().Value;
+    var app = options.AppType;
 }
 
 <!DOCTYPE html>
@@ -19,11 +23,11 @@
     <title>MyCompanyName.MyProjectName.Blazor.Server</title>
     <base href="~/" />
 
-    <abp-style-bundle name="@BlazorRadzenThemeBundles.Styles.Global" />
+    <abp-style-bundle name="@options.BundleStyle" />
 </head>
 <body class="abp-application-layout bg-light @rtl">
 
-    <component type="typeof(App)" render-mode="Server" />
+    <component type="@app" render-mode="Server" />
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
@@ -36,6 +40,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <abp-script-bundle name="@BlazorRadzenThemeBundles.Scripts.Global" />
+    <abp-script-bundle name="@options.BundleScript" />
 </body>
 </html>

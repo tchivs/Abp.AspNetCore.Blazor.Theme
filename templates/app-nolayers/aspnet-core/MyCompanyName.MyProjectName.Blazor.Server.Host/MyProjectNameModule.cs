@@ -32,11 +32,13 @@ namespace MyCompanyName.MyProjectName;
 [DependsOn(
     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
+    typeof(Volo.Abp.AspNetCore.Authentication.OpenIdConnect.AbpAspNetCoreAuthenticationOpenIdConnectModule),
     typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAutofacModule),
     typeof(AbpAutoMapperModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule),
+    typeof(MyCompanyNameMyProjectNameBlazorSharedModule),
     typeof(TcAbpAspNetCoreComponentsServerModule),
     typeof(TcAbpUIRadzenServerModule)
 )]
@@ -89,6 +91,7 @@ public class MyProjectNameModule : AbpModule
                   options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
 
                   options.ClientId = configuration["AuthServer:ClientId"];
+                  options.ClientSecret = configuration["AuthServer:ClientSecret"];
 
                   options.SaveTokens = true;
                   options.GetClaimsFromUserInfoEndpoint = true;
@@ -114,7 +117,7 @@ public class MyProjectNameModule : AbpModule
         {
             // MVC UI
             options.StyleBundles.Configure(
-                BlazorStandardBundles.Styles.Global,
+                BlazorRadzenThemeBundles.Styles.Global,
                 bundle =>
                 {
                     bundle.AddFiles("/global-styles.css");
@@ -123,7 +126,7 @@ public class MyProjectNameModule : AbpModule
 
             //BLAZOR UI
             options.StyleBundles.Configure(
-                BlazorStandardBundles.Styles.Global,
+                BlazorRadzenThemeBundles.Styles.Global,
                 bundle =>
                 {
                     bundle.AddFiles("/blazor-global-styles.css");
@@ -164,11 +167,10 @@ public class MyProjectNameModule : AbpModule
 
     private void ConfigureRouter(ServiceConfigurationContext context)
     {
-        Configure<AbpRouterOptions>(options =>
-        {
-            options.AppAssembly = typeof(MyProjectNameModule).Assembly;
-            options.AdditionalAssemblies.Add(typeof(MyCompanyNameMyProjectNameBlazorSharedModule).Assembly);
-        });
+        //Configure<AbpRouterOptions>(options =>
+        //{
+        //    options.AppAssembly = typeof(MyProjectNameModule).Assembly;
+        //});
     }
 
     private void ConfigureNavigationServices()

@@ -15,8 +15,4 @@
 	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Components\" />
-	</ItemGroup>
-
 </Project>

@@ -6,8 +6,7 @@ public static class BootstrapBlazorThemeConst
     {
         "_content/BootstrapBlazor/css/bootstrap.blazor.bundle.min.css",
         "_content/BootstrapBlazor/css/motronic.min.css",
-        "_content/BootstrapBlazor.FontAwesome/css/font-awesome.min.css",
-        "_content/Tchivs.Abp.UI.Bootstrap/css/global.css"
+        "_content/BootstrapBlazor.FontAwesome/css/font-awesome.min.css"
     };
     public static readonly string[] SCRIPTS = new[] { "_content/BootstrapBlazor/js/bootstrap.blazor.bundle.min.js" };
 }
