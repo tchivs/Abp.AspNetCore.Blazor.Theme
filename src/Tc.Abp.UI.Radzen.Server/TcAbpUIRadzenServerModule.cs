@@ -22,6 +22,7 @@ namespace Tc.Abp.UI.Radzen.Server
                     {
                         bundle
                             .AddBaseBundles(BlazorStandardBundles.Styles.Global)
+                            .AddFiles("/libs/bootstrap/css/bootstrap.css")
                             .AddContributors(typeof(RadzenStyleContributor));
                     });
                 options
@@ -30,6 +31,7 @@ namespace Tc.Abp.UI.Radzen.Server
                       {
                           bundle
                               .AddBaseBundles(BlazorStandardBundles.Scripts.Global)
+                              .AddFiles("/libs/bootstrap/js/bootstrap.bundle.js")
                               .AddContributors(typeof(RadzenScriptContributor));
                       });
             });

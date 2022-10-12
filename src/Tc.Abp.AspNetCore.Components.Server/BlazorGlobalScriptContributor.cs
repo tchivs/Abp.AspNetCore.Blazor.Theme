@@ -12,6 +12,7 @@ namespace Tc.Abp.AspNetCore.Components.Server;
             context.Files.AddIfNotContains("/_content/Volo.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js");
         }
     }
+
 public class BlazorGlobalStyleContributor : BundleContributor
 {
     public override void ConfigureBundle(BundleConfigurationContext context)
