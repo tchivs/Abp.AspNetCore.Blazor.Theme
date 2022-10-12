@@ -5,6 +5,7 @@ using Volo.Abp;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.OpenIddict.Applications;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.Uow;
 
@@ -71,6 +72,31 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         };
 
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
+
+        // Blazor Client
+        var blazorClientId = configurationSection["MyProjectName_Blazor:ClientId"];
+        if (!blazorClientId.IsNullOrWhiteSpace())
+        {
+            var blazorRootUrl = configurationSection["MyProjectName_Blazor:RootUrl"].TrimEnd('/');
+
+            await CreateApplicationAsync(
+                name: blazorClientId,
+                type: OpenIddictConstants.ClientTypes.Public,
+                consentType: OpenIddictConstants.ConsentTypes.Implicit,
+                displayName: "Blazor Application",
+                secret: null,
+                grantTypes: new List<string>
+                {
+                    OpenIddictConstants.GrantTypes.AuthorizationCode,
+                },
+                scopes: commonScopes,
+                redirectUri: $"{blazorRootUrl}/authentication/login-callback",
+                clientUri: blazorRootUrl,
+                postLogoutRedirectUri: $"{blazorRootUrl}/authentication/logout-callback"
+            );
+        }
+
+
         //Web Client
         var webClientId = configurationSection["MyProjectName_Blazor_Server:ClientId"];
         if (!webClientId.IsNullOrWhiteSpace())
@@ -141,18 +167,18 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             );
         }
     }
-
     private async Task CreateApplicationAsync(
-        [NotNull] string name,
-        [NotNull] string type,
-        [NotNull] string consentType,
-        string displayName,
-        string secret,
-        List<string> grantTypes,
-        List<string> scopes,
-        string redirectUri = null,
-        string postLogoutRedirectUri = null,
-        List<string> permissions = null)
+      [NotNull] string name,
+      [NotNull] string type,
+      [NotNull] string consentType,
+      string displayName,
+      string secret,
+      List<string> grantTypes,
+      List<string> scopes,
+      string clientUri = null,
+      string redirectUri = null,
+      string postLogoutRedirectUri = null,
+      List<string> permissions = null)
     {
         if (!string.IsNullOrEmpty(secret) && string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
         {
@@ -173,19 +199,20 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         var client = await _applicationManager.FindByClientIdAsync(name);
         if (client == null)
         {
-            var application = new OpenIddictApplicationDescriptor
+            var application = new AbpApplicationDescriptor
             {
                 ClientId = name,
                 Type = type,
                 ClientSecret = secret,
                 ConsentType = consentType,
-                DisplayName = displayName
+                DisplayName = displayName,
+                ClientUri = clientUri,
             };
 
             Check.NotNullOrEmpty(grantTypes, nameof(grantTypes));
             Check.NotNullOrEmpty(scopes, nameof(scopes));
 
-            if (new [] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(grantTypes.Contains))
+            if (new[] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(grantTypes.Contains))
             {
                 application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
 
@@ -262,7 +289,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 }
             }
 
-            var buildInScopes = new []
+            var buildInScopes = new[]
             {
                 OpenIddictConstants.Permissions.Scopes.Address,
                 OpenIddictConstants.Permissions.Scopes.Email,
@@ -328,4 +355,5 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             await _applicationManager.CreateAsync(application);
         }
     }
+
 }
