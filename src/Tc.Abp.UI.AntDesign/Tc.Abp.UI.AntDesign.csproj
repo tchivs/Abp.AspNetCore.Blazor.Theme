@@ -10,7 +10,7 @@
 	  <Folder Include="Components\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="AntDesign" Version="0.12.4" />
+	  <PackageReference Include="AntDesign" Version="0.12.6" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
