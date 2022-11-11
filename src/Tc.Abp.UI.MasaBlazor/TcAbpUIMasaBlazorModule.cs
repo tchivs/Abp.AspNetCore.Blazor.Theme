@@ -16,7 +16,7 @@ namespace Tc.Abp.UI;
             context.Services.AddMasaBlazor();
             Configure<AbpRouterOptions>(options =>
             {
-                options.AppAssembly = typeof(TcAbpUIMasaBlazorModule).Assembly;
+              //  options.AppAssembly = typeof(TcAbpUIMasaBlazorModule).Assembly;
             });
         }
     }

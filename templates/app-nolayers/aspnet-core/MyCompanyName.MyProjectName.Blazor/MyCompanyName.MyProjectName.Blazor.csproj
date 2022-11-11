@@ -1,37 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
  
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     <!-- <TEMPLATE-REMOVE IF-NOT='PWA'> -->
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <!-- </TEMPLATE-REMOVE> -->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap5" Version="1.0.4" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.5" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="1.1.3.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(MicrosoftPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(MicrosoftPackageVersion)" />
     <PackageReference Include="OpenIddict.Abstractions" Version="3.1.1" />
-    <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="6.0.0" />
+    <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="$(AbpVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- <TEMPLATE-REMOVE> -->
-	  <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="6.0.0" />
-	  <PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="6.0.0" />
-	  <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.Theming" Version="6.0.0" />
+	  <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.Theming" Version="$(AbpVersion)" />
     <!-- </TEMPLATE-REMOVE> -->
     <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.LeptonXLiteTheme" Version="1.0.0-rc.*" />
   </ItemGroup>
  
 
   <ItemGroup>
-	  <PackageReference Include="Volo.Abp.Autofac.WebAssembly" Version="6.0.0" />
-	  <PackageReference Include="Volo.Abp.Identity.Blazor.WebAssembly" Version="6.0.0" />
-	  <PackageReference Include="Volo.Abp.TenantManagement.Blazor.WebAssembly" Version="6.0.0" />
-	  <PackageReference Include="Volo.Abp.SettingManagement.Blazor.WebAssembly" Version="6.0.0" />
+	  <PackageReference Include="Volo.Abp.Autofac.WebAssembly" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.Identity.Blazor.WebAssembly" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.TenantManagement.Blazor.WebAssembly" Version="$(AbpVersion)" />
+	  <PackageReference Include="Volo.Abp.SettingManagement.Blazor.WebAssembly" Version="$(AbpVersion)" />
   </ItemGroup>
  
 

@@ -16,7 +16,7 @@ namespace Tc.Abp.UI;
             context.Services.AddAntDesign();
             Configure<AbpRouterOptions>(options =>
             {
-                options.AppAssembly = typeof(TcAbpUIAntDesignModule).Assembly;
+                //options.AppAssembly = typeof(TcAbpUIAntDesignModule).Assembly;
             });
         }
     }

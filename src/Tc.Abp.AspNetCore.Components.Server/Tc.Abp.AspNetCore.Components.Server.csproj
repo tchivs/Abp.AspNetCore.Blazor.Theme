@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<Import Project="..\..\common.props" />
 	<PropertyGroup>
-		<Nullable>enable</Nullable>
+		<Nullable>false</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>

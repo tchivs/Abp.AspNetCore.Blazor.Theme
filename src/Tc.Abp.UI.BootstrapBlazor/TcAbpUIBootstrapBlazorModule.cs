@@ -17,7 +17,6 @@ public class TcAbpUIBootstrapBlazorModule:AbpModule
         Configure<AbpRouterOptions>(options =>
         {
             options.AppType = typeof(BootstrapApp);
-            options.AppAssembly = options.AppType.Assembly;
             options.DefaultLayout = typeof(BootstrapMainLayout);
 
         });

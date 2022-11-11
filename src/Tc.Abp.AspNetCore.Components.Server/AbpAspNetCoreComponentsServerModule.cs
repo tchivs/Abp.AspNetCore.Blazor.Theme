@@ -25,7 +25,6 @@ namespace Tc.Abp.AspNetCore.Components.Server;
                     {
                         bundle.AddContributors(typeof(BlazorGlobalStyleContributor));
                     });
-
                 options
                     .ScriptBundles
                     .Add(BlazorStandardBundles.Scripts.Global, bundle =>

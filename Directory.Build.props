@@ -6,8 +6,6 @@
 		<Authors>tchivs</Authors>
 		<Company>tchivs</Company>
 		<LangVersion>latest</LangVersion>
-		<!-- All Microsoft packages -->
-		<MicrosoftPackageVersion>6.0.*</MicrosoftPackageVersion>
 		<!-- All Abp packages -->
 		<AbpVersion>6.0.*</AbpVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -17,6 +15,14 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>dotnet;nuget;msbuild</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net6.0'">
+		<!-- All Microsoft packages -->
+		<MicrosoftPackageVersion>6.0.11</MicrosoftPackageVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+		<!-- All Microsoft packages -->
+		<MicrosoftPackageVersion>7.0.*</MicrosoftPackageVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>

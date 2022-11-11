@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<RootNamespace>MyCompanyName.MyProjectName</RootNamespace>
@@ -9,32 +9,32 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
 		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Authentication.OpenIdConnect" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
 	</ItemGroup>
 
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.5" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 			<PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
 		</PackageReference>

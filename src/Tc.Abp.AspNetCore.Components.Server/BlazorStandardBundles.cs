@@ -1,5 +1,5 @@
 ﻿namespace Tc.Abp.AspNetCore.Components.Server;
-    public class BlazorStandardBundles
+public class BlazorStandardBundles
     {
         public static class Styles
         {

@@ -33,10 +33,10 @@ namespace Tc.Abp.UI.BootstrapBlazor.Server;
                               .AddContributors(typeof(BootstrapBlazorScriptContributor));
                       });
             });
-        Configure<AbpRouterOptions>(options =>
+        Configure<BundleOptions>(options =>
         {
-            options.BundleStyle = BlazorStandardBundles.Styles.Global;
-            options.BundleScript = BlazorStandardBundles.Scripts.Global;
+            options.Style = BlazorStandardBundles.Styles.Global;
+            options.Script = BlazorStandardBundles.Scripts.Global;
         });
     }
       

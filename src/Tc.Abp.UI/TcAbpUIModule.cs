@@ -13,6 +13,7 @@ using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.UI.Localization;
 using Localization.Resources.AbpUi;
 using Tc.Abp.UI.Components;
+using Volo.Abp.Validation.Localization;
 
 namespace Tc.Abp.UI;
 [DependsOn(
@@ -36,15 +37,13 @@ public class TcAbpUIModule : AbpModule
         {
             options.Resources
                 .Add<BlazorResource>("zh-Hans")
-                //.AddBaseTypes(typeof(AbpValidationResource))
+                .AddBaseTypes(typeof(AbpValidationResource))
                 .AddBaseTypes(typeof(AbpUiResource))
                 .AddVirtualJson("/Localization/Blazor");
         });
         Configure<AbpRouterOptions>(options =>
         {
             options.AppType = typeof(App);
-            options.AppAssembly = options.AppType.Assembly;
-
         });
         Configure<AbpExceptionLocalizationOptions>(options =>
         {

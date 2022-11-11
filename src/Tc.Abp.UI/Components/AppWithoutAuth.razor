@@ -1,0 +1,13 @@
+@using Microsoft.Extensions.Options
+@inject IOptions<AbpRouterOptions> RouterOptions
+<Router AppAssembly="RouterOptions.Value.AppAssembly"
+        AdditionalAssemblies="RouterOptions.Value.AdditionalAssemblies">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="RouterOptions.Value.DefaultLayout" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@RouterOptions.Value.NotFoundLayout">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>

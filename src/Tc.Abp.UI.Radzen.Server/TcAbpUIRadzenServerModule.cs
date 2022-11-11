@@ -35,10 +35,10 @@ namespace Tc.Abp.UI.Radzen.Server
                               .AddContributors(typeof(RadzenScriptContributor));
                       });
             });
-            Configure<AbpRouterOptions>(options =>
+            Configure<BundleOptions>(options =>
             {
-                options.BundleStyle = BlazorRadzenThemeBundles.Styles.Global;
-                options.BundleScript = BlazorRadzenThemeBundles.Scripts.Global;
+                options.Style = BlazorRadzenThemeBundles.Styles.Global;
+                options.Script = BlazorRadzenThemeBundles.Scripts.Global;
             });
         }
     }

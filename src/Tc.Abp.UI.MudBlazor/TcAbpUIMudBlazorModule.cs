@@ -16,7 +16,7 @@ namespace Tc.Abp.UI;
             context.Services.AddMudServices();
             Configure<AbpRouterOptions>(options =>
             {
-                options.AppAssembly = typeof(TcAbpUIMudBlazorModule).Assembly;
+              //  options.AppAssembly = typeof(TcAbpUIMudBlazorModule).Assembly;
             });
         }
     }

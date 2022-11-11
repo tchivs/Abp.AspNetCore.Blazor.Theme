@@ -13,7 +13,7 @@ public abstract class TcAbpComponentBase : AbpComponentBase
     [Inject, NotNull] public NavigationManager Navigation { get; set; }
     [Inject, NotNull] public IJSRuntime JsRuntime { get; set; }
     public bool IsWebAssembly { get => OperatingSystem.IsBrowser(); }
-    protected async Task NavigateToAsync(string uri, string target = null)
+    protected virtual async Task NavigateToAsync(string uri, string target = null)
     {
         if (target == "_blank")
         {
