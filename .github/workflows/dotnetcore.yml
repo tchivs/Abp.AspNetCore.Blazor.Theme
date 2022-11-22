@@ -5,15 +5,17 @@ on: [push]
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
+      id: cp310
       with:
         dotnet-version: '6.0.x'
         include-prerelease: true
+    - run: echo '${{ steps.cp310.outputs.dotnet-version }}'
     - name: Build with dotnet
       run: dotnet build --configuration Release
      
