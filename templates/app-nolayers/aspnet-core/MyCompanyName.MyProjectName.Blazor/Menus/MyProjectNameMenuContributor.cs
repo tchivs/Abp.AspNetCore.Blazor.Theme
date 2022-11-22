@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Localization.Resources.AbpUi;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tc.Abp.UI.Localization;
 using Volo.Abp.Account.Localization;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.UI.Navigation;
@@ -33,7 +33,8 @@ public class MyProjectNameMenuContributor : IMenuContributor
 
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
-        var l = context.GetLocalizer<BlazorResource>();
+        //var l = context.GetLocalizer<BlazorResource>();
+        var l = context.GetLocalizer<AbpUiResource>();
 
         context.Menu.Items.Insert(
             0,

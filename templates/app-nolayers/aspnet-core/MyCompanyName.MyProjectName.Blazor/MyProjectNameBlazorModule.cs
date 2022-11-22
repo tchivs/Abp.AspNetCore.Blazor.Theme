@@ -17,7 +17,6 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.Identity.Blazor.WebAssembly;
 using Volo.Abp.SettingManagement.Blazor.WebAssembly;
 using Volo.Abp.TenantManagement.Blazor.WebAssembly;
-using Tchivs.Abp.AspNetCore.Components.WebAssembly;
 
 namespace MyCompanyName.MyProjectName.Blazor;
 
