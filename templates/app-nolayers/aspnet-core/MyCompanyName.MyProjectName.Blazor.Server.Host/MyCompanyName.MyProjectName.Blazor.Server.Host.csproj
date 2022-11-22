@@ -14,13 +14,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
-		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
