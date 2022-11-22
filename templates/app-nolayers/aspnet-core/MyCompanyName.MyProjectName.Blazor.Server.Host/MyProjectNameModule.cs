@@ -21,18 +21,19 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.AspNetCore.Components.Server;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Tc.Abp.UI;
+using Tc.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Tc.Abp.UI.Radzen.Server;
+using Tc.Abp.AspNetCore.Radzen.Server;
+using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
 
 namespace MyCompanyName.MyProjectName;
 
 [DependsOn(
     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
-    typeof(Volo.Abp.AspNetCore.Authentication.OpenIdConnect.AbpAspNetCoreAuthenticationOpenIdConnectModule),
+    typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
     typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAutofacModule),
     typeof(AbpAutoMapperModule),

@@ -6,9 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>MyCompanyName.MyProjectName</RootNamespace>
 	</PropertyGroup>
-  
+
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\src\Tc.Abp.UI\Tc.Abp.UI.csproj" />
+	  <ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore\Tc.Abp.AspNetCore.csproj" />
 	</ItemGroup>
 
 </Project>

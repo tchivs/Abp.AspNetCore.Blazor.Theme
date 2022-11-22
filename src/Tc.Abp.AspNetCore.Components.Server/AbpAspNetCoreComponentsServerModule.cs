@@ -6,10 +6,10 @@ using Volo.Abp.AspNetCore.Components.Server;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Packages;
 using Volo.Abp.Modularity;
-using Tc.Abp.UI;
+using Tc.Abp.AspNetCore;
 
 namespace Tc.Abp.AspNetCore.Components.Server;
-    [DependsOn(typeof(TcAbpUIModule), 
+    [DependsOn(typeof(TcAbpAspNetCoreModule), 
         typeof(AbpAspNetCoreComponentsServerModule),
         typeof(AbpAspNetCoreMvcUiPackagesModule),
         typeof(AbpAspNetCoreMvcUiBundlingModule))]

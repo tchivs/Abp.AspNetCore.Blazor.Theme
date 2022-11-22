@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\common.props" />
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace />
+	</PropertyGroup>
+	<ItemGroup>
+	  <Folder Include="Tc\Abp\AspNetCore\Components\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="AntDesign" Version="0.12.7" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Tc.Abp.AspNetCore\Tc.Abp.AspNetCore.csproj" />
+	</ItemGroup>
+
+</Project>

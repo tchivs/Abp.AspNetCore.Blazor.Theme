@@ -54,7 +54,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore.Components.Server\Tc.Abp.AspNetCore.Components.Server.csproj" />
-		<ProjectReference Include="..\..\..\..\src\Tc.Abp.UI.Radzen.Server\Tc.Abp.UI.Radzen.Server.csproj" />
+		<ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore.UI.Radzen.Server\Tc.Abp.AspNetCore.UI.Radzen.Server.csproj" />
 		<ProjectReference Include="..\MyCompanyName.MyProjectName.Blazor.Shared\MyCompanyName.MyProjectName.Blazor.Shared.csproj" />
 	</ItemGroup>
 

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.JSInterop;
 
-namespace Tc.Abp.UI.Components
+namespace Tc.Abp.AspNetCore.Components
 {
     public class LoginDisplay : LoginDisplayBase, IDisposable
     { 

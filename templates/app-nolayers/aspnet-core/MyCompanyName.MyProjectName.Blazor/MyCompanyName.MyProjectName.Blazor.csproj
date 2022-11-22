@@ -37,7 +37,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Tc.Abp.AspNetCore.Components.WebAssembly\Tc.Abp.AspNetCore.Components.WebAssembly.csproj" />
-		<ProjectReference Include="..\..\..\..\src\Tc.Abp.UI\Tc.Abp.UI.csproj" />
 	</ItemGroup>
 
 

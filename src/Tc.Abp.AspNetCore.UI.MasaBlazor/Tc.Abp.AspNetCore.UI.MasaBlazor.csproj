@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\common.props" />
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace />
+	</PropertyGroup>
+	<ItemGroup>
+	  <Content Remove="C:\Users\220700004\.nuget\packages\masa.blazor\0.6.0\contentFiles\any\net6.0\package.json" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Masa.Blazor" Version="0.6.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Tc.Abp.AspNetCore\Tc.Abp.AspNetCore.csproj" />
+	</ItemGroup>
+
+</Project>

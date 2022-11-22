@@ -1,11 +1,11 @@
-﻿using Tc.Abp.UI;
+﻿using Tc.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Components.WebAssembly;
 using Volo.Abp.Http.Client.IdentityModel.WebAssembly;
 using Volo.Abp.Modularity;
 
 namespace Tchivs.Abp.AspNetCore.Components.WebAssembly;
     [DependsOn(
-typeof(TcAbpUIModule),
+typeof(TcAbpAspNetCoreModule),
 typeof(AbpHttpClientIdentityModelWebAssemblyModule),
 typeof(AbpAspNetCoreComponentsWebAssemblyModule))]
     public class TcAbpAspNetCoreComponentsWebAssemblyModule : AbpModule

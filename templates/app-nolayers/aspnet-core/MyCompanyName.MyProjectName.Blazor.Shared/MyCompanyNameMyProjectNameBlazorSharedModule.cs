@@ -1,9 +1,9 @@
-﻿using Tc.Abp.UI;
+﻿using Tc.Abp.AspNetCore;
 using Volo.Abp.Modularity;
 
 namespace MyCompanyName.MyProjectName;
 
-[DependsOn(typeof(Tc.Abp.UI.TcAbpUIModule))]
+[DependsOn(typeof(TcAbpAspNetCoreModule))]
 public class MyCompanyNameMyProjectNameBlazorSharedModule:AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

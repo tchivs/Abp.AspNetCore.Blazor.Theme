@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Tc.Abp.UI.Components
+namespace Tc.Abp.AspNetCore.Components
 {
     public class LoginDisplay : LoginDisplayBase
     {

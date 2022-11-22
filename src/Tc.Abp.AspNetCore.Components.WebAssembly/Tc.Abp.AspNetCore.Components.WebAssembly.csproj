@@ -9,6 +9,6 @@
 		<PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly" Version="$(AbpVersion)" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Tc.Abp.UI\Tc.Abp.UI.csproj" />
+	  <ProjectReference Include="..\Tc.Abp.AspNetCore\Tc.Abp.AspNetCore.csproj" />
 	</ItemGroup>
 </Project>

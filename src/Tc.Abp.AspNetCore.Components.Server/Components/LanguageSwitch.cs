@@ -2,7 +2,7 @@
 using Volo.Abp.Localization;
 using System.Globalization;
 
-namespace Tc.Abp.UI.Components
+namespace Tc.Abp.AspNetCore.Components
 {
     public class LanguageSwitch : LanguageSwitchBase
     {

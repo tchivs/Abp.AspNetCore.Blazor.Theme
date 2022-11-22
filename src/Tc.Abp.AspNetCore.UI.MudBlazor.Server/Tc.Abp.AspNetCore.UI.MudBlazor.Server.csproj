@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\common.props" />
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace />
+
+	</PropertyGroup>
+ 
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tc.Abp.AspNetCore.Components.Server\Tc.Abp.AspNetCore.Components.Server.csproj" />
+    <ProjectReference Include="..\Tc.Abp.AspNetCore.UI.MudBlazor\Tc.Abp.AspNetCore.UI.MudBlazor.csproj" />
+  </ItemGroup>
+
+</Project>

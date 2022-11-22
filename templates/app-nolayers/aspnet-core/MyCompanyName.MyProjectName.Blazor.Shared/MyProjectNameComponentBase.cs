@@ -1,4 +1,4 @@
-﻿using Tc.Abp.UI.Localization;
+﻿using Tc.Abp.AspNetCore.Localization;
 using Volo.Abp.AspNetCore.Components;
 
 namespace MyCompanyName.MyProjectName;
