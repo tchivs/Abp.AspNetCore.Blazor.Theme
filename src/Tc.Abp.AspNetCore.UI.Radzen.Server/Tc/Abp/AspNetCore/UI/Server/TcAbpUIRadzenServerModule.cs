@@ -10,7 +10,8 @@ using Volo.Abp.Modularity;
 
 namespace Tc.Abp.AspNetCore.UI.Server
 {
-    [DependsOn(typeof(TcAbpUIRadzenModule), typeof(TcAbpAspNetCoreComponentsServerModule))]
+    [DependsOn(typeof(TcAbpUIRadzenModule), 
+        typeof(TcAbpAspNetCoreComponentsServerModule))]
     public class TcAbpUIRadzenServerModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

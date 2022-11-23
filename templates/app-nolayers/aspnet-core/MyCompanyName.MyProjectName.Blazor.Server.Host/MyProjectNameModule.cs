@@ -26,6 +26,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
 using Tc.Abp.AspNetCore.UI.Server;
+using Volo.Abp.Http.Client.IdentityModel.Web;
 
 namespace MyCompanyName.MyProjectName;
 
@@ -33,6 +34,7 @@ namespace MyCompanyName.MyProjectName;
     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
+    typeof(AbpHttpClientIdentityModelWebModule),
     typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAutofacModule),
     typeof(AbpAutoMapperModule),

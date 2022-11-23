@@ -8,7 +8,6 @@ namespace Tc.Abp.AspNetCore.Components
     {
         [Inject]
         protected IMenuManager MenuManager { get; set; }
-        [Inject]
         protected ApplicationMenu Menu { get; set; }
 
         protected override async Task OnInitializedAsync()
