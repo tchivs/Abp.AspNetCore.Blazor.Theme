@@ -21,12 +21,11 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Tc.Abp.AspNetCore.Components.Server;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Tc.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Tc.Abp.AspNetCore.Radzen.Server;
 using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
+using Tc.Abp.AspNetCore.UI.Server;
 
 namespace MyCompanyName.MyProjectName;
 

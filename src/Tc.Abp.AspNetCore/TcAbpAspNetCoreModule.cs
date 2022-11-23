@@ -14,6 +14,7 @@ using Tc.Abp.AspNetCore.Localization;
 using Localization.Resources.AbpUi;
 using Tc.Abp.AspNetCore.Components;
 using Volo.Abp.Validation.Localization;
+using Blazored.LocalStorage;
 
 namespace Tc.Abp.AspNetCore;
 [DependsOn(
@@ -29,6 +30,8 @@ public class TcAbpAspNetCoreModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
+        context.Services.AddBlazoredLocalStorage();
+
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
             options.FileSets.AddEmbedded<TcAbpAspNetCoreModule>();
@@ -49,5 +52,6 @@ public class TcAbpAspNetCoreModule : AbpModule
         {
             options.MapCodeNamespace("Blazor", typeof(BlazorResource));
         });
+
     }
 }

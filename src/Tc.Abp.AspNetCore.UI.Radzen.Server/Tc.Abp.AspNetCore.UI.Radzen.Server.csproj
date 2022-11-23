@@ -11,8 +11,5 @@
 		<ProjectReference Include="..\Tc.Abp.AspNetCore.Components.Server\Tc.Abp.AspNetCore.Components.Server.csproj" />
 		<ProjectReference Include="..\Tc.Abp.AspNetCore.UI.Radzen\Tc.Abp.AspNetCore.UI.Radzen.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Tc\Abp\AspNetCore\UI\Server\" />
-	</ItemGroup>
 
 </Project>

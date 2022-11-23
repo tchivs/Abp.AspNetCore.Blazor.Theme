@@ -1,4 +1,4 @@
-﻿namespace Tc.Abp.AspNetCore
+﻿namespace Tc.Abp.AspNetCore.UI.Server
 {
     public class BlazorRadzenThemeBundles
     {

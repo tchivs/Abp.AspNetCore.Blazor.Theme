@@ -5,6 +5,7 @@
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 	</ItemGroup>
 	<ItemGroup>

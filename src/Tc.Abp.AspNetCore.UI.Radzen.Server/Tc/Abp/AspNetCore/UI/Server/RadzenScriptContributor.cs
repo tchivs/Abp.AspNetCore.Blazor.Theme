@@ -1,7 +1,7 @@
 ﻿using Tc.Abp.AspNetCore.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 
-namespace Tc.Abp.AspNetCore.Radzen.Server
+namespace Tc.Abp.AspNetCore.UI.Server
 {
     public class RadzenScriptContributor : BundleContributor
     {

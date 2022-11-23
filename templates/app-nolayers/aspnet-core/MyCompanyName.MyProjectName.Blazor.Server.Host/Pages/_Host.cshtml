@@ -5,7 +5,6 @@
 @using Tc.Abp.AspNetCore.Components.Server
 @using Tc.Abp.AspNetCore
 @using Tc.Abp.AspNetCore.Components
-@using Tc.Abp.AspNetCore.Radzen.Server
 @using Volo.Abp.Localization
 @using Microsoft.Extensions.DependencyInjection
 @{
@@ -24,6 +23,10 @@
     <base href="~/" />
 
     <abp-style-bundle name="@bundleOptions.Style" />
+    @if (options.HeaderStaticComponent!=null)
+    {
+        <component type="@options.HeaderStaticComponent" render-mode="Static" />
+    }
 </head>
 <body class="abp-application-layout bg-light @rtl">
 

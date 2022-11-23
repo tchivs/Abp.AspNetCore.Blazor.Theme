@@ -20,6 +20,7 @@ public partial class MainLayout
 
     protected override void OnInitialized()
     {
+        ThemeService.Initialize(UriHelper);
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
@@ -54,11 +55,9 @@ public partial class MainLayout
 
     void ChangeTheme(object value)
     {
-        //var url = UriHelper.GetUriWithQueryParameter("theme", $"{value}");
-
-        //UriHelper.NavigateTo(url, true);
+        var url = UriHelper.GetUriWithQueryParameter("theme", $"{value}");
+        UriHelper.NavigateTo(url, true);
     }
-
     async Task PanelMenuClick(MenuItemEventArgs args)
     {
         if (args.Path == "/")

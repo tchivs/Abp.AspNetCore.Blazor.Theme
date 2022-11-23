@@ -22,6 +22,7 @@ public class TcAbpUIRadzenModule : AbpModule
         {
             // options.AppAssembly = typeof(TcAbpUIRadzenModule).Assembly;
             options.DefaultLayout = typeof(MainLayout);
+            options.HeaderStaticComponent = typeof(Tc.Abp.AspNetCore.Components.Theme);
         });
     }
 }

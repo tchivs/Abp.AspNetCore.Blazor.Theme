@@ -8,7 +8,7 @@ using Tc.Abp.AspNetCore.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.Modularity;
 
-namespace Tc.Abp.AspNetCore.Radzen.Server
+namespace Tc.Abp.AspNetCore.UI.Server
 {
     [DependsOn(typeof(TcAbpUIRadzenModule), typeof(TcAbpAspNetCoreComponentsServerModule))]
     public class TcAbpUIRadzenServerModule : AbpModule

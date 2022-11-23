@@ -9,28 +9,28 @@ using Volo.Abp.Modularity;
 using Tc.Abp.AspNetCore;
 
 namespace Tc.Abp.AspNetCore.Components.Server;
-    [DependsOn(typeof(TcAbpAspNetCoreModule), 
-        typeof(AbpAspNetCoreComponentsServerModule),
-        typeof(AbpAspNetCoreMvcUiPackagesModule),
-        typeof(AbpAspNetCoreMvcUiBundlingModule))]
-    public class TcAbpAspNetCoreComponentsServerModule : AbpModule
+[DependsOn(typeof(TcAbpAspNetCoreModule),
+    typeof(AbpAspNetCoreComponentsServerModule),
+    typeof(AbpAspNetCoreMvcUiPackagesModule),
+    typeof(AbpAspNetCoreMvcUiBundlingModule))]
+public class TcAbpAspNetCoreComponentsServerModule : AbpModule
+{
+    public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
+        Configure<AbpBundlingOptions>(options =>
         {
-            Configure<AbpBundlingOptions>(options =>
-            {
-                options
-                    .StyleBundles
-                    .Add(BlazorStandardBundles.Styles.Global, bundle =>
-                    {
-                        bundle.AddContributors(typeof(BlazorGlobalStyleContributor));
-                    });
-                options
-                    .ScriptBundles
-                    .Add(BlazorStandardBundles.Scripts.Global, bundle =>
-                    {
-                        bundle.AddContributors(typeof(BlazorGlobalScriptContributor));
-                    });
-            });
-        }
+            options
+                .StyleBundles
+                .Add(BlazorStandardBundles.Styles.Global, bundle =>
+                {
+                    bundle.AddContributors(typeof(BlazorGlobalStyleContributor));
+                });
+            options
+                .ScriptBundles
+                .Add(BlazorStandardBundles.Scripts.Global, bundle =>
+                {
+                    bundle.AddContributors(typeof(BlazorGlobalScriptContributor));
+                });
+        });
     }
+}
