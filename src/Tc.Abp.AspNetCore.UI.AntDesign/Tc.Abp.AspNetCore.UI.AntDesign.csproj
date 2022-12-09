@@ -10,7 +10,7 @@
 	  <Folder Include="Tc\Abp\AspNetCore\Components\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="AntDesign" Version="0.13.0" />
+	  <PackageReference Include="AntDesign" Version="0.13.1" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tc.Abp.AspNetCore\Tc.Abp.AspNetCore.csproj" />
