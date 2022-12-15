@@ -2,7 +2,7 @@
 
 public class BundleOptions
 {
-    public string? Style { get; set; }
-    public string? Script { get; set; }
+    public string Style { get; set; }
+    public string Script { get; set; }
 }
 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +10,7 @@ using Tc.Abp.AspNetCore.Components.Server;
 using Tc.Abp.AspNetCore.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.Modularity;
+using Volo.Abp.UI.Navigation;
 
 namespace Tc.Abp.AspNetCore.UI.Server
 {
@@ -16,6 +20,7 @@ namespace Tc.Abp.AspNetCore.UI.Server
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            var configuration = context.Services.GetConfiguration();
             Configure<AbpBundlingOptions>(options =>
             {
                 options
@@ -42,6 +47,37 @@ namespace Tc.Abp.AspNetCore.UI.Server
                 options.Style = BlazorRadzenThemeBundles.Styles.Global;
                 options.Script = BlazorRadzenThemeBundles.Scripts.Global;
             });
+            ConfigureMenu(configuration);
+        }
+        private void ConfigureMenu(IConfiguration configuration)
+        {
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new DefaultMenuContributor(configuration));
+            });
+
+            //Configure<AbpToolbarOptions>(options =>
+            //{
+            //    options.Contributors.Add(new MyProjectNameToolbarContributor());
+            //});
+        }
+    }
+    internal class DefaultMenuContributor : BaseDefaultMenuContributor
+    {
+        public DefaultMenuContributor(IConfiguration configuration) : base(configuration)
+        {
+        }
+        protected override ApplicationMenuItem CreateManageMenu(IStringLocalizer l, string authServerUrl)
+        {
+            var item= base.CreateManageMenu(l, authServerUrl);
+            item.Icon = "manage_accounts";
+            return item;
+        }
+        protected override ApplicationMenuItem CreateLogoutMenu(IStringLocalizer l)
+        {
+            var item =  base.CreateLogoutMenu(l);
+            item.Icon = "logout";
+            return item;
         }
     }
 }

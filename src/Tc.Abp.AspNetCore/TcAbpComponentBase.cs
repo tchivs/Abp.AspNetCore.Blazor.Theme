@@ -20,7 +20,6 @@ public abstract class TcAbpComponentBase : AbpComponentBase
     public IJSRuntime JsRuntime { get; set; }
 
     public bool IsWebAssembly { get => OperatingSystem.IsBrowser(); }
-    //protected bool IsWebAssembly = this.JsRuntime is IJSInProcessRuntime;
 
     protected virtual async Task NavigateToAsync(string uri, string target = null)
     {
@@ -60,7 +59,7 @@ public abstract class TcAbpComponentBase : AbpComponentBase
         }
         return $"{baseUrl}?returnUrl={returnUrl}";
     }
-    protected virtual async void RedirectToLogin()
+    protected virtual void RedirectToLogin()
     {
         string url = this.GetRedirectUrl();
         if (IsWebAssembly)

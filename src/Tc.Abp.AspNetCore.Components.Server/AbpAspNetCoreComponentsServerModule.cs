@@ -7,6 +7,10 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Packages;
 using Volo.Abp.Modularity;
 using Tc.Abp.AspNetCore;
+using Volo.Abp.UI.Navigation;
+using Microsoft.Extensions.Configuration;
+using Tc.Abp.AspNetCore.Toolbars;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tc.Abp.AspNetCore.Components.Server;
 [DependsOn(typeof(TcAbpAspNetCoreModule),
@@ -16,6 +20,11 @@ namespace Tc.Abp.AspNetCore.Components.Server;
 public class TcAbpAspNetCoreComponentsServerModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        //var configuration = context.Services.GetConfiguration();
+        ConfigureBundles();
+    }
+    private void ConfigureBundles()
     {
         Configure<AbpBundlingOptions>(options =>
         {
@@ -32,5 +41,8 @@ public class TcAbpAspNetCoreComponentsServerModule : AbpModule
                     bundle.AddContributors(typeof(BlazorGlobalScriptContributor));
                 });
         });
+
     }
+ 
+
 }

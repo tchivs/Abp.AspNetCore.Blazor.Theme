@@ -2,19 +2,19 @@
 using Tc.Abp.AspNetCore.UI;
 using Volo.Abp.Bundling;
 
-namespace Tc.Abp.AspNetCore.Radzen.WebAssembly;
+namespace Tc.Abp.AspNetCore.UI.WebAssembly;
 
 public class RadzenBundleContributor : IBundleContributor
 {
-    public   void AddScripts(BundleContext context)
+    public void AddScripts(BundleContext context)
     {
-       
+
         foreach (var script in RadzenThemeConst.SCRIPTS)
         {
             context.Add(script);
         }
     }
-    public   void AddStyles(BundleContext context)
+    public void AddStyles(BundleContext context)
     {
         foreach (var style in RadzenThemeConst.STYLES)
         {

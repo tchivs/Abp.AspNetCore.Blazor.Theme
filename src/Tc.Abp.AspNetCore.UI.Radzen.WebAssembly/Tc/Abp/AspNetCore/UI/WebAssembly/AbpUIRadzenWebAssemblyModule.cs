@@ -8,7 +8,7 @@ using Tchivs.Abp.AspNetCore.Components.WebAssembly;
 using Volo.Abp.Bundling;
 using Volo.Abp.Modularity;
 
-namespace Tc.Abp.AspNetCore.MudBlazor.WebAssembly;
+namespace Tc.Abp.AspNetCore.UI.WebAssembly;
 [DependsOn(typeof(TcAbpAspNetCoreComponentsWebAssemblyModule))]
 public class TcAbpUIMudBlazorWebAssemblyModule : AbpModule
 {
@@ -16,7 +16,7 @@ public class TcAbpUIMudBlazorWebAssemblyModule : AbpModule
     {
         Configure<AbpRouterOptions>(options =>
         {
-            options.AdditionalAssemblies.Add(this.GetType().Assembly);
+            options.AdditionalAssemblies.Add(GetType().Assembly);
         });
         // Configure<AbpToolbarOptions>(options =>
         //{

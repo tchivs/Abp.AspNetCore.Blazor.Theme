@@ -12,7 +12,4 @@
 		<ProjectReference Include="..\Tc.Abp.AspNetCore.Components.WebAssembly\Tc.Abp.AspNetCore.Components.WebAssembly.csproj" />
 		<ProjectReference Include="..\Tc.Abp.AspNetCore.UI.Radzen\Tc.Abp.AspNetCore.UI.Radzen.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Tc\Abp\AspNetCore\UI\WebAssembly\" />
-	</ItemGroup>
 </Project>
