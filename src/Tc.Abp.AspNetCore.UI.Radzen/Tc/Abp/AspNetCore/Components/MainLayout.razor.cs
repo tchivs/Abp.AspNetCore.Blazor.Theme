@@ -14,13 +14,11 @@ namespace Tc.Abp.AspNetCore.Components;
 public partial class MainLayout
 {
     [Inject] private NavigationManager NavigationManager { get; set; }
-    [Inject] private ThemeService ThemeService { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
     private bool IsCollapseShown { get; set; }
 
     protected override void OnInitialized()
     {
-        ThemeService.Initialize(UriHelper);
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
@@ -53,11 +51,7 @@ public partial class MainLayout
         //examples = string.IsNullOrEmpty(term) ? ExampleService.Examples : ExampleService.Filter(term);
     }
 
-    void ChangeTheme(object value)
-    {
-        var url = UriHelper.GetUriWithQueryParameter("theme", $"{value}");
-        UriHelper.NavigateTo(url, true);
-    }
+
     async Task PanelMenuClick(MenuItemEventArgs args)
     {
         if (args.Path == "/")

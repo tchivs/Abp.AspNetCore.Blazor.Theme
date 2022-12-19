@@ -13,7 +13,7 @@
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(MicrosoftPackageVersion)" />
-		<PackageReference Include="MudBlazor" Version="6.1.5" />
+		<PackageReference Include="MudBlazor" Version="6.1.6" />
 		<PackageReference Include="OpenIddict.Abstractions" Version="3.1.1" />
 		<PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="$(AbpVersion)" />
 	</ItemGroup>

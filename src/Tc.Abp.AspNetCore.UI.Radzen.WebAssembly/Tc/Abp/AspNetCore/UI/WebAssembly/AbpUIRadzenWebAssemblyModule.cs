@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tc.Abp.AspNetCore.Components.WebAssembly;
+using Tc.Abp.AspNetCore.Toolbars;
 using Tchivs.Abp.AspNetCore.Components.WebAssembly;
 using Volo.Abp.Bundling;
 using Volo.Abp.Modularity;
@@ -18,10 +19,10 @@ public class TcAbpUIMudBlazorWebAssemblyModule : AbpModule
         {
             options.AdditionalAssemblies.Add(GetType().Assembly);
         });
-        // Configure<AbpToolbarOptions>(options =>
-        //{
-        // options.Contributors.Add(new ToolbarContributor());
-        // });
+        Configure<AbpToolbarOptions>(options =>
+       {
+           options.Contributors.Add(new RadzenWebAssemblyThemeToolbarContributor());
+       });
     }
 }
 

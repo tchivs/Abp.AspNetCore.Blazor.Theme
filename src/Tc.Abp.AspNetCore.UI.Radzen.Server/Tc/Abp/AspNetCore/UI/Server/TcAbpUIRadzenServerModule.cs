@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tc.Abp.AspNetCore.Components.Server;
+using Tc.Abp.AspNetCore.Toolbars;
 using Tc.Abp.AspNetCore.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.Modularity;
@@ -56,28 +56,10 @@ namespace Tc.Abp.AspNetCore.UI.Server
                 options.MenuContributors.Add(new DefaultMenuContributor(configuration));
             });
 
-            //Configure<AbpToolbarOptions>(options =>
-            //{
-            //    options.Contributors.Add(new MyProjectNameToolbarContributor());
-            //});
-        }
-    }
-    internal class DefaultMenuContributor : BaseDefaultMenuContributor
-    {
-        public DefaultMenuContributor(IConfiguration configuration) : base(configuration)
-        {
-        }
-        protected override ApplicationMenuItem CreateManageMenu(IStringLocalizer l, string authServerUrl)
-        {
-            var item= base.CreateManageMenu(l, authServerUrl);
-            item.Icon = "manage_accounts";
-            return item;
-        }
-        protected override ApplicationMenuItem CreateLogoutMenu(IStringLocalizer l)
-        {
-            var item =  base.CreateLogoutMenu(l);
-            item.Icon = "logout";
-            return item;
+            Configure<AbpToolbarOptions>(options =>
+            {
+                options.Contributors.Add(new RadzenServerThemeToolbarContributor());
+            });
         }
     }
 }

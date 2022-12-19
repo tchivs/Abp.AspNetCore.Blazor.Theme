@@ -1,0 +1,8 @@
+﻿@inherits LanguageSwitch
+@namespace Tc.Abp.AspNetCore.Components
+@using  Volo.Abp.Localization
+@if (this.Languages.Count>0)
+{
+<RadzenDropDown Data="@this.Languages" TValue="LanguageInfo" TextProperty="DisplayName" Change="args=>this.ChangeLanguageAsync((LanguageInfo)args)" />
+    
+}
